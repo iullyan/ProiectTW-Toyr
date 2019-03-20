@@ -20,7 +20,7 @@ body{
   color: #ffffff;
   padding: 20px;
   justify-content: center;
-  grid-area: header;
+  grid-area: header; /*  */
 }
 #searchContainer{
   display: flex;
@@ -65,9 +65,9 @@ header li{
 .grid {
   display: grid;
   grid-template-areas:
-    'header header header header header header'
-    'menu main main main main main'
-    'footer footer footer footer footer footer';
+    'header header header header header header header header header'
+    'menu main main main main main main main main'
+    'footer footer footer footer footer footer footer footer footer';
 }
 
 .menu { grid-area: menu; }
