@@ -20,6 +20,7 @@ body{
   color: #ffffff;
   padding: 20px;
   justify-content: center;
+  grid-area: header;
 }
 #searchContainer{
   display: flex;
@@ -37,7 +38,7 @@ body{
 form{
   display: flex;
 }
-header #searchContainer input[type="text"]{
+#searchContainer input[type="text"]{
   height: 50px;
   width : 500px;
   padding: 5px;
@@ -61,3 +62,14 @@ header li{
   display: inline;
   padding: 0 20px 0 20px;
 }
+.grid {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'menu main main main main main'
+    'footer footer footer footer footer footer';
+}
+
+.menu { grid-area: menu; }
+.main { grid-area: main; }
+.footer { grid-area: footer; }
