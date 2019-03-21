@@ -1,0 +1,106 @@
+body {  /* Fontul scrisului*/
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px;
+}
+
+* { /* Fara asta text-boxurile si label-urile legate sunt pe aceeasi linie*/
+  box-sizing: border-box;
+}
+
+.row { /*Grupeaza tot in aceasta grupa*/
+    display: -ms-flexbox; 
+    display: flex;
+    -ms-flex-wrap: wrap; 
+    flex-wrap: wrap;
+    margin: 0 -15px;
+  }
+
+  .col-25 { /* coloana ce ia numai 25% din spatiul disponibil*/
+    -ms-flex: 25%; 
+    flex: 25%;
+  }
+  
+  .col-50 {/* coloana ce ia numai 50% din spatiul disponibil*/
+    -ms-flex: 50%; 
+    flex: 50%;
+  }
+  
+  .col-75 { /* coloana ce ia numai 75% din spatiul disponibil*/
+    -ms-flex: 75%; 
+    flex: 75%;
+  }
+  
+  .col-25,
+  .col-50,
+  .col-75 { /* spatiere/lungire dinamica a randurilor*/
+    padding: 0 20px;
+  }
+
+  .container { /* */
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+  }
+  input[type=text] { /*setarile textboxurilor*/
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+
+  label { /* Scrisul de dinaintea fiecarui textbox*/
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .buton { /*Stilul butonului de la finalul paginii*/
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+  }
+  
+  .buton:hover { /*Cluoarea cand pui mouse-ul pe buton*/
+    background-color: #45a049;
+  }
+
+  a { /*Asta este pentru culoarea produselor din lista*/
+    color: #2196F3;
+  }
+
+  hr { /*linia ce separa produsele de total*/
+    border: 1px solid lightgrey;
+  }
+
+  span.price { /*Textul Preturilor*/
+    float: right;
+    color: grey;
+  }
+
+  @media (max-width: 800px) { /*atuchi cand imaginea e prea mare a doua coloana se pune in fata primei*/
+    .row {
+      flex-direction: column-reverse;
+    }
+    .col-25 {
+      margin-bottom: 20px;
+    }
+  }
+
+  .menuContainer { /*luat din menu.css pt titlu Toyr.ro*/
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: #35424a;
+    color: #ffffff;
+    padding: 0px;
+    justify-content: center;
+    grid-area: header;
+  }
