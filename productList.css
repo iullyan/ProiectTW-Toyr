@@ -14,7 +14,7 @@
 }
 
 .filter {
-  grid-area: .filter;
+  grid-area: filter;
   background-color: #bbb;
 }
 /* Style the right column */
