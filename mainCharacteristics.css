@@ -24,8 +24,13 @@
 
 /* Style the middle column */
 .middle {
-
+  padding: 0;
   grid-area: middle;
+}
+.middle img{
+  padding: 0;
+  margin: 0;
+
 }
 
 /* Style the right column */
@@ -53,8 +58,10 @@ footer {
       'main main main main main main'
       'footer footer footer footer footer footer';
   }
+  #searchContainer input[type="text"]{
+    max-width: 250px;
+  }
 }
-
 body{
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12pt;
@@ -66,15 +73,17 @@ body{
 
 header{
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   min-width: 100%;
   background: #35424a;
   color: #ffffff;
   padding: 0;
   justify-content: center;
-  grid-area: header; /*  */
+  grid-area: header;
 }
 #searchContainer{
+
   display: flex;
   padding-left: 20px;
 }
@@ -87,12 +96,13 @@ header{
   padding-right: 20px;
   color : #ffffff;
 }
+
 form{
   display: flex;
 }
 #searchContainer input[type="text"]{
+  width: 500px;
   height: 50px;
-  width : 500px;
   padding: 5px;
   font-size: 16px;
 }
