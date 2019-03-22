@@ -39,6 +39,7 @@ footer {
     grid-template-areas:
       'header header header header header header'
       'main main main main main main'
+      'filter filter filter filter filter filter'
       'footer footer footer footer footer footer';
   }
   #searchContainer input[type="text"]{
