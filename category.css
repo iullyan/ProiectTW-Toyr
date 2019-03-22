@@ -1,0 +1,27 @@
+
+.content{
+  margin-top: 5px;
+  background-color:#F6F7F6 ;
+  border: 3px;
+}
+.content + ul{
+  padding: 0px;
+  position: relative;
+  display: inline-block;
+}
+.content  ul  li:hover{
+  background-color: #bfbfbf;
+}
+
+
+}
+.content ul li{
+  padding: 5px;
+  color : #ffffff;
+}
+
+#categoriesTitle{
+  background-color: #e8491d;
+  text-align: center;
+
+}
