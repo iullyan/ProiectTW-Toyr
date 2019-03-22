@@ -10,8 +10,6 @@
     <link rel="stylesheet" type="text/css" href="product.css">
     <link rel="stylesheet" type="text/css" href="productList.css">
 
-    <!-- <link rel="stylesheet" type="text/css" href="product.css"> Nu merge slideShow-ul-->
-
   </head>
   <body>
   <div class="grid-container">
@@ -45,10 +43,35 @@
 
 
 
-  <aside class="filter">
+  <div class="filter">
+      <form action="/action_page.php" class="forms">
+          <p style=" font-weight: bold;">Disponibilate</p>
+          <input type="checkbox" name="" value="Stoc">In stoc<br>
+          <input type="checkbox" name="" value="Promotii">Promotii<br>
+          <input type="checkbox" name="" value="Noutati">Noutati<br>
+          <input type="checkbox" name="" value="Lichidare Stoc">Lichidare Stoc<br>
+          <input type="checkbox" name="" value="Resigilate">Resigilate<br><br><br>
 
-  </aside>
-  
+          <p style=" font-weight: bold;">Varsta</p>
+          <input type="checkbox" name="" value="">1+<br>
+          <input type="checkbox" name="" value="">2+<br>
+          <input type="checkbox" name="" value="">3+<br>
+          <input type="checkbox" name="" value="">4+<br>
+          <input type="checkbox" name="" value="">5+<br>
+          <input type="checkbox" name="" value="">6+<br>
+          <input type="checkbox" name="" value="">7+<br>
+
+          <p style=" font-weight: bold;">Pret</p>
+          <input type="checkbox" name="" value="">Sub 50<br>
+          <input type="checkbox" name="" value="">100 - 200<br>
+          <input type="checkbox" name="" value="">200 - 500<br>
+          <input type="checkbox" name="" value="">500 - 1000<br>
+          <input type="checkbox" name="" value="">Peste 1000<br>
+
+          <input type="submit" value="Filtrează">
+        </form>
+  </div>
+
   <section class="main">
     <nav class="minimizedMenu">
     <div class="dropdownCategories">
@@ -58,7 +81,7 @@
           <a href="#">Educaționale</a>
           <a href="#">Figurine</a>
           <a href="#">Vehicule</a>
-          <a href="#">Modele telghidate</a>
+          <a href="#">Modele teleghidate</a>
           <a href="#">Păpuși</a>
           <a href="productList.html">Plușuri</a>
           <a href="#">Creativitate</a>
@@ -69,13 +92,11 @@
           <a href="#">Hobby-uri și roleplay</a>
         </div>
       </div>
+      <button class="categoriesButton">Ordonează după</button>
       </nav>
 
     <div class="productContainer">
       <div class="product">
-        <div>
-
-        </div>
         <div>
           <img class = "product-image"src="tux.png" width="125px" height="125px">
         </div>

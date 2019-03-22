@@ -163,3 +163,18 @@ form{
   margin-left: 150px;
   margin-right: 150px;
 }
+
+.filter {
+  border-style: groove;
+  border-radius: 5px;
+  padding: 10px;
+}
+.forms {
+  border-style: groove;
+  background-color: lightgrey;
+  border-radius: 5px;
+  padding: 10px;
+  display: block;
+  padding: 10px;
+  border:
+}
