@@ -1,4 +1,4 @@
-php scripts
+	-- PHP SCRIPTS--
 login.php
 browse.php -- o lista de produse
 browseByCategory.php -- cauta pe baza categoriei selectate
@@ -8,6 +8,7 @@ addCart.php
 viewCart.php -- genereaza cosul
 payment.php -- genereaza pagina de plata
 sendPayment.php -- submit la plata
+
 	-- ADMIN ONLY--
 addProduct.php
 deletProduct.php
