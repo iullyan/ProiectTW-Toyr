@@ -17,3 +17,5 @@ deleteCategory.php
 adminPanel.php
 adminBrowse.php -- o lista cu produse cu niste functii aditionale pt admin (delete, update)
 adminSearch.php
+browseUser.php -- lista cu useri/admini
+updateUser.php -- modificare status(user/admin)
