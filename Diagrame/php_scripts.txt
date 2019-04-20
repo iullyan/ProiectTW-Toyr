@@ -1,0 +1,18 @@
+php scripts
+login.php
+browse.php -- o lista de produse
+browseByCategory.php -- cauta pe baza categoriei selectate
+search.php -- cauta pe baza inputului din searchbar
+product.php -- pagina produs be za de id
+addCart.php
+viewCart.php -- genereaza cosul
+payment.php -- genereaza pagina de plata
+sendPayment.php -- submit la plata
+	-- ADMIN ONLY--
+addProduct.php
+deletProduct.php
+addCategory.php
+deleteCategory.php
+adminPanel.php
+adminBrowse.php -- o lista cu produse cu niste functii aditionale pt admin (delete, update)
+adminSearch.php
