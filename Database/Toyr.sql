@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS orders, orders_items, producs, users, categories, categories_products, addresses, special_event,
-products_events,  product_discount, promotions, payments, credit_cards;
+DROP TABLE IF EXISTS orders, orders_items, products, users, categories, categories_products, addresses, special_event,
+products_events,  product_discount, promotions, payments, credit_cards, product_price, product_images;
 
 #dupa ce comanda e platita o sa aiba mai multe status-uri
 CREATE TABLE `orders`
@@ -15,20 +15,49 @@ CREATE TABLE `orders_items`
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `order_id` int NOT NULL,
   `product_id` int NOT NULL,
-  `quantity` int DEFAULT 0
+  `quantity` int unsigned DEFAULT 0
+);
+
+CREATE TABLE `categories`
+(
+  `id` int PRIMARY KEY  AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL
 );
 
 CREATE TABLE `products`
 (
   `id` int PRIMARY KEY AUTO_INCREMENT,
+  `category_id` int NOT NULL,
   `name` varchar(255) NOT NULL UNIQUE,
-  `nr_sold` int DEFAULT 0,
-  `units_in_stock` int DEFAULT 0,
-  `price` DECIMAL(10,2) NOT NULL,
+  `nr_sold` int unsigned DEFAULT 0,
+  `description` text,
+  `units_in_stock` int unsigned DEFAULT 0,
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL
 );
-
+CREATE TABLE `product_images`
+(
+	`id` int PRIMARY KEY AUTO_INCREMENT,
+    `product_id` int NOT NULL,
+    `name` varchar(255),
+    `path` varchar(255),
+    `date_created` timestamp,
+    `date updated` timestamp
+);
+CREATE TABLE `product_price`
+(
+  `id` int PRIMARY KEY  AUTO_INCREMENT,
+  `product_id` int NOT NULL UNIQUE,
+  `base_price` DECIMAL(10,2) unsigned NOT NULL,
+  `discount_percentage`  int unsigned DEFAULT 0,
+  `price_with_discount` int unsigned,
+  `valid_from` timestamp NOT NULL,
+  `valid_until` timestamp NOT NULL,
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL
+);
 CREATE TABLE `users`
 (
   `id` int PRIMARY KEY  AUTO_INCREMENT,
@@ -42,21 +71,6 @@ CREATE TABLE `users`
   `avatar_img` blob,
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL
-);
-
-CREATE TABLE `categories`
-(
-  `id` int PRIMARY KEY  AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL
-);
-
-CREATE TABLE `categories_products`
-(
-  `id` int PRIMARY KEY  AUTO_INCREMENT,
-  `product_id` int NOT NULL,
-  `category_id` int NOT NULL
 );
 
 CREATE TABLE `addresses`
@@ -89,16 +103,7 @@ CREATE TABLE `products_events`
   `event_id` int NOT NULL
 );
 
-CREATE TABLE `product_discount`
-(
-  `id` int PRIMARY KEY  AUTO_INCREMENT,
-  `product_id` int NOT NULL,
-  `discount_percentage` int CHECK(discount_percentage > 0),
-  `valid_from` timestamp NOT NULL,
-  `valid_until` timestamp NOT NULL,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL
-);
+
 
 /*Pot fi mai multe tipuri de promotii
 cand cumperi un produs si primesti altele
@@ -111,8 +116,8 @@ CREATE TABLE `promotions`
   `gifted_product_id` int ,
   `product_units_bought` int DEFAULT 1,
   `min_money_spent` int ,
-  `gifted_product_quantity` int,
-  `total_discount` int,
+  `gifted_product_quantity` int unsigned,
+  `total_discount` int unsigned,
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL
 );
@@ -122,7 +127,7 @@ CREATE TABLE `payments`
   `id` int PRIMARY KEY  AUTO_INCREMENT,
   `order_id` int NOT NULL,
   `credit_card_id` int NOT NULL,
-  `amount` DECIMAL(10,2) NOT NULL
+  `amount` DECIMAL(10,2) unsigned  NULL
 );
 
 CREATE TABLE `credit_cards`
@@ -143,9 +148,7 @@ ALTER TABLE `orders_items` ADD FOREIGN KEY (`order_id`) REFERENCES `orders` (`id
 
 ALTER TABLE `orders_items` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 
-ALTER TABLE `categories_products` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE CASCADE ;
-
-ALTER TABLE `categories_products` ADD FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE `products` ADD FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON UPDATE CASCADE ON DELETE CASCADE ;
 
 ALTER TABLE `addresses` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE  ON DELETE CASCADE ;
 
@@ -161,3 +164,6 @@ ALTER TABLE `promotions` ADD FOREIGN KEY (`product_buyed_id`) REFERENCES `produc
 
 ALTER TABLE `promotions` ADD FOREIGN KEY (`gifted_product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 
+ALTER TABLE `product_price` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE `product_images` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
