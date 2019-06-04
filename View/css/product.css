@@ -1,0 +1,48 @@
+.product{
+  grid-area: product;
+  border-radius: 10px;
+  width: 200px;
+  height: 300px;
+  border: 2px solid #d9d9d9 ;
+}
+
+.product div {
+  text-align: center;
+}
+
+div .product-name {
+  text-align: center;
+  font-size: 17px;
+  font-weight: bold;
+  word-break: break-all;
+  margin-top: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+div .product-price {
+  text-align: center;
+  font-size: 20px;
+  color: red;
+  font-size: 20px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+div .product-image {
+  margin-top: 10px;
+}
+
+.buy-button {
+  background:#e8491d;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  color : #ffffff;
+}
+.productContainer{
+  padding: 15px;
+  margin-top: 2px;
+}
