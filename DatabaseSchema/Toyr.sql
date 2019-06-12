@@ -31,12 +31,24 @@ CREATE TABLE `products`
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `category_id` int NOT NULL,
   `name` varchar(255) NOT NULL UNIQUE,
+  `price`
   `nr_sold` int unsigned DEFAULT 0,
   `description` text,
   `units_in_stock` int unsigned DEFAULT 0,
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL
 );
+
+
+CREATE TABLE `product_discount`
+(
+    `id` int PRIMARY KEY,
+    `product_id` int UNIQUE NOT NULL,
+    `discount_percentage` int unsigned DEFAULT 0,
+    `valid_from` timestamp NOT NULL,
+    `valid_until` timestamp NOT NULL
+);
+
 CREATE TABLE `product_images`
 (
 	`id` int PRIMARY KEY AUTO_INCREMENT,
@@ -46,18 +58,7 @@ CREATE TABLE `product_images`
     `created_at` timestamp,
     `updated_at` timestamp
 );
-CREATE TABLE `product_price`
-(
-  `id` int PRIMARY KEY  AUTO_INCREMENT,
-  `product_id` int NOT NULL UNIQUE,
-  `base_price` DECIMAL(10,2) unsigned NOT NULL,
-  `discount_percentage`  int unsigned DEFAULT 0,
-  `price_with_discount` int unsigned,
-  `valid_from` timestamp NOT NULL,
-  `valid_until` timestamp NOT NULL,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL
-);
+
 CREATE TABLE `users`
 (
   `id` int PRIMARY KEY  AUTO_INCREMENT,
@@ -107,7 +108,8 @@ CREATE TABLE `products_events`
 
 /*Pot fi mai multe tipuri de promotii
 cand cumperi un produs si primesti altele
-cand cheltuiesti o suma minima de bani si primesti un produs saun un discount etc
+cand cheltuiesti o suma minima de bani si primesti un produs sa un un discount etc
+si pot exista 2 feluri (cumperi un anumit nr de produse si fie primesti un numar de produse cadou fie un discount la produsele cumparate)
 */
 CREATE TABLE `promotions`
 (
@@ -115,9 +117,8 @@ CREATE TABLE `promotions`
   `product_buyed_id` int NOT NULL,
   `gifted_product_id` int ,
   `product_units_bought` int DEFAULT 1,
-  `min_money_spent` int ,
   `gifted_product_quantity` int unsigned,
-  `total_discount` int unsigned,
+  `discount_on_promotion` int unsigned,
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL
 );
@@ -164,6 +165,6 @@ ALTER TABLE `promotions` ADD FOREIGN KEY (`product_buyed_id`) REFERENCES `produc
 
 ALTER TABLE `promotions` ADD FOREIGN KEY (`gifted_product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 
-ALTER TABLE `product_price` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE `product_discount` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE `product_images` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
