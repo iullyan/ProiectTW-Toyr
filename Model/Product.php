@@ -6,7 +6,7 @@ class Product extends Db
 
     public function getAllProducts()
     {
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT name from categories";
         $query = $this->getconnection()->prepare($sql);
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);

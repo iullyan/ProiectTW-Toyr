@@ -1,168 +1,460 @@
-DROP TABLE IF EXISTS orders, orders_items, products, users, categories, categories_products, addresses, special_event,
-products_events,  product_discount, promotions, payments, credit_cards, product_price, product_images;
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jun 12, 2019 at 10:08 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.4
 
-#dupa ce comanda e platita o sa aiba mai multe status-uri
-CREATE TABLE `orders`
-(
-  `id` int PRIMARY KEY AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `status` ENUM('paid', 'delivered', 'ongoing_delivery'),
-  `created_at` timestamp NOT NULL
-);
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-CREATE TABLE `orders_items`
-(
-  `id` int PRIMARY KEY AUTO_INCREMENT,
-  `order_id` int NOT NULL,
-  `product_id` int NOT NULL,
-  `quantity` int unsigned DEFAULT 0
-);
 
-CREATE TABLE `categories`
-(
-  `id` int PRIMARY KEY  AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL
-);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-CREATE TABLE `products`
-(
-  `id` int PRIMARY KEY AUTO_INCREMENT,
-  `category_id` int NOT NULL,
-  `name` varchar(255) NOT NULL UNIQUE,
-  `nr_sold` int unsigned DEFAULT 0,
-  `description` text,
-  `units_in_stock` int unsigned DEFAULT 0,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL
-);
-CREATE TABLE `product_images`
-(
-	`id` int PRIMARY KEY AUTO_INCREMENT,
-    `product_id` int NOT NULL,
-    `name` varchar(255),
-    `created_at` timestamp,
-    `updated_at` timestamp
-);
-CREATE TABLE `product_price`
-(
-  `id` int PRIMARY KEY  AUTO_INCREMENT,
-  `product_id` int NOT NULL UNIQUE,
-  `base_price` DECIMAL(10,2) unsigned NOT NULL,
-  `discount_percentage`  int unsigned DEFAULT 0,
-  `price_with_discount` int unsigned,
-  `valid_from` timestamp NOT NULL,
-  `valid_until` timestamp NOT NULL,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL
-);
-CREATE TABLE `users`
-(
-  `id` int PRIMARY KEY  AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL UNIQUE,
-  `password` text NOT NULL,
-  `salt` text NOT NULL,
-  `user_type` ENUM('admin', 'customer') NOT NULL,
-  `firstname` varchar(255),
-  `lastname` varchar(255),
-  `email` varchar(255) NOT NULL UNIQUE,
+--
+-- Database: `toyr`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `addresses`
+--
+
+CREATE TABLE `addresses` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `firstname` varchar(255) COLLATE utf8_bin NOT NULL,
+  `lastname` varchar(255) COLLATE utf8_bin NOT NULL,
+  `telephone` varchar(15) COLLATE utf8_bin NOT NULL,
+  `county` varchar(255) COLLATE utf8_bin NOT NULL,
+  `locality` varchar(255) COLLATE utf8_bin NOT NULL,
+  `street_address` varchar(255) COLLATE utf8_bin NOT NULL,
+  `postal_code` varchar(12) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Plușuri', '2019-06-12 19:46:10', '2019-06-12 19:46:10'),
+(2, 'Lego', '2019-06-12 19:47:26', '2019-06-12 19:47:26'),
+(3, 'Arme de jucărie', '2019-06-12 19:47:26', '2019-06-12 19:47:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `credit_cards`
+--
+
+CREATE TABLE `credit_cards` (
+  `id` int(11) NOT NULL,
+  `bank_name` varchar(255) COLLATE utf8_bin NOT NULL,
+  `cardholder` varchar(255) COLLATE utf8_bin NOT NULL,
+  `card_number` varchar(16) COLLATE utf8_bin NOT NULL,
+  `expiration_month` varchar(255) COLLATE utf8_bin NOT NULL,
+  `expiration_year` varchar(255) COLLATE utf8_bin NOT NULL,
+  `security_code` varchar(255) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discounts`
+--
+
+CREATE TABLE `discounts` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `discount_percentage` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `price_with_discount` int(10) UNSIGNED NOT NULL,
+  `valid_from` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `valid_until` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `status` enum('paid','delivered','ongoing_delivery') COLLATE utf8_bin DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders_items`
+--
+
+CREATE TABLE `orders_items` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(10) UNSIGNED DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `credit_card_id` int(11) NOT NULL,
+  `amount` decimal(10,2) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL,
+  `nr_sold` int(10) UNSIGNED DEFAULT '0',
+  `description` text COLLATE utf8_bin,
+  `image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `prince` decimal(10,2) UNSIGNED NOT NULL,
+  `units_in_stock` int(10) UNSIGNED DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `category_id`, `name`, `nr_sold`, `description`, `image`, `prince`, `units_in_stock`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Ursuleț baby albastru figurină în 35 cm - Keel Toys', 666, NULL, '1', '666.00', 666, '2019-06-12 19:48:34', '2019-06-12 19:48:34'),
+(2, 1, 'Orangutan pluș 20 cm - Keel Toys', 6, 'Din păcate în libertate trăiesc din ce în ce mai puțini. Copii pot să aibă o aventură fantastică cu această jucărie, special făcut pentru copii cărora le plac foarte mult plușurile. Acest produs este plăcut la atingere, are o apariție interesantă. Plușurile Keel Toys revin cu calitatea obișnuită, este ideal pentru mici și mari.', '2', '56.00', 6, '2019-06-12 19:50:13', '2019-06-12 19:50:13'),
+(3, 1, 'Rechin alb pluș de 30 cm - Keel Toys', 3, 'Un nou prieten pentru copii, pot să aibă o aventură fantastică cu această jucărie, special făcut pentru copii cărora le plac foarte mult plușurile. Acest produs este plăcut la atingere, are o apariție interesantă. Plușurile Keel Toys revin cu calitatea obișnuită, este ideal pentru mici și mari.\r\nEste din material foarte moale.', '3', '123.00', 12, '2019-06-12 19:51:38', '2019-06-12 19:51:38'),
+(4, 2, 'LEGO City: Curve and Crossroad', 3, 'În fiecare oraș LEGO este nevoie de străzi, unde locatarii pot să călătorească. În acest pachet se poate găsi două baze de culoarea gri, pe una este o curbă, iar pe celălalt intersecție. Elementele respective se pot alătura pe străzile deja existente, evident se pot folosi bazele clădirilor diferite. Pe străzile se poate circula cu vehicule LEGO, copii pot să cunoască mai bine regulile de circulație. ', '4', '500.00', 4444, '2019-06-12 19:53:17', '2019-06-12 19:53:17'),
+(5, 3, 'Arizona pistol cu 8 focuri 65 cm', 43, 'Să înceapă distracția! Armele cu cartuș de bandă întotdeauna au fost ușor de folosite, erau siguri și foarte distractivi. Fiecare împușcătură sună de parcă ar fi pistolul sau pușca adevărată. Această jucărie este special făcut pentru băieți, deci cu siguranță distracția o să fie garantată. ', '5', '100.00', 43, '2019-06-12 19:56:07', '2019-06-12 19:56:07'),
+(6, 3, 'Ak 47', 10000000, 'Dezlănțuie talibanul din tine cu o armă veritabilă', '6', '10000.00', 47, '2019-06-12 20:01:58', '2019-06-12 20:01:58'),
+(7, 3, 'Mp40', 555, 'Caută-l pe Ivan la Stalingrad. Ai grijă la diaree... e frig acolo.', '7', '66596.00', 55, '2019-06-12 20:05:52', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products_events`
+--
+
+CREATE TABLE `products_events` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `promotions`
+--
+
+CREATE TABLE `promotions` (
+  `id` int(11) NOT NULL,
+  `product_buyed_id` int(11) NOT NULL,
+  `gifted_product_id` int(11) DEFAULT NULL,
+  `product_units_bought` int(11) DEFAULT '1',
+  `min_money_spent` int(11) DEFAULT NULL,
+  `gifted_product_quantity` int(10) UNSIGNED DEFAULT NULL,
+  `total_discount` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `special_event`
+--
+
+CREATE TABLE `special_event` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL,
+  `starting_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `ending_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) COLLATE utf8_bin NOT NULL,
+  `password` text COLLATE utf8_bin NOT NULL,
+  `salt` text COLLATE utf8_bin NOT NULL,
+  `user_type` enum('admin','customer') COLLATE utf8_bin NOT NULL,
+  `firstname` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `lastname` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_bin NOT NULL,
   `avatar_img` blob,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL
-);
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE `addresses`
-(
-  `id` int PRIMARY KEY  AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `firstname` varchar(255) NOT NULL,
-  `lastname` varchar(255) NOT NULL,
-  `telephone` varchar(15) NOT NULL,
-  `county` varchar(255) NOT NULL,
-  `locality` varchar(255) NOT NULL,
-  `street_address` varchar(255) NOT NULL,
-  `postal_code` varchar(12) NOT NULL
-);
+--
+-- Indexes for dumped tables
+--
 
-CREATE TABLE `special_event`
-(
-  `id` int PRIMARY KEY  AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `starting_date` timestamp NOT NULL,
-  `ending_date` timestamp NOT NULL,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL
-);
+--
+-- Indexes for table `addresses`
+--
+ALTER TABLE `addresses`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
-CREATE TABLE `products_events`
-(
-  `id` int PRIMARY KEY  AUTO_INCREMENT,
-  `product_id` int NOT NULL,
-  `event_id` int NOT NULL
-);
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `credit_cards`
+--
+ALTER TABLE `credit_cards`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `cardholder` (`cardholder`,`card_number`);
 
+--
+-- Indexes for table `discounts`
+--
+ALTER TABLE `discounts`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `product_id` (`product_id`);
 
-/*Pot fi mai multe tipuri de promotii
-cand cumperi un produs si primesti altele
-cand cheltuiesti o suma minima de bani si primesti un produs saun un discount etc
-*/
-CREATE TABLE `promotions`
-(
-  `id` int PRIMARY KEY  AUTO_INCREMENT,
-  `product_buyed_id` int NOT NULL,
-  `gifted_product_id` int ,
-  `product_units_bought` int DEFAULT 1,
-  `min_money_spent` int ,
-  `gifted_product_quantity` int unsigned,
-  `total_discount` int unsigned,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL
-);
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
-CREATE TABLE `payments`
-(
-  `id` int PRIMARY KEY  AUTO_INCREMENT,
-  `order_id` int NOT NULL,
-  `credit_card_id` int NOT NULL,
-  `amount` DECIMAL(10,2) unsigned  NULL
-);
+--
+-- Indexes for table `orders_items`
+--
+ALTER TABLE `orders_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `product_id` (`product_id`);
 
-CREATE TABLE `credit_cards`
-(
-  `id` int PRIMARY KEY  AUTO_INCREMENT,
-  `bank_name` varchar(255) NOT NULL,
-  `cardholder` varchar(255) NOT NULL,
-  `card_number` varchar(16) NOT NULL,
-  `expiration_month` varchar(255) NOT NULL,
-  `expiration_year` varchar(255) NOT NULL,
-  `security_code` varchar(255) NOT NULL,
-  UNIQUE(cardholder, card_number)
-);
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `credit_card_id` (`credit_card_id`);
 
-ALTER TABLE `orders` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`),
+  ADD KEY `category_id` (`category_id`);
 
-ALTER TABLE `orders_items` ADD FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE;
+--
+-- Indexes for table `products_events`
+--
+ALTER TABLE `products_events`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `event_id` (`event_id`);
 
-ALTER TABLE `orders_items` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+--
+-- Indexes for table `promotions`
+--
+ALTER TABLE `promotions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_buyed_id` (`product_buyed_id`),
+  ADD KEY `gifted_product_id` (`gifted_product_id`);
 
-ALTER TABLE `products` ADD FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON UPDATE CASCADE ON DELETE CASCADE ;
+--
+-- Indexes for table `special_event`
+--
+ALTER TABLE `special_event`
+  ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `addresses` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE  ON DELETE CASCADE ;
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`);
 
-ALTER TABLE `products_events` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+--
+-- AUTO_INCREMENT for dumped tables
+--
 
-ALTER TABLE `products_events` ADD FOREIGN KEY (`event_id`) REFERENCES `special_event` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+--
+-- AUTO_INCREMENT for table `addresses`
+--
+ALTER TABLE `addresses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `orders` ADD FOREIGN KEY (`id`) REFERENCES `payments` (`id`);
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
-ALTER TABLE `payments` ADD FOREIGN KEY (`credit_card_id`) REFERENCES `credit_cards` (`id`);
+--
+-- AUTO_INCREMENT for table `credit_cards`
+--
+ALTER TABLE `credit_cards`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `promotions` ADD FOREIGN KEY (`product_buyed_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+--
+-- AUTO_INCREMENT for table `discounts`
+--
+ALTER TABLE `discounts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `promotions` ADD FOREIGN KEY (`gifted_product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `product_price` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+--
+-- AUTO_INCREMENT for table `orders_items`
+--
+ALTER TABLE `orders_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `product_images` ADD FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `products_events`
+--
+ALTER TABLE `products_events`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `promotions`
+--
+ALTER TABLE `promotions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `special_event`
+--
+ALTER TABLE `special_event`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `addresses`
+--
+ALTER TABLE `addresses`
+  ADD CONSTRAINT `addresses_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `discounts`
+--
+ALTER TABLE `discounts`
+  ADD CONSTRAINT `discounts_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`id`) REFERENCES `payments` (`id`);
+
+--
+-- Constraints for table `orders_items`
+--
+ALTER TABLE `orders_items`
+  ADD CONSTRAINT `orders_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `orders_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `payments`
+--
+ALTER TABLE `payments`
+  ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`credit_card_id`) REFERENCES `credit_cards` (`id`);
+
+--
+-- Constraints for table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `products_events`
+--
+ALTER TABLE `products_events`
+  ADD CONSTRAINT `products_events_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `products_events_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `special_event` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `promotions`
+--
+ALTER TABLE `promotions`
+  ADD CONSTRAINT `promotions_ibfk_1` FOREIGN KEY (`product_buyed_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `promotions_ibfk_2` FOREIGN KEY (`gifted_product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

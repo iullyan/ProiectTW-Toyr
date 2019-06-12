@@ -10,7 +10,7 @@ class Db
         try {
             $this->connect();
         } catch (PDOException $exc) {
-            die('Database connection could not be established.' . $exc);
+            exit('Database connection could not be established.' . $exc);
         }
     }
 

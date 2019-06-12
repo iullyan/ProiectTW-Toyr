@@ -134,6 +134,8 @@
 
 <div>
     <?php
+        header('Content-Type: text/html; charset=utf-8');
+        echo 'babana';
         $products = new Product();
         echo json_encode($products->getAllProducts());
     ?>
