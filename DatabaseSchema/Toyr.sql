@@ -106,11 +106,7 @@ CREATE TABLE `products_events`
 
 
 
-/*Pot fi mai multe tipuri de promotii
-cand cumperi un produs si primesti altele
-cand cheltuiesti o suma minima de bani si primesti un produs sa un un discount etc
-si pot exista 2 feluri (cumperi un anumit nr de produse si fie primesti un numar de produse cadou fie un discount la produsele cumparate)
-*/
+/*Cumperi un anumit numar de produse si primesti altele cadou */
 CREATE TABLE `promotions`
 (
   `id` int PRIMARY KEY  AUTO_INCREMENT,
@@ -118,7 +114,6 @@ CREATE TABLE `promotions`
   `gifted_product_id` int ,
   `product_units_bought` int DEFAULT 1,
   `gifted_product_quantity` int unsigned,
-  `discount_on_promotion` int unsigned,
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL
 );
