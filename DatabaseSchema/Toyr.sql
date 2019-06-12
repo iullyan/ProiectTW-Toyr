@@ -42,9 +42,8 @@ CREATE TABLE `product_images`
 	`id` int PRIMARY KEY AUTO_INCREMENT,
     `product_id` int NOT NULL,
     `name` varchar(255),
-    `path` varchar(255),
-    `date_created` timestamp,
-    `date updated` timestamp
+    `created_at` timestamp,
+    `updated_at` timestamp
 );
 CREATE TABLE `product_price`
 (
