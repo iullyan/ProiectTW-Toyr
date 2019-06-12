@@ -131,6 +131,7 @@
     </footer>
 </div>
 <!--Testare baza de date -->
+
 <div>
     <?php
         $products = new Product();
