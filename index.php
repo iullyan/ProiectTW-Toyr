@@ -19,6 +19,8 @@ require ROOT . 'Model/Product.php'
 
 </head>
 
+
+
 <body>
 <div class="grid-container">
     <header>
