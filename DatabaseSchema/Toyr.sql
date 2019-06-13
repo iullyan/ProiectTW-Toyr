@@ -147,7 +147,7 @@ CREATE TABLE `products` (
   `nr_sold` int(10) UNSIGNED DEFAULT '0',
   `description` text COLLATE utf8_bin,
   `image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `prince` decimal(10,2) UNSIGNED NOT NULL,
+  `price` decimal(10,2) UNSIGNED NOT NULL,
   `units_in_stock` int(10) UNSIGNED DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
