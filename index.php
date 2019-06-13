@@ -1,13 +1,14 @@
 <?php
+    header('Content-type: text/html; charset=UTF-8');
     define('ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
-    require ROOT . 'Model/Product.php'
+require ROOT . 'Model/Product.php'
 ?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Toyr - Bine ați venit !</title>
     <link rel="stylesheet" type="text/css" href="View/css/mainCharacteristics.css">
@@ -134,10 +135,10 @@
 
 <div>
     <?php
-        header('Content-Type: text/html; charset=utf-8');
-        echo 'babana';
-        $products = new Product();
+
+    $products = new Product();
         echo json_encode($products->getAllProducts());
+
     ?>
 </div>
 </body>

@@ -16,7 +16,7 @@ class Db
 
     private function connect()
     {
-        $connection_string = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';';
+        $connection_string = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=' . DB_CHARSET . ';';
         $this->connection = new PDO($connection_string, DB_USER, DB_PASS);
     }
 
