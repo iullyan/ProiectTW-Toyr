@@ -1,8 +1,4 @@
-<?php
-    header('Content-type: text/html; charset=UTF-8');
-    define('ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
-require ROOT . 'Model/Product.php'
-?>
+
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -135,14 +131,6 @@ require ROOT . 'Model/Product.php'
 </div>
 <!--Testare baza de date -->
 
-<div>
-    <?php
-
-    $products = new Product();
-        echo json_encode($products->getAllProducts());
-
-    ?>
-</div>
 </body>
 
 </html>
