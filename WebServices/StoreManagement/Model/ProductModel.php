@@ -76,6 +76,7 @@ class ProductModel extends Model
         return $query->execute() ? true : false;
     }
 
+
     private function gatherProductDiscountAndPromotions($productId, $productInformationArray)
     {
 
