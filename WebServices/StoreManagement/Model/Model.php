@@ -20,7 +20,7 @@ class Model
         $this->connection = new PDO($connection_string, DB_USER, DB_PASS);
     }
 
-    public function getconnection() {
+    public function getConnection() {
         return $this->connection;
     }
 }

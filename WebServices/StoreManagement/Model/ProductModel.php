@@ -38,7 +38,8 @@ class ProductModel extends Model
         }
         else
             return false;
-        $query->execute();
+        if(! $query->execute())
+            return false;
 
         if (!$query->rowCount())
             return false;
@@ -58,7 +59,8 @@ class ProductModel extends Model
         $queryBuilder = new QueryProductBuilder();
         $query = $queryBuilder->getProductById($productId);
 
-        $query->execute();
+        if(! $query->execute())
+            return false;
         if (! $query->rowCount())
             return false;
 
@@ -72,10 +74,9 @@ class ProductModel extends Model
     public function countProducts()
     {
         $sql = "SELECT count(id) FROM products";
-        $query = $this->getconnection()->prepare($sql);
+        $query = $this->getConnection()->prepare($sql);
         return $query->execute() ? true : false;
     }
-
 
     private function gatherProductDiscountAndPromotions($productId, $productInformationArray)
     {
@@ -96,7 +97,7 @@ class ProductModel extends Model
     public function getProductDiscount($productId)
     {
         $sql = "SELECT * FROM discounts WHERE product_id = :productId";
-        $query = $this->getconnection()->prepare($sql);
+        $query = $this->getConnection()->prepare($sql);
         $parameters = array(':productId' => $productId);
         $query->execute($parameters);
         return ($query->rowcount() ? $query->fetch(PDO::FETCH_ASSOC) : false);
@@ -106,7 +107,7 @@ class ProductModel extends Model
      function getProductPromotions($productId)
     {
         $sql = "SELECT * FROM promotions WHERE product_bought_id = :productId";
-        $query = $this->getconnection()->prepare($sql);
+        $query = $this->getConnection()->prepare($sql);
         $parameters = array(':productId' => $productId);
         $query->execute($parameters);
         return ($query->rowcount() ? $query->fetchAll(PDO::FETCH_ASSOC) : false);
@@ -127,7 +128,7 @@ class ProductModel extends Model
             ':image' => $image,
             ':price' => $price,
             ':unitsInStock' => $unitsInStock);
-        $query = $this->getconnection()->prepare($sql);
+        $query = $this->getConnection()->prepare($sql);
         return ($query->execute($parameters) ? true : false);
 
 
@@ -138,8 +139,10 @@ class ProductModel extends Model
     {
         $sql = "DELETE FROM products WHERE id = :productId";
         $parameters = array(':productId' => $productId);
-        $query = $this->getconnection()->prepare($sql);
-        $query->execute($parameters);
+        $query = $this->getConnection()->prepare($sql);
+        if(! $query->execute($parameters))
+            return false;
+        return true;
     }
 
     public function updateProduct($productId, $newName, $newCategoryId, $newDescription, $newImage, $newPrice, $newUnitsInStock)
@@ -155,7 +158,7 @@ class ProductModel extends Model
             WHERE id = :productId";
 
 
-        $query = $this->getconnection()->prepare($sql);
+        $query = $this->getConnection()->prepare($sql);
         $parameters = array(
             ':productName' => $newName,
             ':categoryId' => $newCategoryId,
@@ -165,25 +168,28 @@ class ProductModel extends Model
             ':unitsInStock' => $newUnitsInStock,
             ':productId' => $productId
         );
-        $query->execute($parameters);
+        if(! $query->execute($parameters))
+            return false;
+        return false;
     }
 
     public function getNrOfProducts()
     {
 
         $sql = "SELECT COUNT(id) AS count FROM products";
-        $query = $this->getconnection()->prepare($sql);
-        $query->execute();
+        $query = $this->getConnection()->prepare($sql);
+        if(! $query->execute())
+            return false;
         return $query->fetch(PDO::FETCH_ASSOC)['count'];
     }
 
-    private function getProductPrice($productId)
+    public function getProductPrice($productId)
     {
         $sql = "SELECT price FROM products WHERE id = :productId";
-        $query = $this->getconnection()->prepare($sql);
+        $query = $this->getConnection()->prepare($sql);
         $parameters = array(':productId' => $productId);
         $query->execute($parameters);
-        return ($query->rowcount() ? $query->fetch(PDO::FETCH_ASSOC) : false);
+        return ($query->rowcount() ? $query->fetch(PDO::FETCH_ASSOC)['price'] : false);
 
     }
 

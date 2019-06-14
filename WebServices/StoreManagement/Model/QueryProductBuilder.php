@@ -12,7 +12,7 @@ class QueryProductBuilder extends Model
     {
         $sql = "SELECT * FROM products ORDER BY ? LIMIT ?, ? ";
 
-        $query = $this->getconnection()->prepare($sql);
+        $query = $this->getConnection()->prepare($sql);
         switch ($orderBy) {
             case 'discount' :
                 $databaseField = 'discount DESC';
@@ -31,7 +31,7 @@ class QueryProductBuilder extends Model
                 break;
             case 'promotion' :
                 $sql = "SELECT * from products where id in (SELECT product_bought_id FROM promotions) LIMIT ?, ?";
-                $query = $this->getconnection()->prepare($sql);
+                $query = $this->getConnection()->prepare($sql);
                 $query->bindParam(1, $offset, PDO::PARAM_INT);
                 $query->bindParam(2, $recordsPerPage, PDO::PARAM_INT);
                 break;
@@ -54,7 +54,7 @@ class QueryProductBuilder extends Model
     public function getProductById($productId)
     {
         $sql = "SELECT * FROM products WHERE id = ? LIMIT 1";
-        $query = $this->getconnection()->prepare($sql);
+        $query = $this->getConnection()->prepare($sql);
         $query->bindParam(1, $productId, PDO::PARAM_STR);
 
         return $query;
@@ -67,7 +67,7 @@ class QueryProductBuilder extends Model
         $sql = "SELECT * FROM products p WHERE p.category_id = ?
                 ORDER BY p.created_at DESC, p.nr_sold DESC LIMIT ?, ?";
 
-        $query = $this->getconnection()->prepare($sql);
+        $query = $this->getConnection()->prepare($sql);
         $query->bindParam(1, $categoryId, PDO::PARAM_INT);
         $query->bindParam(2, $offset, PDO::PARAM_INT);
         $query->bindParam(3, $recordsPerPage, PDO::PARAM_INT);
@@ -79,7 +79,7 @@ class QueryProductBuilder extends Model
         $sql = "SELECT * FROM products p JOIN products_events pe on p.id = pe.product_id AND pe.event_id = ? 
                 ORDER BY p.created_at DESC, p.nr_sold DESC LIMIT ?, ?";
 
-        $query = $this->getconnection()->prepare($sql);
+        $query = $this->getConnection()->prepare($sql);
         $query->bindParam(1, $eventId, PDO::PARAM_INT);
         $query->bindParam(2, $offset, PDO::PARAM_INT);
         $query->bindParam(3, $recordsPerPage, PDO::PARAM_INT);
@@ -92,7 +92,7 @@ class QueryProductBuilder extends Model
         $sql = "SELECT * FROM products WHERE age_lower_bound >= ?
                 ORDER BY created_at DESC, nr_sold LIMIT ?, ?";
 
-        $query = $this->getconnection()->prepare($sql);
+        $query = $this->getConnection()->prepare($sql);
         $query->bindParam(1, $ageLowerBound, PDO::PARAM_INT);
         $query->bindParam(2, $offset, PDO::PARAM_INT);
         $query->bindParam(3, $recordsPerPage, PDO::PARAM_INT);
@@ -105,7 +105,7 @@ class QueryProductBuilder extends Model
         $sql = "SELECT * FROM products WHERE price >= ? AND price <= ?
                 ORDER BY created_at DESC, nr_sold LIMIT ?, ?";
 
-        $query = $this->getconnection()->prepare($sql);
+        $query = $this->getConnection()->prepare($sql);
         $query->bindParam(1, $priceLowerBound, PDO::PARAM_INT);
         $query->bindParam(2, $priceUpperBound, PDO::PARAM_INT);
         $query->bindParam(3, $offset, PDO::PARAM_INT);
@@ -120,7 +120,7 @@ class QueryProductBuilder extends Model
         $sql = "SELECT * FROM products WHERE price <= ?
                 ORDER BY created_at DESC, nr_sold LIMIT ?, ?";
 
-        $query = $this->getconnection()->prepare($sql);
+        $query = $this->getConnection()->prepare($sql);
         $query->bindParam(1, $priceUpperBound, PDO::PARAM_INT);
         $query->bindParam(2, $offset, PDO::PARAM_INT);
         $query->bindParam(3, $recordsPerPage, PDO::PARAM_INT);
