@@ -57,12 +57,13 @@ class ProductModel extends Model
     {
         $queryBuilder = new QueryProductBuilder();
         $query = $queryBuilder->getProductById($productId);
+
         $query->execute();
         if (! $query->rowCount())
             return false;
 
-        $product_item = array(Utility::processProductRow($query->fetch(PDO::FETCH_ASSOC)));
-        $result['record'] = array($this->gatherProductDiscountAndPromotions($productId, $product_item));
+        $productItem = Utility::processProductRow($query->fetch(PDO::FETCH_ASSOC));
+        $result['record'] = $this->gatherProductDiscountAndPromotions($productId, $productItem);
 
         return $result;
     }
@@ -82,9 +83,9 @@ class ProductModel extends Model
         $result['discount'] = array();
         $result['promotions'] = array();
 
-        array_push($result['product'], $productInformationArray);
-        array_push($result['discount'], $this->getProductDiscount($productId));
-        array_push($result['promotions'], $this->getProductPromotions($productId));
+        $result['product']=$productInformationArray;
+        $result['discount']=$this->getProductDiscount($productId);
+        $result['promotions']= $this->getProductPromotions($productId);
 
         return $result;
 
