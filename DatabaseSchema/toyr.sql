@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2019 at 08:02 PM
+-- Generation Time: Jun 14, 2019 at 08:20 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -95,6 +95,14 @@ CREATE TABLE `discounts` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 
+--
+-- Dumping data for table `discounts`
+--
+
+INSERT INTO `discounts` (`id`, `product_id`, `discount_percentage`, `price_with_discount`, `valid_from`, `valid_until`, `created_at`, `updated_at`) VALUES
+(1, 6, 20, 234324, '2019-06-14 18:15:47', '2019-06-14 18:15:47', '2019-06-14 18:15:47', '2019-06-14 18:15:47'),
+(2, 4, 10, 134, '2019-06-14 18:16:05', '2019-06-14 18:16:05', '2019-06-14 18:16:05', '2019-06-14 18:16:05');
+
 -- --------------------------------------------------------
 
 --
@@ -142,6 +150,7 @@ CREATE TABLE `payments` (
 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
+  `age_lower_bound` int(11) DEFAULT NULL,
   `category_id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
   `nr_sold` int(10) UNSIGNED DEFAULT '0',
@@ -157,14 +166,14 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `category_id`, `name`, `nr_sold`, `description`, `image`, `price`, `units_in_stock`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Ursuleț baby albastru figurină în 35 cm - Keel Toys', 666, NULL, '1', '666.00', 666, '2019-06-12 19:48:34', '2019-06-12 19:48:34'),
-(2, 1, 'Orangutan pluș 20 cm - Keel Toys', 6, 'Din păcate în libertate trăiesc din ce în ce mai puțini. Copii pot să aibă o aventură fantastică cu această jucărie, special făcut pentru copii cărora le plac foarte mult plușurile. Acest produs este plăcut la atingere, are o apariție interesantă. Plușurile Keel Toys revin cu calitatea obișnuită, este ideal pentru mici și mari.', '2', '56.00', 6, '2019-06-12 19:50:13', '2019-06-12 19:50:13'),
-(3, 1, 'Rechin alb pluș de 30 cm - Keel Toys', 3, 'Un nou prieten pentru copii, pot să aibă o aventură fantastică cu această jucărie, special făcut pentru copii cărora le plac foarte mult plușurile. Acest produs este plăcut la atingere, are o apariție interesantă. Plușurile Keel Toys revin cu calitatea obișnuită, este ideal pentru mici și mari.\r\nEste din material foarte moale.', '3', '123.00', 12, '2019-06-12 19:51:38', '2019-06-12 19:51:38'),
-(4, 2, 'LEGO City: Curve and Crossroad', 3, 'În fiecare oraș LEGO este nevoie de străzi, unde locatarii pot să călătorească. În acest pachet se poate găsi două baze de culoarea gri, pe una este o curbă, iar pe celălalt intersecție. Elementele respective se pot alătura pe străzile deja existente, evident se pot folosi bazele clădirilor diferite. Pe străzile se poate circula cu vehicule LEGO, copii pot să cunoască mai bine regulile de circulație. ', '4', '500.00', 4444, '2019-06-12 19:53:17', '2019-06-12 19:53:17'),
-(5, 3, 'Arizona pistol cu 8 focuri 65 cm', 43, 'Să înceapă distracția! Armele cu cartuș de bandă întotdeauna au fost ușor de folosite, erau siguri și foarte distractivi. Fiecare împușcătură sună de parcă ar fi pistolul sau pușca adevărată. Această jucărie este special făcut pentru băieți, deci cu siguranță distracția o să fie garantată. ', '5', '100.00', 43, '2019-06-12 19:56:07', '2019-06-12 19:56:07'),
-(6, 3, 'Ak 47', 10000000, 'Dezlănțuie talibanul din tine cu o armă veritabilă', '6', '10000.00', 47, '2019-06-12 20:01:58', '2019-06-12 20:01:58'),
-(7, 3, 'Mp40', 555, 'Caută-l pe Ivan la Stalingrad. Ai grijă la diaree... e frig acolo.', '7', '66596.00', 55, '2019-06-12 20:05:52', '0000-00-00 00:00:00');
+INSERT INTO `products` (`id`, `age_lower_bound`, `category_id`, `name`, `nr_sold`, `description`, `image`, `price`, `units_in_stock`, `created_at`, `updated_at`) VALUES
+(1, 3, 1, 'Ursuleț baby albastru figurină în 35 cm - Keel Toys', 666, NULL, '1', '666.00', 666, '2019-06-12 19:48:34', '2019-06-12 19:48:34'),
+(2, 4, 1, 'Orangutan pluș 20 cm - Keel Toys', 6, 'Din păcate în libertate trăiesc din ce în ce mai puțini. Copii pot să aibă o aventură fantastică cu această jucărie, special făcut pentru copii cărora le plac foarte mult plușurile. Acest produs este plăcut la atingere, are o apariție interesantă. Plușurile Keel Toys revin cu calitatea obișnuită, este ideal pentru mici și mari.', '2', '56.00', 6, '2019-06-12 19:50:13', '2019-06-12 19:50:13'),
+(3, 2, 1, 'Rechin alb pluș de 30 cm - Keel Toys', 3, 'Un nou prieten pentru copii, pot să aibă o aventură fantastică cu această jucărie, special făcut pentru copii cărora le plac foarte mult plușurile. Acest produs este plăcut la atingere, are o apariție interesantă. Plușurile Keel Toys revin cu calitatea obișnuită, este ideal pentru mici și mari.\r\nEste din material foarte moale.', '3', '123.00', 12, '2019-06-12 19:51:38', '2019-06-12 19:51:38'),
+(4, 7, 2, 'LEGO City: Curve and Crossroad', 3, 'În fiecare oraș LEGO este nevoie de străzi, unde locatarii pot să călătorească. În acest pachet se poate găsi două baze de culoarea gri, pe una este o curbă, iar pe celălalt intersecție. Elementele respective se pot alătura pe străzile deja existente, evident se pot folosi bazele clădirilor diferite. Pe străzile se poate circula cu vehicule LEGO, copii pot să cunoască mai bine regulile de circulație. ', '4', '500.00', 4444, '2019-06-12 19:53:17', '2019-06-12 19:53:17'),
+(5, 8, 3, 'Arizona pistol cu 8 focuri 65 cm', 43, 'Să înceapă distracția! Armele cu cartuș de bandă întotdeauna au fost ușor de folosite, erau siguri și foarte distractivi. Fiecare împușcătură sună de parcă ar fi pistolul sau pușca adevărată. Această jucărie este special făcut pentru băieți, deci cu siguranță distracția o să fie garantată. ', '5', '100.00', 43, '2019-06-12 19:56:07', '2019-06-12 19:56:07'),
+(6, 20, 3, 'Ak 47', 10000000, 'Dezlănțuie talibanul din tine cu o armă veritabilă', '6', '10000.00', 47, '2019-06-12 20:01:58', '2019-06-12 20:01:58'),
+(7, 20, 3, 'Mp40', 555, 'Caută-l pe Ivan la Stalingrad. Ai grijă la diaree... e frig acolo.', '7', '66596.00', 55, '2019-06-12 20:05:52', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -178,6 +187,14 @@ CREATE TABLE `products_events` (
   `event_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 
+--
+-- Dumping data for table `products_events`
+--
+
+INSERT INTO `products_events` (`id`, `product_id`, `event_id`) VALUES
+(1, 6, 1),
+(2, 7, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -186,17 +203,23 @@ CREATE TABLE `products_events` (
 
 CREATE TABLE `promotions` (
   `id` int(11) NOT NULL,
-  `product_buyed_id` int(11) NOT NULL,
+  `product_bought_id` int(11) NOT NULL,
   `gifted_product_id` int(11) DEFAULT NULL,
   `product_units_bought` int(11) DEFAULT '1',
-  `min_money_spent` int(11) DEFAULT NULL,
   `gifted_product_quantity` int(10) UNSIGNED DEFAULT NULL,
-  `total_discount` int(10) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `valid_from` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `valid_until` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+
+--
+-- Dumping data for table `promotions`
+--
+
+INSERT INTO `promotions` (`id`, `product_bought_id`, `gifted_product_id`, `product_units_bought`, `gifted_product_quantity`, `created_at`, `updated_at`, `valid_from`, `valid_until`) VALUES
+(1, 6, 7, 1, 1, '2019-06-14 13:34:47', '2019-06-14 13:34:47', '2019-06-14 13:34:47', '2019-06-14 13:34:47'),
+(2, 6, 2, 1, 1, '2019-06-14 18:16:24', '2019-06-14 18:16:24', '2019-06-14 18:16:24', '2019-06-14 18:16:24');
 
 -- --------------------------------------------------------
 
@@ -212,6 +235,13 @@ CREATE TABLE `special_event` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+
+--
+-- Dumping data for table `special_event`
+--
+
+INSERT INTO `special_event` (`id`, `name`, `starting_date`, `ending_date`, `created_at`, `updated_at`) VALUES
+(1, 'doomsday', '2019-06-14 18:17:32', '2019-06-06 03:06:06', '2019-06-14 18:17:32', '2019-06-10 04:00:00');
 
 -- --------------------------------------------------------
 
@@ -307,7 +337,7 @@ ALTER TABLE `products_events`
 --
 ALTER TABLE `promotions`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `product_buyed_id` (`product_buyed_id`),
+  ADD KEY `product_buyed_id` (`product_bought_id`),
   ADD KEY `gifted_product_id` (`gifted_product_id`);
 
 --
@@ -350,7 +380,7 @@ ALTER TABLE `credit_cards`
 -- AUTO_INCREMENT for table `discounts`
 --
 ALTER TABLE `discounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -380,19 +410,19 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `products_events`
 --
 ALTER TABLE `products_events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `promotions`
 --
 ALTER TABLE `promotions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `special_event`
 --
 ALTER TABLE `special_event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -453,7 +483,7 @@ ALTER TABLE `products_events`
 -- Constraints for table `promotions`
 --
 ALTER TABLE `promotions`
-  ADD CONSTRAINT `promotions_ibfk_1` FOREIGN KEY (`product_buyed_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `promotions_ibfk_1` FOREIGN KEY (`product_bought_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `promotions_ibfk_2` FOREIGN KEY (`gifted_product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
