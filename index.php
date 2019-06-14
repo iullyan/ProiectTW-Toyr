@@ -40,7 +40,7 @@
                 </li>
                 <li>
                     <input type="button" class="orderButton" value="Coșul meu"
-                           onclick="window.location.href='payment.html'"/>
+                           onclick="window.location.href='View/html/payment.html'"/>
                 </li>
 
             </ul>
@@ -91,7 +91,7 @@
 
                 </div>
                 <div>
-                    <a href="View/html/productList.html"><img class="product-image" src="tux.png" width="125" height="125"
+                    <a href="View/html/productList.html"><img class="product-image" src="Resources/websiteImages/tux.png" width="125" height="125"
                                                               alt="Product Image"></a>
                 </div>
                 <div>
