@@ -39,4 +39,6 @@ else {
 
     // tell the user
     echo json_encode(array("message" => "Unable to create discount. Input data is incomplete."));
+
+
 }
