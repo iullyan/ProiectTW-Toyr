@@ -5,7 +5,6 @@
 /* The grid container */
 .grid-container {
   display: grid;
-  grid-template-columns: 250px 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas:
     'header header header header header header'
     'filter main main main main main '
@@ -168,13 +167,5 @@ form{
 .filter {
   border-style: groove;
   border-radius: 5px;
-  padding: 10px;
-}
-.forms {
-  border-style: groove;
-  background-color: lightgrey;
-  border-radius: 5px;
-  padding: 10px;
-  display: block;
   padding: 10px;
 }

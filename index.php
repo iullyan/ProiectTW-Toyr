@@ -39,6 +39,7 @@
                     <div class="accountOptions">
                         <a href="View/pages/login.html">Login</a>
                         <a href="View/pages/register.html">Register</a>
+                        <a href="View/pages/adminPage.php">admin</a>
                     </div>
                 </li>
                 <li>
