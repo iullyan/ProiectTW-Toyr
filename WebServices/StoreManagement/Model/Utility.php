@@ -14,9 +14,9 @@ class Utility
             "category_d" => $row['category_id'],
             "nr_sold" => $row['nr_sold'],
             "image" => $row['image'],
-            "units_in_tock" => $row['unitsInStock'],
+            "units_in_tock" => $row['units_in_stock'],
             "created_at" => $row['created_at'],
-            "updated_at" => $row['updated-at']
+            "updated_at" => $row['updated_at']
         );
         return $product_item;
 
