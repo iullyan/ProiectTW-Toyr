@@ -44,7 +44,9 @@
 
     </head>
 
-    <body>
+
+    <?php require_once '../../Config/config.php'; $productId = 6; $urlBase = WEB_CONST_URL_PART . 'Product/'; ?>
+    <body onload="load('<?php echo $productId;?>', '<?php echo $urlBase; ?>')" >
             <header>
                 <nav id="functionality">
                       <ul>
@@ -57,7 +59,7 @@
                             <a href="" style="font-size: 13px" class="spacingDropdown">Vehicule</a>
                             <a href="" style="font-size: 13px" class="spacingDropdown">Modele telghidate</a>
                             <a href="" style="font-size: 13px" class="spacingDropdown">Păpuși</a>
-                            <a href="View/html/productList.html" style="font-size: 13px" class="spacingDropdown">Plușuri</a>
+                            <a href="productList.html" style="font-size: 13px" class="spacingDropdown">Plușuri</a>
                             <a href="" style="font-size: 13px" class="spacingDropdown">Creativitate</a>
                             <a href="" style="font-size: 13px" class="spacingDropdown">Jucării din lemn</a>
                             <a href="" style="font-size: 13px" class="spacingDropdown">Exterior</a>
@@ -119,9 +121,11 @@
                                   </div>
                     </div>
                   -->
-                    <div id="demo"></div>
-                    <script type="text/javascript" src="../js/product.js">
-                       
-                    </script>
+
+                    <div id="demo" ></div>
+            <script
+                    type="text/javascript" src="../js/product.js">
+
+            </script>
     </body>
 </html>

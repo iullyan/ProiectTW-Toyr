@@ -1,10 +1,8 @@
 
-let url = 'http://localhost/ProiectTW-Toyr/WebServices/StoreManagement/Controller/Product/getProduct.php?productId=6'; //de aici isi ia datele json
-
 function discounts(out)
 {   //Calculeaza prețul în funcție de discount(dacă există)
     var date = new Date(); 
-    if(out.record.discount==false)
+    if(out.record.discount===false)
     return `${out.record.product.price}`;
     var valf = new Date(out.record.discount.valid_from); //ia datele din baza de date
     var valu = new Date(out.record.discount.valid_until);
@@ -14,37 +12,36 @@ function discounts(out)
     return `${out.record.product.price}`;
 }
 
-function promotions(out)
+function promotions(out, webServiceUrl)
 {   //Verifică dacă nu există cumva o promotie
     var date = new Date(); 
-    if(out.record.promotions==false) //verifica daca esixta promotii
+    if(out.record.promotions===false) //verifica daca esixta promotii
     return ``;
     var aux=``; // un aux de stocare
     result=out.record.promotions;
-    for (var key in result) //ne plimbam prin optiun
+
+    for (i in result)//ne plimbam prin optiun
     {   
-        if (result.hasOwnProperty(key))
+        if (result.hasOwnProperty(i))
         {
-            var valf = new Date(result[key].valid_from);
-            var valu = new Date(result[key].valid_until);
-            if(valf<date && date<valu) //copmparam sa vedem daca ne incadram in data
-             {   
-                aux=aux + `<p style=" margin-left: 2%">Cumpara ${product_units_bought} ${out.record.product.name} si vei primi cadou ${gifted_product_quantity}`;    //concatenam stringul   
+
+                aux=aux + `<p style=" margin-left: 2%">Cumpara ${result[i].product_units_bought} ${out.record.product.name} si vei primi cadou ${result[i].gifted_product_quantity}`;    //concatenam stringul
              
-                let url2 = `http://localhost/ProiectTW-Toyr/WebServices/StoreManagement/Controller/Product/getProduct.php?productId=${out.record.promotions.gifted_product_id}`; //cautam numele cadoului intrand pe pagina lui
+                let url2 = webServiceUrl + `getProduct.php?productId=${result[i].gifted_product_id}`; //cautam numele cadoului intrand pe pagina lui
                     fetch(url2)
-                    .then(res => res.json()) 
+                    .then(res => res.json())
                     .then((out2) => {
-                    aux= aux + ` ${out2.record.product.name}.</p>\n`; // concatenam si numele
+                    aux = aux + `${out2.record.product.name}.</p><br>`; // concatenam si numele
                     })
                     .catch(err => { throw err });
-             }
+
+
         }
     }
     return aux;
 }
 
-function construction(out)
+function construction(out, webServiceUrl)
 {   //literalmente constructia pagini
     return `<div class="middle" style="background-color:#bbb; margin-top: 2%; margin-left: 5%; margin-right: 5%;border-radius: 20px ;margin-bottom: 5%;">
                 <div class="middle">
@@ -69,7 +66,7 @@ function construction(out)
                 
                    <p>  </p>
                 
-                ${promotions(out)}
+                ${promotions(out, webServiceUrl)}
                 <h2 style="margin: 1% 2%"> Descriere </h2>
                 <p style="margin: 1% 2% 2% 2%"> ${out.record.product.description}</p>
                     </div>
@@ -77,11 +74,17 @@ function construction(out)
             </div>`;
 }
 
-fetch(url) //captam jsonul
-.then(res => res.json())
-.then((out) => {
-  //Aici procesezi jsonul
-  var produs = out.record.product.description;
-  document.getElementById("demo").innerHTML =  construction(out);
-})
-.catch(err => { throw err });
+function load(productId, webServiceUrl) {
+    let url = webServiceUrl + 'getProduct.php?productId=' + productId; //de aici isi ia datele json
+    fetch(url) //captam jsonul
+        .then(res => res.json())
+        .then((out) => {
+            //Aici procesezi jsonul
+            var produs = out.record.product.description;
+            document.getElementById("demo").innerHTML = construction(out, webServiceUrl);
+        })
+        .catch(err => {
+            throw err
+        });
+
+}

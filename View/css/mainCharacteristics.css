@@ -3,7 +3,9 @@
 }
 /* The grid container */
 .grid-container {
+
   display: grid;
+  grid-template-columns: 20px auto 20px;
   grid-template-areas:
     'header header header header header header'
     'left middle middle middle middle middle'
@@ -12,8 +14,9 @@
   grid-column-gap: 10px;
 }
 
-.left, .middle,.main{
+.left, .middle, .main{
   padding: 10px;
+
 }
 
 /* Style the left column */
@@ -35,6 +38,7 @@
 /* Style the right column */
 .main {
   grid-area: main;
+
 }
 
 /* Style the footer */
