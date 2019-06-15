@@ -37,13 +37,13 @@
                 <li class="account">
                     <button class="accountButton">Contul meu</button>
                     <div class="accountOptions">
-                        <a href="View/html/login.html">Login</a>
-                        <a href="View/html/register.html">Register</a>
+                        <a href="View/pages/login.html">Login</a>
+                        <a href="View/pages/register.html">Register</a>
                     </div>
                 </li>
                 <li>
                     <input type="button" class="orderButton" value="Coșul meu"
-                           onclick="window.location.href='View/html/payment.html'"/>
+                           onclick="window.location.href='View/pages/payment.html'"/>
                 </li>
 
             </ul>
@@ -60,7 +60,7 @@
                     <li>Vehicule</li>
                     <li>Modele telghidate</li>
                     <li>Păpuși</li>
-                    <li><a href="View/html/productList.html">Plușuri</a></li>
+                    <li><a href="View/pages/productList.html">Plușuri</a></li>
                     <li>Creativitate</li>
                     <li>Jucării din lemn</li>
                     <li>Exterior</li>
