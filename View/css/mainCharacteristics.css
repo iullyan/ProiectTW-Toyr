@@ -191,3 +191,9 @@ form{
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .account:hover .accountButton {background-color: #3e8e41;}
+
+.spacingDropdown {
+  width: 100%;
+  margin-top: -2%;
+  margin-bottom: -2%;
+}
