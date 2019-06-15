@@ -9,7 +9,10 @@
     <title>Toyr - Bine ați venit !</title>
     <link rel="stylesheet" type="text/css" href="View/css/mainCharacteristics.css">
     <link rel="stylesheet" type="text/css" href="View/css/category.css">
-    <link rel="stylesheet" type="text/css" href="View/css/product.css">
+    <link rel="stylesheet" type="text/css" href="View/css/productUI.css">
+
+
+
 
     <!-- <link rel="stylesheet" type="text/css" href="product.css"> Nu merge slideShow-ul-->
 
@@ -86,25 +89,29 @@
         </nav>
 
         <div class="productContainer">
-            <div class="product">
-                <div>
+            <?php for ($i = 1; $i <= 100; $i++)
+            echo ('
+            <div class="product-card">
+                <div class="discount">-20%</div>
+                <div class="gift">Cadou</div>
+                <div class="product-tumb">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/419ZC94QCFL.jpg" alt="">
+                </div>
+
+                <div class="product-details">
+                    <h4><a href="">Hardcore Clone</a></h4>
+                    <div class="product-bottom-details">
+                        <div class="product-price"><small>960.99 Lei</small><br>23.99 Lei</div>
+                        <p class="product-links">
+                            <a href=""><i class="fa fa-shopping-cart"></i> Vezi detalii</a>
+                        </p>
+                    </div>
 
                 </div>
-                <div>
-                    <a href="View/html/productList.html"><img class="product-image" src="Resources/websiteImages/tux.png" width="125" height="125"
-                                                              alt="Product Image"></a>
-                </div>
-                <div>
-                    <p class="product-name">Tuxy</p>
-                </div>
-                <div>
-                    <p class="product-price">14.99 Lei</p>
-                </div>
-                <div>
-                    <button type="submit" class="buy-button"> Cumpară</button>
-                </div>
-            </div>
+            </div>'); ?>
+
         </div>
+
     </section>
 
     <footer>
