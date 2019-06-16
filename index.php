@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width">
     <title>Toyr - Bine ați venit !</title>
     <link rel="stylesheet" type="text/css" href="View/css/mainCharacteristics.css">
-    <link rel="stylesheet" type="text/css" href="View/css/category.css">
+    <link rel="stylesheet" type="text/css" href="View/css/categoryUI.css">
     <link rel="stylesheet" type="text/css" href="View/css/productUI.css">
+    <link rel="stylesheet" type="text/css" href="View/css/usableButton.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
 
@@ -37,15 +38,15 @@
         <nav id="functionality">
             <ul>
                 <li class="account">
-                    <button class="accountButton">Contul meu</button>
+                    <button class="usableButton" >Contul meu</button>
                     <div class="accountOptions">
-                        <a href="View/pages/login.html">Login</a>
-                        <a href="View/pages/register.html">Register</a>
-                        <a href="View/pages/adminPage.php">admin</a>
+                        <a class="usableButton" href="View/pages/login.html">Login</a>
+                        <a class="usableButton" href="View/pages/register.html">Register</a>
+                        <a class="usableButton" href="View/pages/adminPage.php">admin</a>
                     </div>
                 </li>
                 <li>
-                    <input type="button" class="orderButton" value="Coșul meu"
+                    <input type="button" class="usableButton" value="Coșul meu"
                            onclick="window.location.href='View/pages/payment.html'"/>
                 </li>
 
@@ -54,19 +55,22 @@
     </header>
 
     <div class="left">
-        <div class="menu">
-            <div id="categoriesTitle"> Produse</div>
+
+            <div class="usableButton"> Produse</div>
             <div class="categoriesContent">
             </div>
-        </div>
+
     </div>
+
+    <div class="middle">
+</div>
 
     <section class="main">
         <nav class="showProducts">
             <ul>
-                <li>Produse noi</li>
-                <li>Promoții</li>
-                <li>Top vânzări</li>
+                <li class="usableButton">Produse noi</li>
+                <li class="usableButton">Promoții</li>
+                <li class="usableButton">Top vânzări</li>
             </ul>
         </nav>
 
@@ -85,7 +89,7 @@
                     <div class="product-bottom-details">
                         <div class="product-price"><small>960.99 Lei</small><br>23.99 Lei</div>
                         <p class="product-links">
-                            <a href=""><i class="fa fa-shopping-cart"></i> Vezi detalii</a>
+                            <a href="" class="usableButton"><i class="fa fa-shopping-cart"></i> Vezi detalii</a>
                         </p>
                     </div>
 

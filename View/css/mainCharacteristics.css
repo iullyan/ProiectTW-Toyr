@@ -5,10 +5,12 @@
 .grid-container {
 
   display: grid;
-  grid-template-columns: 20px auto 20px;
+
+  grid-template-rows: auto auto auto auto auto auto;
+  grid-template-columns: 10% 10% 20% 10% 40% 10%;
   grid-template-areas:
     'header header header header header header'
-    'left middle middle middle middle middle'
+    'left left middle middle middle middle'
     'main main main main main main '
     'footer footer footer footer footer footer';
   grid-column-gap: 10px;
@@ -21,13 +23,21 @@
 
 /* Style the left column */
 .left {
+  margin-top: 20px;
+  grid-row: 2/ span 2;
   grid-area: left;
+  grid-column: 2/ span 2;
 }
 
 /* Style the middle column */
 .middle {
-  padding: 0;
+  margin-top: 20px;
+  grid-row: 2/ span 3;
   grid-area: middle;
+  grid-column: 4/ span 2;
+  background: white;
+
+
 }
 .middle img{
   padding: 0;
@@ -37,8 +47,25 @@
 
 /* Style the right column */
 .main {
+  margin-top:20px;
   grid-area: main;
+  grid-column: 2/ span 4;
+  grid-row: 4/ span 3;
 
+
+}
+
+header{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  grid-row: 1/ span 1;
+  grid-column: 1/ span 6;
+  background: #35424a;
+  color: #ffffff;
+  padding: 0;
+  justify-content: center;
+  grid-area: header;
 }
 
 /* Style the footer */
@@ -50,6 +77,8 @@ footer {
   grid-area: footer;
   background-color: #f1f1f1;
   padding: 10px;
+  grid-row: 6/ span 1;
+  grid-column: 1/ span 6;
 }
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media (max-width: 600px) {
@@ -74,17 +103,7 @@ body{
   background-color:#E7E7E7;
 }
 
-header{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  min-width: 100%;
-  background: #35424a;
-  color: #ffffff;
-  padding: 0;
-  justify-content: center;
-  grid-area: header;
-}
+
 #searchContainer{
 
   display: flex;
@@ -93,7 +112,7 @@ header{
 
 
 #searchButton{
-  background:#e8491d;
+  background: #9e76e8;
   border : 0;
   padding-left: 20px;
   padding-right: 20px;
@@ -137,7 +156,7 @@ form{
 }
 
 .main .showProducts ul li {
-	display:block;
+
 	width:210px;
 	height:70px;
   color: white;
