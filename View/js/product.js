@@ -40,7 +40,7 @@ async function promotions(out, webServiceUrl) {   //Verifică dacă nu există c
     return aux;
 }
 
-function construction(out, webServiceUrl) {   //literalmente constructia pagini
+function construction(out, webServiceUrl) {   //literalmente constructia paginii
     promotions(out, webServiceUrl).then(function(result){ document.getElementById("promotions").innerHTML= result;});
     return `<div class="middle" style="background-color:#bbb; margin-top: 2%; margin-left: 5%; margin-right: 5%;border-radius: 20px ;margin-bottom: 5%;">
                 <div class="middle">

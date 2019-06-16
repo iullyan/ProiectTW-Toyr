@@ -45,7 +45,7 @@
     </head>
 
 
-    <?php require_once '../../Config/config.php'; $productId = 6; $urlBase = WEB_CONST_URL_PART . 'Product/'; ?>
+    <?php require_once '../../Config/config.php'; $productId = 5; $urlBase = WEB_CONST_URL_PART . 'Product/'; ?>
     <body onload="load('<?php echo $productId;?>', '<?php echo $urlBase; ?>')" >
             <header>
                 <nav id="functionality">
