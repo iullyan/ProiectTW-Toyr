@@ -29,12 +29,12 @@ function promotions(out, webServiceUrl)
              
                 let url2 = webServiceUrl + 'getProduct.php?productId=' + result[i].gifted_product_id; //cautam numele cadoului intrand pe pagina lui
                     fetch(url2)
-                    .then(res => res.json())
+                    .then(res2 => res2.json())
                     .then((out2) => {
                     aux += out2.record.product.name +'</p><br>'; // concatenam si numele
                         alert(aux);
                     })
-                    .catch(err => { throw err });
+                    .catch(err2 => { throw err2 });
 
 
         }
