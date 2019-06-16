@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="View/css/categoryUI.css">
     <link rel="stylesheet" type="text/css" href="View/css/productUI.css">
     <link rel="stylesheet" type="text/css" href="View/css/usableButton.css">
+    <link rel="stylesheet" type="text/css" href="View/css/productListContainer.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
 
@@ -74,7 +76,7 @@
             </ul>
         </nav>
 
-        <div class="productContainer">
+        <div class="productsContainer">
             <?php for ($i = 1; $i <= 100; $i++)
             echo ('
             <div class="product-card">
