@@ -27,11 +27,12 @@ function promotions(out, webServiceUrl)
 
                 aux=aux + `<p style=" margin-left: 2%">Cumpara ${result[i].product_units_bought} ${out.record.product.name} si vei primi cadou ${result[i].gifted_product_quantity}`;    //concatenam stringul
              
-                let url2 = webServiceUrl + 'getProduct.php?productId' + result[i].gifted_product_id; //cautam numele cadoului intrand pe pagina lui
+                let url2 = webServiceUrl + 'getProduct.php?productId=' + result[i].gifted_product_id; //cautam numele cadoului intrand pe pagina lui
                     fetch(url2)
                     .then(res => res.json())
                     .then((out2) => {
-                    aux = aux + `${out2.record.product.name}.</p><br>`; // concatenam si numele
+                    aux += out2.record.product.name +'</p><br>'; // concatenam si numele
+                        alert(aux);
                     })
                     .catch(err => { throw err });
 

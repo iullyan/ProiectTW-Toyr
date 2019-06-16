@@ -1,4 +1,4 @@
-
+<?php require_once 'Config/config.php'; $urlBase = WEB_CONST_URL_PART?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="View/css/mainCharacteristics.css">
     <link rel="stylesheet" type="text/css" href="View/css/category.css">
     <link rel="stylesheet" type="text/css" href="View/css/productUI.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
 
 
@@ -21,6 +22,8 @@
 
 
 <body>
+
+
 <div class="grid-container">
     <header>
         <div id="logo">
@@ -50,36 +53,15 @@
             </ul>
         </nav>
     </header>
+
     <div class="left">
         <div class="menu">
             <div id="categoriesTitle"> Produse</div>
-            <div class="content">
-                <ul>
-                    <li>Jocuri și puzzle-uri</li>
-                    <li>Educaționale</li>
-                    <li>Figurine</li>
-                    <li>Vehicule</li>
-                    <li>Modele telghidate</li>
-                    <li>Păpuși</li>
-                    <li><a href="View/pages/productList.html">Plușuri</a></li>
-                    <li>Creativitate</li>
-                    <li>Jucării din lemn</li>
-                    <li>Exterior</li>
-                    <li>Lego</li>
-                    <li>Arme de jucărie</li>
-                    <li>Hobby-uri și roleplay</li>
-                </ul>
+            <div class="categoriesContent">
             </div>
         </div>
     </div>
-    <div class="middle" style="background-color:#bbb;">
-        <!--<figure>
-         <img src="slider/img1.jpg" alt="unable to load image">
-         <img src="slider/img2.jpg" alt="unable to load image">
-         <img src="slider/img2.jpg" alt="unable to load image">
-       </figure> -->
 
-    </div>
     <section class="main">
         <nav class="showProducts">
             <ul>
@@ -137,8 +119,12 @@
         </nav>
     </footer>
 </div>
-<!--Testare baza de date -->
 
-</body>
+
+<script type="text/javascript" src="View/jquery/category.js"> </script>
+
+
+
+    </body>
 
 </html>

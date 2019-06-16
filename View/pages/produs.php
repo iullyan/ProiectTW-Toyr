@@ -96,36 +96,9 @@
                         </ul>
                     </nav>
                 </header>
-                  <!--    <div class="middle" style="background-color:#bbb; margin-top: 2%; margin-left: 5%; margin-right: 5%;border-radius: 20px ;">
-                            <div class="middle">
-                                    <div class="menu">
-                                        <div id="productTitle" style="margin-left:2%">
-                                            <h1 style="float:left">Jucărie de pluș Tuxy</h1>
-                                            <h1 style="float:right; margin-right: 2%">20 Lei</h1>
-                                        </div>
-                                        <div>
-                                                <div id="container">
-                                                        <div id="inner">
-                                                                <img src="../../Resources/websiteImages/tuxy.jfif" width="300" height="300" alt="" style="margin-left: 2%;margin-right: 2%;border-radius: 20px ;overflow: hidden;float: left;">
-                                                                <input type="submit" value="Adăugați în coș" class="buton" style="float:right;margin-right: 2%">
-                                                                <div class="image">
-                                                                        <img src="../../Resources/websiteImages/tuxy.jfif" width="120" height="120" alt="" style="margin-left: 2%;margin-top: 0.8%;border-radius: 20px ;">
-                                                                        <img src="../../Resources/websiteImages/tuxy.jfif" width="120" height="120" alt="" style="margin-left: 2%;margin-bottom: 0.8%;border-radius: 20px ;">
-                                                                </div>
-                                                        </div>
-                                                      </div>
-                                        </div>
-                                        <h2 style="margin: 1% 2%"> Descriere </h2>
-                                        <p style="margin: 1% 1.5%"> Această păpusă de pluș îl reprezintă pe Tux, mascota sistemului de operare Linux.</p>
-                                  </div>
-                                  </div>
-                    </div>
-                  -->
+
 
                     <div id="demo" ></div>
-            <script
-                    type="text/javascript" src="../js/product.js">
-
-            </script>
+            <script type="text/javascript" src="../js/product.js"> </script>
     </body>
 </html>
