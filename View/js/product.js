@@ -1,48 +1,47 @@
-
-function discounts(out)
-{   //Calculeaza prețul în funcție de discount(dacă există)
-    var date = new Date(); 
-    if(out.record.discount===false)
-    return `${out.record.product.price}`;
+function discounts(out) {   //Calculeaza prețul în funcție de discount(dacă există)
+    var date = new Date();
+    if (out.record.discount === false)
+        return `${out.record.product.price}`;
     var valf = new Date(out.record.discount.valid_from); //ia datele din baza de date
     var valu = new Date(out.record.discount.valid_until);
-    if(valf<date && date<valu)
-    return `${out.record.product.price-out.record.product.price*out.record.product.discount_percentage/100}`;
+    if (valf < date && date < valu)
+        return `${out.record.product.price - out.record.product.price * out.record.product.discount_percentage / 100}`;
     else
-    return `${out.record.product.price}`;
+        return `${out.record.product.price}`;
 }
 
-function promotions(out, webServiceUrl)
-{   //Verifică dacă nu există cumva o promotie
-    var date = new Date(); 
-    if(out.record.promotions===false) //verifica daca esixta promotii
-    return ``;
-    var aux=``; // un aux de stocare
-    result=out.record.promotions;
+
+async function promotions(out, webServiceUrl) {   //Verifică dacă nu există cumva o promotie
+    var date = new Date();
+    if (out.record.promotions === false) //verifica daca esixta promotii
+        return ``;
+    var aux = ``; // un aux de stocare
+    result = out.record.promotions;
 
     for (i in result)//ne plimbam prin optiun
-    {   
-        if (result.hasOwnProperty(i))
-        {
+    {
+        if (result.hasOwnProperty(i)) {
 
-                aux=aux + `<p style=" margin-left: 2%">Cumpara ${result[i].product_units_bought} ${out.record.product.name} si vei primi cadou ${result[i].gifted_product_quantity}`;    //concatenam stringul
-             
-                let url2 = webServiceUrl + 'getProduct.php?productId=' + result[i].gifted_product_id; //cautam numele cadoului intrand pe pagina lui
-                    fetch(url2)
-                    .then(res2 => res2.json())
-                    .then((out2) => {
-                    aux += out2.record.product.name +'</p><br>'; // concatenam si numele
-                        alert(aux);
-                    })
-                    .catch(err2 => { throw err2 });
+            aux = aux + `<p style=" margin-left: 2%">Cumpara ${result[i].product_units_bought} ${out.record.product.name} si vei primi cadou ${result[i].gifted_product_quantity}`;    //concatenam stringul
+
+            let url2 = webServiceUrl + 'getProduct.php?productId=' + result[i].gifted_product_id; //cautam numele cadoului intrand pe pagina lui var response = await fetch(url);
+
+            var response = await fetch(url2);
+            var json = await response.json();
+
+
+            aux += json.record.product.name + '</p><br>'; // concatenam si numele
+
+
 
         }
     }
+
     return aux;
 }
 
-function construction(out, webServiceUrl)
-{   //literalmente constructia pagini
+function construction(out, webServiceUrl) {   //literalmente constructia pagini
+    promotions(out, webServiceUrl).then(function(result){ document.getElementById("promotions").innerHTML= result;});
     return `<div class="middle" style="background-color:#bbb; margin-top: 2%; margin-left: 5%; margin-right: 5%;border-radius: 20px ;margin-bottom: 5%;">
                 <div class="middle">
                     <div class="menu">
@@ -65,13 +64,14 @@ function construction(out, webServiceUrl)
                         </div>
                 
                    <p>  </p>
-                
-                ${promotions(out, webServiceUrl)}
+                <div id="promotions"> </div>
+     
                 <h2 style="margin: 1% 2%"> Descriere </h2>
                 <p style="margin: 1% 2% 2% 2%"> ${out.record.product.description}</p>
                     </div>
                 </div>
             </div>`;
+
 }
 
 function load(productId, webServiceUrl) {

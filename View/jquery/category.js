@@ -1,10 +1,12 @@
-getWebServiceUrl = function ()
+getWebServiceUrl = async () =>
 {
 
     var webServiceUrl;
-    var response;
-    return "http://localhost:9999/StoreManagement/Controller/";
-
+    var url = "../../ProiectTW-Toyr/Controller/Utils/getWebServiceUrl.php"; //de aici isi ia datele json
+    var response = await fetch(url);
+    json = await response.json();
+    console.log(json);
+    return JSON.stringify(json);
 
 };
 
@@ -41,6 +43,8 @@ buildHTML = function (tag, html,  attrs) {
                 }
                 categoriesList += '</ul>';
                 $(".categoriesContent").html(categoriesList);
+                    console.log(data[i].name);
+
             }
         });
     });
