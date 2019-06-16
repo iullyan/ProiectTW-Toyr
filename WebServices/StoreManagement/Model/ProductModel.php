@@ -87,7 +87,7 @@ class ProductModel extends Model
 
         $result['product']=$productInformationArray;
         $result['discount']=$this->getProductDiscount($productId);
-        $result['promotions']= $this->getProductPromotions($productId);
+        $result['promotions'] = $this->getProductPromotions($productId);
 
         return $result;
 

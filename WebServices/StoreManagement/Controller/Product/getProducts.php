@@ -62,5 +62,5 @@ if ($productData) {
     http_response_code(404);
 
     // tell the user product does not exist
-    echo json_encode(array("errMessage" => "There are no products for the specified argument ."));
+    echo json_encode(array("Message" => "There are no products for the specified argument ."));
 }
