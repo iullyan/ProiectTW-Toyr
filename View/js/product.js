@@ -36,7 +36,6 @@ function promotions(out, webServiceUrl)
                     })
                     .catch(err2 => { throw err2 });
 
-
         }
     }
     return aux;
