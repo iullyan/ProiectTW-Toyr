@@ -16,6 +16,4 @@ $productsOnPromotion = $webService->doGet($url);
 $xmlCreator = new ProductsXML();
 $xml = $xmlCreator->getXml($productsOnPromotion);
 echo $xml->saveXML();
-
-
 ?>

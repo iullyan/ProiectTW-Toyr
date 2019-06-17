@@ -8,32 +8,55 @@ class QueryProductBuilder extends Model
     /*
      * Filter can be: discount, nrSold, priceAsc, priceDesc, new, promotion
      */
+
     public function getProductsOrdedBy($orderBy, $offset, $recordsPerPage)
     {
-        $sql = "SELECT * FROM products ORDER BY ? LIMIT ?, ?  ";
-
-        $query = $this->getConnection()->prepare($sql);
+        $sqlProductData = "SELECT p.id,
+         p.name, 
+         p.description,
+          p.price, 
+          p.category_id,
+           p.nr_sold, p.image,
+            p.units_in_stock, 
+            p.created_at, p.updated_at";
         switch ($orderBy) {
             case 'discount' :
-                $databaseField = 'discount DESC';
+               $sql = $sqlProductData . ' ' . "FROM products p JOIN discounts d ON d.product_id = p.id 
+                        ORDER BY discount_percentage DESC LIMIT ?, ?";
+               $query = $this->getConnection()->prepare($sql);
+                $query->bindParam(1, $offset, PDO::PARAM_INT);
+                $query->bindParam(2, $recordsPerPage, PDO::PARAM_INT);
                 break;
             case 'nrSold' :
-                $databaseField = 'nr_sold';
-                break;
-            case 'priceAsc' :
-                $databaseField = 'price DESC';
-                break;
-            case 'priceDesc' :
-                $databaseField = 'price DESC';
-                break;
-            case 'new' :
-                $databaseField = "created_at DESC";
-                break;
-            case 'promotion' :
-                $sql = "SELECT * from products where id in (SELECT product_bought_id FROM promotions) LIMIT ?, ?";
+                $sql = $sqlProductData . ' ' . "FROM products p ORDER BY p.nr_sold DESC LIMIT ?, ?";
                 $query = $this->getConnection()->prepare($sql);
                 $query->bindParam(1, $offset, PDO::PARAM_INT);
                 $query->bindParam(2, $recordsPerPage, PDO::PARAM_INT);
+                break;
+            case 'priceAsc' :
+                $sql = $sqlProductData . ' ' . "FROM products p ORDER BY price LIMIT ?, ?";
+                $query = $this->getConnection()->prepare($sql);
+                $query->bindParam(1, $offset, PDO::PARAM_INT);
+                $query->bindParam(2, $recordsPerPage, PDO::PARAM_INT);
+                break;
+            case 'priceDesc' :
+                $sql = $sqlProductData . ' ' . "FROM products p ORDER BY price DESC LIMIT ?, ?";
+                $query = $this->getConnection()->prepare($sql);
+                $query->bindParam(1, $offset, PDO::PARAM_INT);
+                $query->bindParam(2, $recordsPerPage, PDO::PARAM_INT);
+                break;
+            case 'new' :
+                $sql = $sqlProductData . ' ' . "FROM products p ORDER BY created_at DESC LIMIT ?, ?";
+                $query = $this->getConnection()->prepare($sql);
+                $query->bindParam(1, $offset, PDO::PARAM_INT);
+                $query->bindParam(2, $recordsPerPage, PDO::PARAM_INT);
+                break;
+            case 'promotion' :
+                $sql = "SELECT * from products p where p.id in (SELECT product_bought_id FROM promotions) LIMIT ?, ?";
+                $query = $this->getConnection()->prepare($sql);
+                $query->bindParam(1, $offset, PDO::PARAM_INT);
+                $query->bindParam(2, $recordsPerPage, PDO::PARAM_INT);
+
                 break;
             default :
                 $databaseField = 'unknown';
@@ -41,12 +64,6 @@ class QueryProductBuilder extends Model
         }
         if (!strcmp($databaseField, 'unknown'))
             return false;
-        if (strcmp($orderBy, 'promotion')) {
-            $query->bindParam(1, $databaseField, PDO::PARAM_STR);
-            $query->bindParam(2, $offset, PDO::PARAM_INT);
-            $query->bindParam(3, $recordsPerPage, PDO::PARAM_INT);
-        }
-
         return $query;
     }
 

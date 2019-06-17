@@ -35,7 +35,7 @@ class ProductsXML
         $rss->appendChild($language);
 
 
-        if (!array_key_exists('Message', $jsonProductList)) {
+        if (! isset($jsonProductList->Message)) {
 
             $records = $jsonProductList->records;
             foreach ($records as $product) {
