@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" type="text/css" href="../css/mainCharacteristics.css">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
         <link rel="stylesheet" type="text/css" href="../css/usableButton.css">
         <title>Toyr - Produs</title>
         <style>
@@ -46,7 +46,10 @@
     </head>
 
 
-    <?php require_once '../../Config/config.php'; $productId = 5; $urlBase = WEB_CONST_URL_PART . 'Product/'; ?>
+    <?php
+        require_once '../../Config/config.php'; $productId = $_GET['productId'];
+        $urlBase = WEB_CONST_URL_PART . 'Product/';
+    ?>
     <body onload="load('<?php echo $productId;?>', '<?php echo $urlBase; ?>')" >
             <header>
                 <nav id="functionality">

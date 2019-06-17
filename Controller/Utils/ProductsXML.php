@@ -1,6 +1,5 @@
 <?php
-
-
+require_once ('../../Config/config.php');
 class ProductsXML
 {
 
@@ -14,6 +13,10 @@ class ProductsXML
 
     public function getXml($jsonProductList){
         return  $this->createXml($jsonProductList);
+    }
+
+    public function createLink($productId){
+        return PRODUCT_PAGE . '?productId=' . $productId;
     }
 
     public function createXml($jsonProductList)
@@ -74,6 +77,12 @@ class ProductsXML
 
                 $unitsInStock = $xml->createElement("unitsInStock", $product->product->units_in_stock);
                 $item->appendChild($unitsInStock);
+
+
+                $link = $xml->createElement("link");
+                $linkCDATA = $xml->createCDATASection($this->createLink($product->product->id));
+                $link->appendChild($linkCDATA);
+                $item->appendChild($link);
 
                 $createdAt = $xml->createElement("created_at");
                 $createdAtCDATA = $xml->createCDATASection($product->product->created_at);

@@ -85,7 +85,7 @@ function processXML(xml) {
         var giftFlag = false;
         var productName = '';
         var imgName = ' ';
-        var link = ' ';
+        var link = " ";
 
 
         var item = items[i];
@@ -94,6 +94,7 @@ function processXML(xml) {
         productName = item.getElementsByTagName("name")[0].textContent;
         basePrice = item.getElementsByTagName("price")[0].textContent;
         imgName = item.getElementsByTagName("image")[0].textContent;
+        link = item.getElementsByTagName("link")[0].textContent;
 
         var discountData = item.getElementsByTagName("discount")[0];
         if (discountData.textContent.localeCompare("false")) {
@@ -105,7 +106,7 @@ function processXML(xml) {
         if (promotionData.textContent.localeCompare("false"))
             giftFlag = true;
 
-        productList += buildHTML(productName, discountValue, basePrice, newPrice, giftFlag, imgName)
+        productList += buildHTML(productName, discountValue, basePrice, newPrice, giftFlag, imgName, link)
 
     }
     document.getElementsByClassName("productsContainer")[0].innerHTML = productList;
@@ -114,7 +115,7 @@ function processXML(xml) {
 }
 
 
-buildHTML = function buildHTML(name, discount, basePrice, newPrice, giftFlag, imgName) {
+buildHTML = function buildHTML(name, discount, basePrice, newPrice, giftFlag, imgName, link) {
     var disco = "hello";
     var html = '<div class="product-card">';
     html += checkDiscount(discount);
@@ -130,9 +131,12 @@ buildHTML = function buildHTML(name, discount, basePrice, newPrice, giftFlag, im
         '<div class="product-bottom-details">';
 
     html += checkForNewPrice(newPrice, basePrice);
+    html += '<p class="product-links">' +
+        '<a href="';
+    html += link;
     html +=
-        '<p class="product-links">' +
-        '<a href="" class="usableButton"><i class="fa fa-shopping-cart"></i> Vezi detalii</a>' + ' </p>' +
+
+        '" class="usableButton"><i class="fa fa-shopping-cart"></i> Vezi detalii</a>' + ' </p>' +
         '</div>' +
 
         '</div>' +
@@ -169,4 +173,5 @@ function createImageUrl(imageName) {
 
     return '<img src="' +  imagesLocation + imageName + '.jpg"' + ' alt="">';
 }
+
 
