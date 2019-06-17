@@ -36,7 +36,6 @@ class ProductsXML
 
 
         if (! isset($jsonProductList->Message)) {
-
             $records = $jsonProductList->records;
             foreach ($records as $product) {
                 $discountData = $product->discount;
@@ -134,7 +133,8 @@ class ProductsXML
 
             }
         }
-        return $xml;
+            return $xml;
+
     }
 
 

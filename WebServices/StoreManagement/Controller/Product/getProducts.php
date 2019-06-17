@@ -9,7 +9,7 @@ header("Access-Control-Allow-Credentials: true");
 
 $productOrderBy = unserialize(PRODUCT_ORDERBY);
 $product = new ProductModel();
-
+$productData = false;
 if (isset($_GET['offset']) && isset($_GET['recordsNr']))
 {
     $offset = htmlentities($_GET['offset']);
@@ -48,8 +48,7 @@ if (isset($_GET['offset']) && isset($_GET['recordsNr']))
         if (in_array($orderBy, $productOrderBy))
             $productData = $product->getProducts(NULL, $orderBy, $offset, $recordsNr);
 
-    } else
-        die("Incorrect parameters");
+    }
 }
 
 

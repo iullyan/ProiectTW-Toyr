@@ -59,11 +59,10 @@ class QueryProductBuilder extends Model
 
                 break;
             default :
-                $databaseField = 'unknown';
-                break;
+                return false;
+
         }
-        if (!strcmp($databaseField, 'unknown'))
-            return false;
+        
         return $query;
     }
 
