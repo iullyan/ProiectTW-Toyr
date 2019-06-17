@@ -125,12 +125,14 @@ buildHTML = function buildHTML(name, discount, basePrice, newPrice, giftFlag, im
     html +=
 
         '</div>' +
-
         '<div class="product-details">' +
-        '<h4 class="product-name"><a href="">' + name + '</a></h4>' +
+         '<div class="product-name">' +
+        '<h4 ><a href="';
+    html += link;
+    html +='">' + name + '</a></h4></div>' +
         '<div class="product-bottom-details">';
-
     html += checkForNewPrice(newPrice, basePrice);
+    html += '<br><br>';
     html += '<p class="product-links">' +
         '<a href="';
     html += link;
