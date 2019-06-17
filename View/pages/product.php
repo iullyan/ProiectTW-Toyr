@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" type="text/css" href="../css/mainCharacteristics.css">
+        <link rel="stylesheet" type="text/css" href="../css/usableButton.css">
         <title>Toyr - Produs</title>
         <style>
         #container {
@@ -51,21 +52,21 @@
                 <nav id="functionality">
                       <ul>
                         <li class="account">
-                          <button class="accountButton">Categorii</button>
-                          <div class="accountOptions" style="width: 235px; max-height: 315px; overflow:auto;">
-                            <a href="" style="font-size: 13px" class="spacingDropdown">Jocuri și puzzle-uri</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown">Educaționale</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown">Figurine</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown">Vehicule</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown">Modele telghidate</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown">Păpuși</a>
-                            <a href="productList.html" style="font-size: 13px" class="spacingDropdown">Plușuri</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown">Creativitate</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown">Jucării din lemn</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown">Exterior</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown">Lego</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown">Arme de jucărie</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown">Hobby-uri și roleplay</a>
+                          <button class="usableButton">Categorii</button>
+                          <div class="accountOptions" style="width: 175px; max-height: 315px; overflow:auto;">
+                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Jocuri și puzzle-uri</a>
+                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Educaționale</a>
+                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Figurine</a>
+                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Vehicule</a>
+                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Modele telghidate</a>
+                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Păpuși</a>
+                            <a href="productList.html" style="font-size: 13px" class="spacingDropdown; usableButton">Plușuri</a>
+                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Creativitate</a>
+                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Jucării din lemn</a>
+                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Exterior</a>
+                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Lego</a>
+                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Arme de jucărie</a>
+                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Hobby-uri și roleplay</a>
                           </div>
                         </li>
                       </ul>
@@ -82,14 +83,14 @@
                     <nav id="functionality">
                         <ul>
                           <li class="account">
-                            <button class="accountButton">Contul meu</button>
+                            <button class="usableButton">Contul meu</button>
                             <div class="accountOptions">
-                              <a href="login.html">Login</a>
-                              <a href="register.html">Register</a>
+                              <a href="login.html" class="usableButton">Login</a>
+                              <a href="register.html" class="usableButton">Register</a>
                             </div>
                           </li>
                           <li>
-                            <input type="button" class="orderButton" value="Coșul meu" onclick="window.location.href='payment.html'" />
+                            <input type="button" class="usableButton" value="Coșul meu" onclick="window.location.href='payment.html'" />
 
                           </li>
 
