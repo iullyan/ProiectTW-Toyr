@@ -1,9 +1,13 @@
 var rssFeedUrl;
-
+var imagesLocation;
 
 function getRssUrl(data) {
     rssFeedUrl = data;
 
+}
+
+function getImagesLocation(data) {
+    imagesLocation = data;
 
 }
 
@@ -25,12 +29,32 @@ function fetchRssFeedUrl(type) {
 
 }
 
+
+function fetchImagesLocation() {
+    $.ajax({
+        type: "GET",
+        data: 'json',
+        dataType: "json",
+        url: '../../ProiectTW-Toyr/Controller/Utils/getImagesLocation.php?',
+        async: false,
+        success: function (data) {
+            getImagesLocation(data);
+        },
+        error: function () {
+            alert("Error when getting images url")
+        }
+    });
+}
+
 //order by can be : new,promotion, sold
 function loadRssFeed(orderBy) {
 
     var optionsArray = ['new', 'promotion', 'sold'];
     if (optionsArray.includes(orderBy)) {
-        fetchRssFeedUrl(orderBy);
+        {
+            fetchRssFeedUrl(orderBy);
+            fetchImagesLocation();
+        }
     } else
         console.error("incorrect orderby");
 
@@ -45,8 +69,6 @@ function loadRssFeed(orderBy) {
 }
 
 
-
-
 function processXML(xml) {
 
 
@@ -54,7 +76,7 @@ function processXML(xml) {
     var items = xmlDoc.getElementsByTagName('item');
     var discounts = xmlDoc.getElementsByTagName('discount');
     var promotions = xmlDoc.getElementsByTagName('promotion');
-    var productList="";
+    var productList = "";
     for (var i = 0; i < items.length; i++) {
 
         var discountValue = 0;
@@ -71,7 +93,7 @@ function processXML(xml) {
 
         productName = item.getElementsByTagName("name")[0].textContent;
         basePrice = item.getElementsByTagName("price")[0].textContent;
-        imgName =  item.getElementsByTagName("image")[0].textContent;
+        imgName = item.getElementsByTagName("image")[0].textContent;
 
         var discountData = item.getElementsByTagName("discount")[0];
         if (discountData.textContent.localeCompare("false")) {
@@ -81,7 +103,7 @@ function processXML(xml) {
 
         var promotionData = item.getElementsByTagName("promotions")[0];
         if (promotionData.textContent.localeCompare("false"))
-            giftFlag = true ;
+            giftFlag = true;
 
         productList += buildHTML(productName, discountValue, basePrice, newPrice, giftFlag, imgName)
 
@@ -89,58 +111,62 @@ function processXML(xml) {
     document.getElementsByClassName("productsContainer")[0].innerHTML = productList;
 
 
-
-
 }
 
 
-buildHTML = function  buildHTML(name, discount, basePrice, newPrice, giftFlag, imgName) {
+buildHTML = function buildHTML(name, discount, basePrice, newPrice, giftFlag, imgName) {
     var disco = "hello";
-var html =  '<div class="product-card">';
+    var html = '<div class="product-card">';
     html += checkDiscount(discount);
     html += checkGift(giftFlag);
+    html += '<div class="product-tumb">';
+    html += createImageUrl(imgName);
     html +=
 
-                '<div class="product-tumb">' +
-                   '<img src="https://images-na.ssl-images-amazon.com/images/I/419ZC94QCFL.jpg" alt="">'+
-                '</div>' +
+        '</div>' +
 
-                '<div class="product-details">' +
-                    '<h4 class="product-name"><a href="">' + name + '</a></h4>' +
-                     '<div class="product-bottom-details">';
+        '<div class="product-details">' +
+        '<h4 class="product-name"><a href="">' + name + '</a></h4>' +
+        '<div class="product-bottom-details">';
+
     html += checkForNewPrice(newPrice, basePrice);
     html +=
-                        '<p class="product-links">' +
-                        '<a href="" class="usableButton"><i class="fa fa-shopping-cart"></i> Vezi detalii</a>' + ' </p>' +
-                     '</div>' +
+        '<p class="product-links">' +
+        '<a href="" class="usableButton"><i class="fa fa-shopping-cart"></i> Vezi detalii</a>' + ' </p>' +
+        '</div>' +
 
-                '</div>' +
-            '</div>';
+        '</div>' +
+        '</div>';
 
-return html;
+    return html;
 };
 
 
-function checkDiscount(discount){
-    if(discount)
-        return  '<div class="discount">-' + discount + '%</div>';
-        else
-            return '<i hidden></i>';
+function checkDiscount(discount) {
+    if (discount)
+        return '<div class="discount">-' + discount + '%</div>';
+    else
+        return '<i hidden></i>';
 
 }
 
-function checkGift(giftFlag){
-    if(giftFlag)
-        return '<div class="gift">Cadou</div>' ;
+function checkGift(giftFlag) {
+    if (giftFlag)
+        return '<div class="gift">Cadou</div>';
     else
         return '<i hidden></i>';
 }
 
 
-function checkForNewPrice(newPrice, basePrice){
+function checkForNewPrice(newPrice, basePrice) {
     if (newPrice)
-        return '<div class="product-price"><small>' + newPrice  + 'Lei</small><br>' + basePrice + '</div>';
+        return '<div class="product-price"><small>' + newPrice + 'Lei</small><br>' + basePrice + ' Lei</div>';
     else
-        return '<div class="product-price">' + basePrice + '</div>' ;
+        return '<div class="product-price">' + basePrice + ' Lei</div>';
+}
+
+function createImageUrl(imageName) {
+
+    return '<img src="' +  imagesLocation + imageName + '.jpg"' + ' alt="">';
 }
 

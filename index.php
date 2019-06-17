@@ -78,8 +78,8 @@ $urlBase = WEB_CONST_URL_PART ?>
         <nav class="optionsGroup">
 
             <button class="usableButton" onclick="loadRssFeed('new')">Produse noi</button>
-            <button class="usableButton">Promoții</button>
-            <button class="usableButton">Top vânzări</button>
+            <button class="usableButton" onclick="loadRssFeed('promotion')">Promoții</button>
+            <button class="usableButton" onclick="loadRssFeed('sold')">Top vânzări</button>
 
         </nav>
 
