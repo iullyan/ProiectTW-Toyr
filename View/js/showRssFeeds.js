@@ -2,7 +2,7 @@ var rssFeedUrl;
 
 
 
-function getWebServiceUrl(data) {
+function getRssUrl(data) {
     rssFeedUrl = data;
 
 
@@ -14,14 +14,15 @@ function fetchRssFeedUrl(type) {
         type: "GET",
         data: 'json',
         dataType: "json",
-        url: '../../ProiectTW-Toyr/Controller/Utils/geRssUrl.php?type=' . type,
+        url: '../../ProiectTW-Toyr/Controller/Utils/getRssUrl.php?type=' + type,
         async: false,
         success: function (data) {
-            getWebServiceUrl(data);
+            getRssUrl(data);
+            alert(data);
 
         },
         error: function () {
-            alert("Error when getting web service url")
+            alert("Error when getting rss url")
         }
     });
 
@@ -33,7 +34,6 @@ function loadRssFeed(orderBy) {
     var optionsArray = ['new', 'promotion', 'sold'];
     if (  optionsArray.includes(orderBy)) {
         fetchRssFeedUrl(orderBy);
-        alert(orderBy);
     }
     else
         console.error("incorrect orderby");

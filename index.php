@@ -8,7 +8,7 @@ $urlBase = WEB_CONST_URL_PART ?>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Toyr - Bine ați venit !</title>
-    <link rel="stylesheet" type="text/css" href="View/css/mainCharacteristics.css">
+    <link rel="stylesheet" type="text/css" href="View/css/index.css">
     <link rel="stylesheet" type="text/css" href="View/css/categoryUI.css">
     <link rel="stylesheet" type="text/css" href="View/css/productUI.css">
     <link rel="stylesheet" type="text/css" href="View/css/usableButton.css">
@@ -70,33 +70,14 @@ $urlBase = WEB_CONST_URL_PART ?>
     <section class="main">
         <nav class="optionsGroup">
 
-            <button class="usableButton">Produse noi</button>
+            <button class="usableButton" onclick="loadRssFeed('new')">Produse noi</button>
             <button class="usableButton">Promoții</button>
             <button class="usableButton">Top vânzări</button>
 
         </nav>
 
         <div class="productsContainer">
-            <?php for ($i = 1; $i <= 100; $i++)
-                echo('
-            <div class="product-card">
-                <div class="discount">-20%</div>
-                <div class="gift">Cadou</div>
-                <div class="product-tumb">
-                    <img src="https://images-na.ssl-images-amazon.com/images/I/419ZC94QCFL.jpg" alt="">
-                </div>
 
-                <div class="product-details">
-                    <h4><a href="">Hardcore Clone</a></h4>
-                    <div class="product-bottom-details">
-                        <div class="product-price"><small>960.99 Lei</small><br>23.99 Lei</div>
-                        <p class="product-links">
-                            <a href="" class="usableButton"><i class="fa fa-shopping-cart"></i> Vezi detalii</a>
-                        </p>
-                    </div>
-
-                </div>
-            </div>'); ?>
 
         </div>
 
@@ -127,7 +108,7 @@ $urlBase = WEB_CONST_URL_PART ?>
 
 
 <script type="text/javascript" src="View/jquery/category.js"></script>
-
+<script type="text/javascript" src="View/js/showRssFeeds.js"></script>
 
 </body>
 
