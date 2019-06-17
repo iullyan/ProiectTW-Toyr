@@ -1,4 +1,21 @@
+<?php
+require_once '../../Config/config.php';
+require_once '../Utils/CallWebService.php';
+require_once '../Utils/ProductsXML.php';
+header('Content-Type: text/xml; charset=utf-8', true);
 
+$webService = new CallWebService();
+$offset = "offset=0";
+$recordsNr = "recordsNr=" . RSS_FEED_NR_OF_PRODUCTS;
+$orderBy = "orderBy=nrSold";
+$url = WEB_CONST_URL_PART . "Product/getProducts.php?" . $orderBy . '&' . $offset . '&'. $recordsNr;
+$mostSoldProductsList = $webService->doGet($url);
+
+$xmlCreator = new ProductsXML();
+$xml = $xmlCreator->getXml($mostSoldProductsList);
+echo $xml->saveXML();
+
+?>
 
 
 

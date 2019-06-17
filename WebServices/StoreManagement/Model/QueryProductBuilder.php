@@ -10,7 +10,7 @@ class QueryProductBuilder extends Model
      */
     public function getProductsOrdedBy($orderBy, $offset, $recordsPerPage)
     {
-        $sql = "SELECT * FROM products ORDER BY ? LIMIT ?, ? ";
+        $sql = "SELECT * FROM products ORDER BY ? LIMIT ?, ?  ";
 
         $query = $this->getConnection()->prepare($sql);
         switch ($orderBy) {
@@ -21,13 +21,13 @@ class QueryProductBuilder extends Model
                 $databaseField = 'nr_sold';
                 break;
             case 'priceAsc' :
-                $databaseField = 'price ASC';
+                $databaseField = 'price DESC';
                 break;
             case 'priceDesc' :
                 $databaseField = 'price DESC';
                 break;
             case 'new' :
-                $databaseField = "created_at";
+                $databaseField = "created_at DESC";
                 break;
             case 'promotion' :
                 $sql = "SELECT * from products where id in (SELECT product_bought_id FROM promotions) LIMIT ?, ?";
