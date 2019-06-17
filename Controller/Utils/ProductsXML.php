@@ -56,6 +56,7 @@ class ProductsXML
                 $description->appendChild($descriptionCDATA);
                 $item->appendChild($description);
 
+
                 $price = $xml->createElement("price", $product->product->price);
                 $item->appendChild($price);
 
