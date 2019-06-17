@@ -14,7 +14,8 @@ $urlBase = WEB_CONST_URL_PART ?>
     <link rel="stylesheet" type="text/css" href="View/css/usableButton.css">
     <link rel="stylesheet" type="text/css" href="View/css/productListContainer.css">
     <link rel="stylesheet" type="text/css" href="View/css/optionsGroup.css">
-    <script type="text/javascript" src="View/js/showRssFeeds.js"></script>
+
+
 
 
 
@@ -28,7 +29,8 @@ $urlBase = WEB_CONST_URL_PART ?>
 
 <body>
 
-
+<script type="text/javascript" src="View/jquery/category.js" defer></script>
+<script type="text/javascript" src="View/js/showRssFeeds.js"async></script>
 
 
 <div class="grid-container">

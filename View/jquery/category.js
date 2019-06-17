@@ -1,31 +1,4 @@
-var WebServiceUrl;
 
-fetchWebServiceUrl();
-
-function getWebServiceUrl(data) {
-    WebServiceUrl = data;
-
-
-}
-
-function fetchWebServiceUrl() {
-
-    $.ajax({
-        type: "GET",
-        data: 'json',
-        dataType: "json",
-        url: '../../ProiectTW-Toyr/Controller/Utils/getWebServiceUrl.php',
-        async: false,
-        success: function (data) {
-            getWebServiceUrl(data);
-
-        },
-        error: function () {
-            alert("Error when getting web service url")
-        }
-    });
-
-}
 
 buildHTML = function (tag, html, attrs) {
 
@@ -43,6 +16,22 @@ buildHTML = function (tag, html, attrs) {
 
 
 $(document).ready(function () {
+
+    $.ajax({
+        type: "GET",
+        data: 'json',
+        dataType: "json",
+        url: '../../ProiectTW-Toyr/Controller/Utils/getWebServiceUrl.php',
+        async: false,
+        success: function (data) {
+            WebServiceUrl = data;
+
+        },
+        error: function () {
+            alert("Error when getting web service url")
+        }
+    });
+
 
     $.ajax({
 
