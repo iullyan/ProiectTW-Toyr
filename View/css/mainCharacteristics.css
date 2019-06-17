@@ -148,29 +148,7 @@ form{
 }
 
 
-.main .showProducts ul {
-  margin: 0;
-	list-style: none;
-	text-align: center;
 
-}
-
-.main .showProducts ul li {
-
-	width:210px;
-	height:70px;
-    color: white;
-    padding:10px;
-	background-color:#e62e00;
-	line-height:70px;
-	text-align:center;
-	font-size: 25px;
-	display:inline-block;
-  font-family:Baskerville, Palatino Linotype, Palatino, Century Schoolbook L, Times New Roman, serif;
-
-}
-
-.showProducts ul li:hover { background-color: green;}
 
 
 /* Dropdown Button */

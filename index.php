@@ -1,4 +1,5 @@
-<?php require_once 'Config/config.php'; $urlBase = WEB_CONST_URL_PART?>
+<?php require_once 'Config/config.php';
+$urlBase = WEB_CONST_URL_PART ?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -12,10 +13,10 @@
     <link rel="stylesheet" type="text/css" href="View/css/productUI.css">
     <link rel="stylesheet" type="text/css" href="View/css/usableButton.css">
     <link rel="stylesheet" type="text/css" href="View/css/productListContainer.css">
+    <link rel="stylesheet" type="text/css" href="View/css/optionsGroup.css">
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-
-
 
 
     <!-- <link rel="stylesheet" type="text/css" href="product.css"> Nu merge slideShow-ul-->
@@ -23,7 +24,6 @@
 </head>
 
 <body>
-
 
 
 <div class="grid-container">
@@ -40,7 +40,7 @@
         <nav id="functionality">
             <ul>
                 <li class="account">
-                    <button class="usableButton" >Contul meu</button>
+                    <button class="usableButton">Contul meu</button>
                     <div class="accountOptions">
                         <a class="usableButton" href="View/pages/login.html">Login</a>
                         <a class="usableButton" href="View/pages/register.html">Register</a>
@@ -58,27 +58,27 @@
 
     <div class="left">
 
-            <div class="usableButton"> Produse</div>
-            <div class="categoriesContent">
-            </div>
+        <div class="usableButton"> Produse</div>
+        <div class="categoriesContent">
+        </div>
 
     </div>
 
     <div class="middle">
-</div>
+    </div>
 
     <section class="main">
-        <nav class="showProducts">
-            <ul>
-                <li class="usableButton">Produse noi</li>
-                <li class="usableButton">Promoții</li>
-                <li class="usableButton">Top vânzări</li>
-            </ul>
+        <nav class="optionsGroup">
+
+            <button class="usableButton">Produse noi</button>
+            <button class="usableButton">Promoții</button>
+            <button class="usableButton">Top vânzări</button>
+
         </nav>
 
         <div class="productsContainer">
             <?php for ($i = 1; $i <= 100; $i++)
-            echo ('
+                echo('
             <div class="product-card">
                 <div class="discount">-20%</div>
                 <div class="gift">Cadou</div>
@@ -126,10 +126,9 @@
 </div>
 
 
-<script type="text/javascript" src="View/jquery/category.js"> </script>
+<script type="text/javascript" src="View/jquery/category.js"></script>
 
 
-
-    </body>
+</body>
 
 </html>
