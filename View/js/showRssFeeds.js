@@ -123,7 +123,6 @@ buildHTML = function buildHTML(name, discount, basePrice, newPrice, giftFlag, im
     html += '<div class="product-tumb">';
     html += createImageUrl(imgName);
     html +=
-
         '</div>' +
         '<div class="product-details">' +
          '<div class="product-name">' +
@@ -136,11 +135,8 @@ buildHTML = function buildHTML(name, discount, basePrice, newPrice, giftFlag, im
     html += '<p class="product-links">' +
         '<a href="';
     html += link;
-    html +=
-
-        '" class="usableButton"><i class="fa fa-shopping-cart"></i> Vezi detalii</a>' + ' </p>' +
+    html += '" class="usableButton"><i class="fa fa-shopping-cart"></i> Vezi detalii</a>' + ' </p>' +
         '</div>' +
-
         '</div>' +
         '</div>';
 
