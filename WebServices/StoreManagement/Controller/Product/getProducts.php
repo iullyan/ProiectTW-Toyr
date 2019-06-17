@@ -10,22 +10,23 @@ header("Access-Control-Allow-Credentials: true");
 $productOrderBy = unserialize(PRODUCT_ORDERBY);
 $product = new ProductModel();
 
-if (isset($_GET['offset']))
+if (isset($_GET['offset']) && isset($_GET['recordsNr']))
 {
     $offset = htmlentities($_GET['offset']);
+    $recordsNr = htmlentities($_GET['recordsNr']);
     if (isset($_GET['categoryId']))
     {
         $filterVariable = array('categoryId' => htmlentities($_GET['categoryId']));
-        $productData = $product->getProducts($filterVariable, NULL, $offset, RECORDS_PER_PAGE);
+        $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr);
 
     } elseif (isset($_GET['eventId']))
     {
         $filterVariable = array('eventId' => htmlentities($_GET['eventId']));
-        $productData = $product->getProducts($filterVariable, NULL, $offset, RECORDS_PER_PAGE);
+        $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr);
     } elseif (isset($_GET['ageLowerBound']))
     {
         $filterVariable = array('ageLowerBound' => htmlentities($_GET['ageLowerBound']));
-        $productData = $product->getProducts($filterVariable, NULL, $offset, RECORDS_PER_PAGE);
+        $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr);
 
     } elseif (isset($_GET['priceLowerBound']) && (isset($_GET['priceUpperBound'])))
     {
@@ -35,17 +36,17 @@ if (isset($_GET['offset']))
         $filterVariable = array('priceLowerBound' => htmlentities($_GET['priceLowerBound']),
             'priceUpperBound' => htmlentities($_GET['priceUpperBound']));
 
-        $productData = $product->getProducts($filterVariable, NULL, $offset, RECORDS_PER_PAGE);
+        $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr);
 
     } elseif (isset($_GET['priceLowerThan']))
     {
         $filterVariable = array('priceLowerThan' => htmlentities($_GET['priceLowerThan']));
-        $productData = $product->getProducts($filterVariable, NULL, $offset, RECORDS_PER_PAGE);
+        $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr);
 
     } elseif (isset($_GET['orderBy'])) {
         $orderBy = $_GET['orderBy'];
         if (in_array($orderBy, $productOrderBy))
-            $productData = $product->getProducts(NULL, $orderBy, $offset, RECORDS_PER_PAGE);
+            $productData = $product->getProducts(NULL, $orderBy, $offset, $recordsNr);
 
     } else
         die("Incorrect parameters");

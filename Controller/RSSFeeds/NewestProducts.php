@@ -12,8 +12,10 @@ $language = "ro";
 $lastBuildDate = time();
 
 $webService = new CallWebService();
-$orderBy = "orderBy=new&offset=0";
-$url = WEB_CONST_URL_PART . "Product/getProducts.php?" . $orderBy;
+$offset = "offset=0";
+$recordsNr = "recordsNr=" . RSS_FEED_NR_OF_PRODUCTS;
+$orderBy = "orderBy=new";
+$url = WEB_CONST_URL_PART . "Product/getProducts.php?" . $orderBy . '&' . $offset . '&'. $recordsNr;
 $newestProductsList = $webService->doGet($url);
 
 $xml = new DomDocument("1.0", "UTF-8");
