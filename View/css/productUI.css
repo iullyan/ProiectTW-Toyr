@@ -52,8 +52,13 @@
 }
 
 .product-name {
+
   display: block;
-  font-size: 12px;
+  white-space: nowrap;
+  width: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid #000000;
   font-weight: 700;
   text-transform: uppercase;
   color: #ccc;

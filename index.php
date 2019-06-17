@@ -14,6 +14,9 @@ $urlBase = WEB_CONST_URL_PART ?>
     <link rel="stylesheet" type="text/css" href="View/css/usableButton.css">
     <link rel="stylesheet" type="text/css" href="View/css/productListContainer.css">
     <link rel="stylesheet" type="text/css" href="View/css/optionsGroup.css">
+    <script type="text/javascript" src="View/js/showRssFeeds.js"></script>
+
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -24,6 +27,8 @@ $urlBase = WEB_CONST_URL_PART ?>
 </head>
 
 <body>
+
+
 
 
 <div class="grid-container">
@@ -107,9 +112,11 @@ $urlBase = WEB_CONST_URL_PART ?>
 </div>
 
 
-<script type="text/javascript" src="View/jquery/category.js"></script>
-<script type="text/javascript" src="View/js/showRssFeeds.js"></script>
+
+
 
 </body>
 
 </html>
+
+

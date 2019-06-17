@@ -56,7 +56,7 @@ $(document).ready(function () {
             var singleCategory = '';
             var href = '';
             for (var i = 0; i < data.length; i++) {
-                href = buildHTML("a", data[i].name, {href: "Controller/Dispatcher/showProducts.php?=${data[i].id}"}, {});
+                href = buildHTML("a", data[i].name, {href: "Controller/Dispatcher/showProducts.php?categoryId=" + data[i].id});
                 singleCategory = buildHTML("li", href, {});
                 categoriesList += singleCategory;
             }
