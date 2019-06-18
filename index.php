@@ -69,7 +69,7 @@ $urlBase = WEB_CONST_URL_PART; $specialProducts = FRONT_IMAGES;?>
     </div>
 
     <div class="middle">
-            <img  class="frontImage" src="<?php echo $specialProducts . '/1.jpg'?>" alt="">
+            <img  class="frontImage" src="<?php echo $specialProducts . '1.jpg'?>" alt="">
 
     </div>
 

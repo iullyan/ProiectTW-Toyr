@@ -27,7 +27,7 @@
                     <a href="" style="font-size: 13px" class="spacingDropdown">Vehicule</a>
                     <a href="" style="font-size: 13px" class="spacingDropdown">Modele telghidate</a>
                     <a href="" style="font-size: 13px" class="spacingDropdown">Păpuși</a>
-                    <a href="productList.html" style="font-size: 13px" class="spacingDropdown">Plușuri</a>
+                    <a href="productList.php" style="font-size: 13px" class="spacingDropdown">Plușuri</a>
                     <a href="" style="font-size: 13px" class="spacingDropdown">Creativitate</a>
                     <a href="" style="font-size: 13px" class="spacingDropdown">Jucării din lemn</a>
                     <a href="" style="font-size: 13px" class="spacingDropdown">Exterior</a>

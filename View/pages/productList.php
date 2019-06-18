@@ -1,5 +1,10 @@
-<?php require_once 'Config/config.php';
-$urlBase = WEB_CONST_URL_PART; $specialProducts = FRONT_IMAGES;?>
+<?php require_once '../../Config/config.php';
+$urlBase = WEB_CONST_URL_PART;
+if (isset($_GET['categoryId']))
+    $categoryId = $_GET['categoryId'];
+else
+    die('Unspecified category id');
+?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -16,12 +21,8 @@ $urlBase = WEB_CONST_URL_PART; $specialProducts = FRONT_IMAGES;?>
     <link rel="stylesheet" type="text/css" href="../css/productList.css">
 
 
-
-
-
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
 
 
     <!-- <link rel="stylesheet" type="text/css" href="product.css"> Nu merge slideShow-ul-->
@@ -36,7 +37,7 @@ $urlBase = WEB_CONST_URL_PART; $specialProducts = FRONT_IMAGES;?>
     <header>
         
         <div id="logo">
-            <h1> Toyr.ro </h1>
+            <a href="../../index.php"><h1> Toyr.ro </h1> </a>
         </div>
         <div id="searchContainer">
             <form action="Cautare.php">
@@ -109,10 +110,7 @@ $urlBase = WEB_CONST_URL_PART; $specialProducts = FRONT_IMAGES;?>
     <section class="main">
 
 
-        <div class="productsContainer">
-
-
-        </div>
+        <div class="productsContainer"></div>
 
     </section>
 
@@ -140,7 +138,97 @@ $urlBase = WEB_CONST_URL_PART; $specialProducts = FRONT_IMAGES;?>
 </div>
 
 
+<script type="text/javascript" defer>
 
+    var categoryid = "<?php echo $categoryId; ?>";
+    var webUrl = "<?php echo $urlBase?>";
+    var webConstUrl = "<?php echo $urlBase ?>";
+    console.log(webConstUrl);
+    var productPage = "<?php echo PRODUCT_PAGE?>";
+    var imagesLocation  = "<?php echo IMAGES_LOCATION ?>";
+
+    $(document).ready(function () {
+
+        $.ajax({
+            type: "GET",
+            data: 'json',
+            dataType: "json",
+            url:  webConstUrl + "Product/getProducts.php?categoryId=" + categoryid + '&offset=0&recordsNr=5',
+            async: true,
+            success: function (data) {
+                var index;
+                var records = data.records;
+                var productList = "";
+                for(index = 0; index < records.length; index++)
+                {
+                    var html = '<div class="product-card">';
+                    html += checkDiscount(records[index].discount.discount_percentage);
+                    html += checkGift(records[index].promotions);
+                    html += '<div class="product-tumb">';
+                    html += createImageUrl(records[index].product.image);
+                    html +=
+                        '</div>' +
+                        '<div class="product-details">' +
+                        '<div class="product-name">' +
+                        '<h4 ><a href="';
+                    html += productPage + '?productId=' + records[index].product.id ;
+                    html += '">' + records[index].product.name + '</a></h4></div>' +
+                        '<div class="product-bottom-details">';
+                    html += checkForNewPrice(records[index].discount.price_with_discount, records[index].product.price);
+                    html += '<br><br>';
+                    html += '<p class="product-links">' +
+                        '<a href="';
+                    html += productPage + '?productId' + records[index].product.id;
+                    html += '" class="usableButton"><i class="fa fa-shopping-cart"></i> Vezi detalii</a>' + ' </p>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+
+                    productList += html;
+
+                }
+
+
+
+                function checkDiscount(discount) {
+                    if (discount)
+                        return '<div class="discount">-' + discount + '%</div>';
+                    else
+                        return '<i hidden></i>';
+
+                }
+
+                function checkGift(giftFlag) {
+                    if (giftFlag)
+                        return '<div class="gift">Cadou</div>';
+                    else
+                        return '<i hidden></i>';
+                }
+
+
+                function checkForNewPrice(newPrice, basePrice) {
+                    if (newPrice)
+                        return '<div class="product-price"><small>' + newPrice + 'Lei</small><br>' + basePrice + ' Lei</div>';
+                    else
+                        return '<div class="product-price">' + basePrice + ' Lei</div>';
+                }
+
+                function createImageUrl(imageName) {
+
+                    return '<img src="' +  imagesLocation + imageName + '.jpg"' + ' alt="">';
+                }
+                $(".productsContainer").html(productList);
+
+            },
+            error: function () {
+                alert("Error when getting web service url")
+            }
+        });
+
+    });
+
+
+</script>
 
 
 </body>

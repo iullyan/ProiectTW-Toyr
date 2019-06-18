@@ -7,7 +7,7 @@ define('WEB_CONST_URL_PART', 'http://localhost:'.PORT.'/ProiectTW-Toyr/WebServic
 define('RSS_FEED_NR_OF_PRODUCTS', 100);
 
 //Product page
-define('PRODUCT_PAGE', 'http://localhost:'.PORT.'/ProiectTW-Toyr/View/pages/product.php');
+define('PRODUCT_PAGE', 'http://localhost:'.PORT.'/ProiectTW-Toyr/View/pages/product.php/');
 
 //RSS links
 
@@ -18,4 +18,6 @@ define('SPECIAL_OFFERS', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Controller/RS
 //Images
 define('FRONT_IMAGES', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Resources/specialProducts/');
 define('IMAGES_LOCATION', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Resources/productImages/');
+
+define ("PRODUCT_ORDERBY", serialize (array ('discount', 'nrSold', 'priceAsc', 'priceDesc', 'new', 'promotion')));
 
