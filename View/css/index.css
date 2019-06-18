@@ -5,7 +5,7 @@
 .grid-container {
     width: 100%;
     display: grid;
-    grid-template-rows: 0.05fr 0.1fr 0.5fr auto auto 0.1fr;
+    grid-template-rows: 0.05fr 0.3fr 0.1fr 0.5fr auto 0.1fr;
     grid-template-columns: 10% 10% 20% 10% 40% 10%;
     grid-template-areas:
             'header header header header header header'
@@ -37,7 +37,7 @@
 /* Style the middle column */
 .middle {
     margin-top: 20px;
-    grid-row: 2/ span 1;
+    grid-row: 2/ span 2;
     grid-area: middle;
     grid-column: 4/ span 2;
     background: white;
@@ -79,7 +79,7 @@ footer {
     grid-area: footer;
     background-color: #f1f1f1;
     padding: 10px;
-    grid-row: 6/ span 1;
+    grid-row: 5/ span 1;
     grid-column: 1/ span 6;
 }
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
@@ -109,9 +109,9 @@ footer {
     }
     .middle {
         margin-top: 20px;
-        grid-row: 2/ span 1;
+        grid-row: 2/ span 2;
         grid-area: middle;
-        grid-column: 1/ span 6;
+        grid-column: 2/ span 4;
         background: white;
     }
     .left {
@@ -124,12 +124,22 @@ footer {
     .main {
         grid-area: main;
         grid-column: 2/ span 4;
-        grid-row: 4/ span 2;
+        grid-row: 4/ span 1;
         column-gap: 10px;
 
 
     }
-
+    footer {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        grid-area: footer;
+        background-color: #f1f1f1;
+        padding: 10px;
+        grid-row: 6/ span 1;
+        grid-column: 1/ span 6;
+    }
 
 
 
