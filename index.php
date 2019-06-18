@@ -9,12 +9,11 @@ $urlBase = WEB_CONST_URL_PART ?>
     <meta name="viewport" content="width=device-width">
     <title>Toyr - Bine ați venit !</title>
     <link rel="stylesheet" type="text/css" href="View/css/index.css">
-    <link rel="stylesheet" type="text/css" href="View/css/categoryUI.css">
+    <link rel="stylesheet" type="text/css" href="View/css/category.css">
     <link rel="stylesheet" type="text/css" href="View/css/productUI.css">
     <link rel="stylesheet" type="text/css" href="View/css/usableButton.css">
     <link rel="stylesheet" type="text/css" href="View/css/productListContainer.css">
     <link rel="stylesheet" type="text/css" href="View/css/optionsGroup.css">
-
 
 
 
@@ -64,10 +63,7 @@ $urlBase = WEB_CONST_URL_PART ?>
     </header>
 
     <div class="left">
-
-        <div class="usableButton"> Produse</div>
-        <div class="categoriesContent">
-        </div>
+        <div class="categoriesContent" ></div>
 
     </div>
 
