@@ -14,5 +14,8 @@ define('PRODUCT_PAGE', 'http://localhost:'.PORT.'/ProiectTW-Toyr/View/pages/prod
 define('NEWEST_PRODUCTS', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Controller/RSSfeeds/NewestProducts.php');
 define('MOST_SOLD_PRODUCTS', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Controller/RSSfeeds/MostSoldProducts.php');
 define('SPECIAL_OFFERS', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Controller/RSSfeeds/SpecialOffers.php');
+
+//Images
+define('FRONT_IMAGES', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Resources/specialProducts/');
 define('IMAGES_LOCATION', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Resources/productImages/');
 

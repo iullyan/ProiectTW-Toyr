@@ -1,5 +1,5 @@
 <?php require_once 'Config/config.php';
-$urlBase = WEB_CONST_URL_PART ?>
+$urlBase = WEB_CONST_URL_PART; $specialProducts = FRONT_IMAGES;?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -14,6 +14,7 @@ $urlBase = WEB_CONST_URL_PART ?>
     <link rel="stylesheet" type="text/css" href="View/css/usableButton.css">
     <link rel="stylesheet" type="text/css" href="View/css/productListContainer.css">
     <link rel="stylesheet" type="text/css" href="View/css/optionsGroup.css">
+
 
 
 
@@ -68,6 +69,8 @@ $urlBase = WEB_CONST_URL_PART ?>
     </div>
 
     <div class="middle">
+            <img  class="frontImage" src="<?php echo $specialProducts . '/1.jpg'?>" alt="">
+
     </div>
 
     <section class="main">

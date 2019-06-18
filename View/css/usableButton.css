@@ -39,11 +39,3 @@ button.purple-candy:active {
 }
 
 
-.productContainer{
-    display:flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    padding: 15px;
-    margin-top: 2px;
-
-}
