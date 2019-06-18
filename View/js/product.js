@@ -5,7 +5,7 @@ function discounts(out) {   //Calculeaza prețul în funcție de discount(dacă 
     var valf = new Date(out.record.discount.valid_from); //ia datele din baza de date
     var valu = new Date(out.record.discount.valid_until);
     if (valf < date && date < valu)
-        return `${out.record.product.price - out.record.product.price * out.record.product.discount_percentage / 100}`;
+        return `<strike style="font-size: 50%">${out.record.product.price} Lei</strike>${out.record.discount.price_with_discount}`;
     else
         return `${out.record.product.price}`;
 }
@@ -22,18 +22,14 @@ async function promotions(out, webServiceUrl) {   //Verifică dacă nu există c
     {
         if (result.hasOwnProperty(i)) {
 
-            aux = aux + `<p style=" margin-left: 2%">Cumpara ${result[i].product_units_bought} ${out.record.product.name} si vei primi cadou ${result[i].gifted_product_quantity}`;    //concatenam stringul
+            aux = aux + `<p style=" margin-left: 2%">Cumpara ${result[i].product_units_bought} ${out.record.product.name} si vei primi cadou ${result[i].gifted_product_quantity} `;    //concatenam stringul
 
             let url2 = webServiceUrl + 'getProduct.php?productId=' + result[i].gifted_product_id; //cautam numele cadoului intrand pe pagina lui var response = await fetch(url);
 
             var response = await fetch(url2);
             var json = await response.json();
 
-
             aux += json.record.product.name + '</p><br>'; // concatenam si numele
-
-
-
         }
     }
 
@@ -55,10 +51,7 @@ function construction(out, webServiceUrl) {   //literalmente constructia paginii
                                         
                                         <input type="submit" value="Adăugați în coș" class="buton" style="float:right;margin-right: 2%">
                                         <img src="../../Resources/productImages/${out.record.product.image}.jpg" width="300" height="300" alt="" style="margin-left: 2%;margin-right: 2%;border-radius: 20px ;overflow: hidden;float: left;">
-                                        <span class="image">
-                                                <img src="../../Resources/productImages/${out.record.product.image}.jpg" width="120" height="120" alt="" style="margin-left: 2%;margin-top: 0.8%;border-radius: 20px ;">
-                                                <img src="../../Resources/productImages/${out.record.product.image}.jpg" width="120" height="120" alt="" style="margin-left: 2%;margin-bottom: 0.8%;border-radius: 20px ;">
-                                        </span>
+
                                 </div>
                             </div>
                         </div>
@@ -80,7 +73,6 @@ function load(productId, webServiceUrl) {
         .then(res => res.json())
         .then((out) => {
             //Aici procesezi jsonul
-            var produs = out.record.product.description;
             document.getElementById("demo").innerHTML = construction(out, webServiceUrl);
         })
         .catch(err => {
