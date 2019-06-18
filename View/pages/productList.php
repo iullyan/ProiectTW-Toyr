@@ -178,7 +178,7 @@ else
                     html += '<br><br>';
                     html += '<p class="product-links">' +
                         '<a href="';
-                    html += productPage + '?productId' + records[index].product.id;
+                    html += productPage + '?productId=' + records[index].product.id;
                     html += '" class="usableButton"><i class="fa fa-shopping-cart"></i> Vezi detalii</a>' + ' </p>' +
                         '</div>' +
                         '</div>' +
