@@ -1,6 +1,6 @@
 <?php
 //Web service url
-define('PORT', 9999);
+define('PORT', 80);
 define('WEB_CONST_URL_PART', 'http://localhost:'.PORT.'/ProiectTW-Toyr/WebServices/StoreManagement/Controller/');
 
 //Number of products for RSS feeds
