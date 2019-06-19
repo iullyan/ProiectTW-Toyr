@@ -184,7 +184,7 @@ $recordsPerPage = RECORDS_PER_PAGE;
                         offset = data.offset;
                         setTimeout(function() {
                             working = false;
-                        }, 4000)
+                        }, 1000)
 
                     },
                     error: function () {

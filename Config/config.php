@@ -5,7 +5,7 @@ define('WEB_CONST_URL_PART', 'http://localhost:'.PORT.'/ProiectTW-Toyr/WebServic
 
 //Number of products for RSS feeds
 define('RSS_FEED_NR_OF_PRODUCTS', 100);
-define('RECORDS_PER_PAGE', 10);
+define('RECORDS_PER_PAGE', 1);
 
 //Product page
 define('PRODUCT_PAGE', 'http://localhost:'.PORT.'/ProiectTW-Toyr/View/pages/product.php');
