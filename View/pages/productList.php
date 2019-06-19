@@ -113,27 +113,6 @@ $recordsPerPage = RECORDS_PER_PAGE;
 
     </section>
 
-    <footer>
-        <div>
-            <h1>Toyr.ro</h1>
-        </div>
-        <nav class="sitemap">
-            <p style=" font-weight: bold;">Sitemap</p>
-            <ul>
-                <li>Acasă</li>
-                <li>Promoții</li>
-                <li>Informații utile</li>
-            </ul>
-        </nav>
-        <nav class="utility">
-            <p style=" font-weight: bold;">Util</p>
-            <ul>
-                <li>Cum cumpăr</li>
-                <li>Livrare și plată</li>
-                <li>Termeni și condiții</li>
-            </ul>
-        </nav>
-    </footer>
 </div>
 
 
@@ -169,7 +148,7 @@ $recordsPerPage = RECORDS_PER_PAGE;
 
     });
     $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() >= $(document).height()) {
+        if ($(this).scrollTop() + 1 >= $('body').height() - $(window).height()) {
             if (working === false) {
                 working = true;
                 $.ajax({
