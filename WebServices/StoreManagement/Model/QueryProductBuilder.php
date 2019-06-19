@@ -18,7 +18,7 @@ class QueryProductBuilder extends Model
           p.category_id,
            p.nr_sold, p.image,
             p.units_in_stock, 
-            p.created_at, p.updated_at";
+            p.created_at, p.updated_at, p.age_lower_bound";
         switch ($orderBy) {
 
             case 'discount' :

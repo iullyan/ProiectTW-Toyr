@@ -5,7 +5,7 @@
 .grid-container {
     width: 100%;
     display: grid;
-    grid-template-rows: 0.05fr 0.3fr 0.1fr 0.5fr auto 0.1fr;
+    grid-template-rows: 0.05fr 500px 0.5fr 0.1fr;
     grid-template-columns: 10% 10% 20% 10% 40% 10%;
     grid-template-areas:
             'header header header header header header'
@@ -37,10 +37,9 @@
 /* Style the middle column */
 .middle {
     margin-top: 20px;
-    grid-row: 2/ span 2;
+    grid-row: 2/ span 1;
     grid-area: middle;
     grid-column: 4/ span 2;
-    background: white;
 
 
 }
@@ -51,9 +50,6 @@
     grid-area: main;
     grid-column: 2/ span 4;
     grid-row: 3/ span 1;
-    column-gap: 10px;
-
-
 }
 
 
@@ -61,7 +57,7 @@ header{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    grid-row: 1/ span 1;
+    grid-row: 4/ span 1;
     grid-column: 1/ span 6;
     background: #35424a;
     color: #ffffff;
@@ -109,7 +105,7 @@ footer {
     }
     .middle {
         margin-top: 20px;
-        grid-row: 2/ span 2;
+        height: 300px;
         grid-area: middle;
         grid-column: 2/ span 4;
         background: white;

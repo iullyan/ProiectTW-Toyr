@@ -16,7 +16,8 @@ class Utility
             "image" => $row['image'],
             "units_in_stock" => $row['units_in_stock'],
             "created_at" => $row['created_at'],
-            "updated_at" => $row['updated_at']
+            "updated_at" => $row['updated_at'],
+            "age_lower_bound" => $row['age_lower_bound']
         );
         return $product_item;
 

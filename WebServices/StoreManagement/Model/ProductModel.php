@@ -46,6 +46,7 @@ class ProductModel extends Model
             return false;
 
         $result['records'] = array();
+        $result['count'] = $query->rowCount();
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
 
             $product_item = Utility::processProductRow($row);
