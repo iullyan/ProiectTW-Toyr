@@ -16,7 +16,7 @@ define('MOST_SOLD_PRODUCTS', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Controlle
 define('SPECIAL_OFFERS', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Controller/RSSfeeds/SpecialOffers.php');
 
 //Images
-define('FRONT_IMAGES', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Resources/specialProducts/');
+define('FRONT_IMAGE', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Resources/specialProducts/');
 define('IMAGES_LOCATION', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Resources/productImages/');
 
 define ("PRODUCT_ORDERBY", serialize (array ('discount', 'nrSold', 'priceAsc', 'priceDesc', 'new', 'promotion')));

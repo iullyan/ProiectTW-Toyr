@@ -1,5 +1,7 @@
 <?php require_once 'Config/config.php';
-$urlBase = WEB_CONST_URL_PART; $specialProducts = FRONT_IMAGES;?>
+    $urlBase = WEB_CONST_URL_PART;
+    $specialProducts = FRONT_IMAGE;
+?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

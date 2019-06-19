@@ -10,23 +10,24 @@ header("Access-Control-Allow-Credentials: true");
 $productOrderBy = unserialize(PRODUCT_ORDERBY);
 $product = new ProductModel();
 $productData = false;
+
+    if (isset($_GET['categoryId']))
+        $categoryId = $_GET['categoryId'];
+    else
+         $categoryId = NULL;
+
 if (isset($_GET['offset']) && isset($_GET['recordsNr']))
 {
     $offset = htmlentities($_GET['offset']);
     $recordsNr = htmlentities($_GET['recordsNr']);
-    if (isset($_GET['categoryId']))
-    {
-        $filterVariable = array('categoryId' => htmlentities($_GET['categoryId']));
-        $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr);
-
-    } elseif (isset($_GET['eventId']))
+   if (isset($_GET['eventId']))
     {
         $filterVariable = array('eventId' => htmlentities($_GET['eventId']));
-        $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr);
+        $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr, $categoryId);
     } elseif (isset($_GET['ageLowerBound']))
     {
         $filterVariable = array('ageLowerBound' => htmlentities($_GET['ageLowerBound']));
-        $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr);
+        $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr, $categoryId);
 
     } elseif (isset($_GET['priceLowerBound']) && (isset($_GET['priceUpperBound'])))
     {
@@ -36,21 +37,26 @@ if (isset($_GET['offset']) && isset($_GET['recordsNr']))
         $filterVariable = array('priceLowerBound' => htmlentities($_GET['priceLowerBound']),
             'priceUpperBound' => htmlentities($_GET['priceUpperBound']));
 
-        $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr);
+        $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr,$categoryId);
 
     } elseif (isset($_GET['priceLowerThan']))
     {
         $filterVariable = array('priceLowerThan' => htmlentities($_GET['priceLowerThan']));
-        $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr);
+        $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr, $categoryId);
 
     } elseif (isset($_GET['orderBy'])) {
         $orderBy = $_GET['orderBy'];
         if (in_array($orderBy, $productOrderBy))
-            $productData = $product->getProducts(NULL, $orderBy, $offset, $recordsNr);
+            $productData = $product->getProducts(NULL, $orderBy, $offset, $recordsNr, $categoryId);
 
-    }
+    }elseif (isset($_GET['categoryId']))
+   {
+       $filterVariable = array('categoryId' => htmlentities($_GET['categoryId']));
+       $productData = $product->getProducts(NULL, NULL, $offset, $recordsNr,$categoryId);
+
+   }
+
 }
-
 
 if ($productData) {
 
