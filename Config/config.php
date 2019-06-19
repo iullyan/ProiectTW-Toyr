@@ -1,10 +1,11 @@
 <?php
 //Web service url
-define('PORT', 80);
+define('PORT', 9999);
 define('WEB_CONST_URL_PART', 'http://localhost:'.PORT.'/ProiectTW-Toyr/WebServices/StoreManagement/Controller/');
 
 //Number of products for RSS feeds
 define('RSS_FEED_NR_OF_PRODUCTS', 100);
+define('RECORDS_PER_PAGE', 10);
 
 //Product page
 define('PRODUCT_PAGE', 'http://localhost:'.PORT.'/ProiectTW-Toyr/View/pages/product.php');
@@ -19,5 +20,12 @@ define('SPECIAL_OFFERS', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Controller/RS
 define('FRONT_IMAGE', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Resources/specialProducts/');
 define('IMAGES_LOCATION', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Resources/productImages/');
 
+
+//Order products
 define ("PRODUCT_ORDERBY", serialize (array ('discount', 'nrSold', 'priceAsc', 'priceDesc', 'new', 'promotion')));
+
+
+//Product list generator
+define("PRODUCT_LIST_DISPATCHER", 'http://localhost:'. PORT .'/ProiectTW-Toyr/Controller/Dispatcher/showProducts.php');
+
 

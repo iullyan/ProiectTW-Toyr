@@ -2,17 +2,20 @@
 require_once 'Model.php';
 require_once 'Utility.php';
 require_once 'QueryProductBuilder.php';
+require_once 'Counter.php';
+
 class ProductModel extends Model
 {
 
     public function getProducts($filterVariable, $orderBy, $lastId, $limit, $categoryId)
     {
         $queryBuilder = new QueryProductBuilder();
-
-        if (! empty($orderBy))
+        $counter = new Counter();
+        $count = $limit;
+        if (!empty($orderBy)) {
             $query = $queryBuilder->getProductsOrdedBy($orderBy, $lastId, $limit, $categoryId);
-        elseif (! empty($filterVariable))
-        {
+            $count = $counter->countAllProducts();
+        } elseif (!empty($filterVariable)) {
             if (is_array($filterVariable)) {
                 if (count($filterVariable) == 1) {
 
@@ -25,28 +28,25 @@ class ProductModel extends Model
 
                     elseif (array_key_exists('priceLowerThan', $filterVariable))
                         $query = $queryBuilder->getProductsWithPriceLowerThan($filterVariable['priceLowerThan'], $lastId, $limit, $categoryId);
-                }
-                elseif (count($filterVariable) == 2)
-                {
+                } elseif (count($filterVariable) == 2) {
                     if (array_key_exists('priceLowerBound', $filterVariable) && array_key_exists('priceUpperBound', $filterVariable))
                         $query = $queryBuilder->getProductsByPriceInterval($filterVariable['priceLowerBound'], $filterVariable['priceUpperBound'], $lastId, $limit, $categoryId);
-                }
-                else
+                } else
                     return false;
             }
-        }elseif (! empty($categoryId)){
+        } elseif (!empty($categoryId)) {
             $query = $queryBuilder->getProductsByCategoryId($lastId, $limit, $categoryId);
-        }
-        else
+            $count = $counter->countByCategoryId($categoryId);
+        } else
             return false;
-        if(! $query->execute())
+        if (!$query->execute())
             return false;
 
         if (!$query->rowCount())
             return false;
 
         $result['records'] = array();
-        $result['count'] = $query->rowCount();
+        $result['count'] = $count;
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
 
             $product_item = Utility::processProductRow($row);
@@ -61,9 +61,9 @@ class ProductModel extends Model
         $queryBuilder = new QueryProductBuilder();
         $query = $queryBuilder->getProductById($productId);
 
-        if(! $query->execute())
+        if (!$query->execute())
             return false;
-        if (! $query->rowCount())
+        if (!$query->rowCount())
             return false;
 
         $productItem = Utility::processProductRow($query->fetch(PDO::FETCH_ASSOC));
@@ -73,13 +73,6 @@ class ProductModel extends Model
     }
 
 
-    public function countProducts()
-    {
-        $sql = "SELECT count(id) FROM products";
-        $query = $this->getConnection()->prepare($sql);
-        return $query->execute() ? true : false;
-    }
-
     private function gatherProductDiscountAndPromotions($productId, $productInformationArray)
     {
 
@@ -87,8 +80,8 @@ class ProductModel extends Model
         $result['discount'] = array();
         $result['promotions'] = array();
 
-        $result['product']=$productInformationArray;
-        $result['discount']=$this->getProductDiscount($productId);
+        $result['product'] = $productInformationArray;
+        $result['discount'] = $this->getProductDiscount($productId);
         $result['promotions'] = $this->getProductPromotions($productId);
 
         return $result;
@@ -106,7 +99,7 @@ class ProductModel extends Model
 
     }
 
-     function getProductPromotions($productId)
+    function getProductPromotions($productId)
     {
         $sql = "SELECT * FROM promotions WHERE product_bought_id = :productId";
         $query = $this->getConnection()->prepare($sql);
@@ -114,8 +107,6 @@ class ProductModel extends Model
         $query->execute($parameters);
         return ($query->rowcount() ? $query->fetchAll(PDO::FETCH_ASSOC) : false);
     }
-
-
 
 
     public function addProduct($name, $categoryId, $description, $image, $price, $unitsInStock)
@@ -142,7 +133,7 @@ class ProductModel extends Model
         $sql = "DELETE FROM products WHERE id = :productId";
         $parameters = array(':productId' => $productId);
         $query = $this->getConnection()->prepare($sql);
-        if(! $query->execute($parameters))
+        if (!$query->execute($parameters))
             return false;
         return true;
     }
@@ -170,7 +161,7 @@ class ProductModel extends Model
             ':unitsInStock' => $newUnitsInStock,
             ':productId' => $productId
         );
-        if(! $query->execute($parameters))
+        if (!$query->execute($parameters))
             return false;
         return false;
     }
@@ -180,7 +171,7 @@ class ProductModel extends Model
 
         $sql = "SELECT COUNT(id) AS count FROM products";
         $query = $this->getConnection()->prepare($sql);
-        if(! $query->execute())
+        if (!$query->execute())
             return false;
         return $query->fetch(PDO::FETCH_ASSOC)['count'];
     }
@@ -194,12 +185,6 @@ class ProductModel extends Model
         return ($query->rowcount() ? $query->fetch(PDO::FETCH_ASSOC)['price'] : false);
 
     }
-
-
-
-
-
-
 
 
 }
