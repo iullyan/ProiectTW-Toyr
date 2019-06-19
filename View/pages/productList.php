@@ -4,6 +4,8 @@ if (isset($_GET['categoryId']))
     $categoryId = $_GET['categoryId'];
 else
     die('Unspecified category id');
+$recordsPerPage = RECORDS_PER_PAGE;
+
 ?>
 
 <!DOCTYPE html>
@@ -24,20 +26,18 @@ else
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
 
-
     <!-- <link rel="stylesheet" type="text/css" href="product.css"> Nu merge slideShow-ul-->
 
 </head>
 
-<body >
-
+<body>
 
 
 <div class="grid-container">
     <header>
-        
+
         <div id="logo">
-            <a href="../../index.php"><h1> Toyr.ro </h1> </a>
+            <a href="../../index.php"><h1> Toyr.ro </h1></a>
         </div>
         <div id="searchContainer">
             <form action="Cautare.php">
@@ -93,7 +93,6 @@ else
         </div>
 
 
-
     </div>
 
     <div class="middle">
@@ -138,94 +137,68 @@ else
 </div>
 
 
-<script type="text/javascript" defer>
+<script type="text/javascript">
 
     var categoryid = "<?php echo $categoryId; ?>";
     var webUrl = "<?php echo $urlBase?>";
-    var webConstUrl = "<?php echo $urlBase ?>";
-    console.log(webConstUrl);
+    var webConstUrl = "<?php echo $urlBase; ?>";
     var productPage = "<?php echo PRODUCT_PAGE?>";
-    var imagesLocation  = "<?php echo IMAGES_LOCATION ?>";
+    var imagesLocation = "<?php echo IMAGES_LOCATION ?>";
+    var productsPerPage = "<?php echo RECORDS_PER_PAGE; ?>";
+    var productListDispatcher = "<?php echo PRODUCT_LIST_DISPATCHER; ?>";
+    var offset = 0;
+    var working = false;
 
     $(document).ready(function () {
-
         $.ajax({
             type: "GET",
-            data: 'json',
-            dataType: "json",
-            url:  webConstUrl + "Product/getProducts.php?categoryId=" + categoryid + '&offset=0&recordsNr=5',
+            processData: false,
+            contentType: "application/json",
+            data: '',
+            url: productListDispatcher + "?categoryId=" + categoryid + '&offset=' + offset + '&recordsNr=' + productsPerPage,
             async: true,
             success: function (data) {
-                var index;
-                var records = data.records;
-                var productList = "";
-                for(index = 0; index < records.length; index++)
-                {
-                    var html = '<div class="product-card">';
-                    html += checkDiscount(records[index].discount.discount_percentage);
-                    html += checkGift(records[index].promotions);
-                    html += '<div class="product-tumb">';
-                    html += createImageUrl(records[index].product.image);
-                    html +=
-                        '</div>' +
-                        '<div class="product-details">' +
-                        '<div class="product-name">' +
-                        '<h4 ><a href="';
-                    html += productPage + '?productId=' + records[index].product.id ;
-                    html += '">' + records[index].product.name + '</a></h4></div>' +
-                        '<div class="product-bottom-details">';
-                    html += checkForNewPrice(records[index].discount.price_with_discount, records[index].product.price);
-                    html += '<br><br>';
-                    html += '<p class="product-links">' +
-                        '<a href="';
-                    html += productPage + '?productId=' + records[index].product.id;
-                    html += '" class="usableButton"><i class="fa fa-shopping-cart"></i> Vezi detalii</a>' + ' </p>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>';
 
-                    productList += html;
-
-                }
-
-
-
-                function checkDiscount(discount) {
-                    if (discount)
-                        return '<div class="discount">-' + discount + '%</div>';
-                    else
-                        return '<i hidden></i>';
-
-                }
-
-                function checkGift(giftFlag) {
-                    if (giftFlag)
-                        return '<div class="gift">Cadou</div>';
-                    else
-                        return '<i hidden></i>';
-                }
-
-
-                function checkForNewPrice(newPrice, basePrice) {
-                    if (newPrice)
-                        return '<div class="product-price"><small>' + newPrice + 'Lei</small><br>' + basePrice + ' Lei</div>';
-                    else
-                        return '<div class="product-price">' + basePrice + ' Lei</div>';
-                }
-
-                function createImageUrl(imageName) {
-
-                    return '<img src="' +  imagesLocation + imageName + '.jpg"' + ' alt="">';
-                }
-                $(".productsContainer").html(productList);
-
+                $('.productsContainer').append(data.productList);
+                offset = data.offset;
             },
             error: function () {
-                alert("Error when getting web service url")
+                alert("Error when getting product list")
             }
         });
 
     });
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() >= $(document).height()) {
+            if (working === false) {
+                working = true;
+                $.ajax({
+                    type: "GET",
+                    processData: false,
+                    contentType: "application/json",
+                    data: '',
+                    url: productListDispatcher + "?categoryId=" + categoryid + '&offset=' + offset +'&recordsNr=' + productsPerPage,
+                    async: true,
+                    success: function (data) {
+                        $('.productsContainer').append(data.productList);
+                        offset = data.offset;
+                        setTimeout(function() {
+                            working = false;
+                        }, 4000)
+
+                    },
+                    error: function () {
+                        alert("Error when getting product list")
+                    }
+                });
+            }
+        }
+    });
+
+
+
+
+
 
 
 </script>

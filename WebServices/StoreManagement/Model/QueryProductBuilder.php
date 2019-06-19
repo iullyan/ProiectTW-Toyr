@@ -23,7 +23,7 @@ class QueryProductBuilder extends Model
 
             case 'discount' :
                 if (isset($categoryId)) {
-                    $sql = $sqlProductData . ' ' . "FROM products p JOIN discounts d ON p.id > ? AND p.category_id = ? AND d.product_id = p.id 
+                    $sql = $sqlProductData . ' ' . "FROM products p LEFT OUTER JOIN discounts d ON p.id > ? AND p.category_id = ? AND d.product_id = p.id 
                         ORDER BY discount_percentage DESC LIMIT ?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $categoryId, PDO::PARAM_INT);
@@ -134,15 +134,16 @@ class QueryProductBuilder extends Model
 
     public function getProductsByCategoryId($offset, $recordsPerPage, $categoryId)
     {
-        $sql = "SELECT * FROM products p WHERE p.id > ? AND p.category_id = ?
+        $sql = "SELECT * FROM products p WHERE  p.category_id = ?
                 ORDER BY p.created_at DESC, p.nr_sold DESC LIMIT ?, ?";
         $query = $this->getConnection()->prepare($sql);
-        $query->bindParam(1, $offset, PDO::PARAM_INT);
-        $query->bindParam(2, $categoryId, PDO::PARAM_INT);
-        $query->bindParam(3, $offset, PDO::PARAM_INT);
-        $query->bindParam(4, $recordsPerPage, PDO::PARAM_INT);
+
+        $query->bindParam(1, $categoryId, PDO::PARAM_INT);
+        $query->bindParam(2, $offset, PDO::PARAM_INT);
+        $query->bindParam(3, $recordsPerPage, PDO::PARAM_INT);
         return $query;
     }
+
 
 
     public function getProductsByEventId($eventId, $lastId, $limit)
