@@ -1,5 +1,5 @@
 function discounts(out) {   //Calculeaza prețul în funcție de discount(dacă există)
-    var date = new Date();
+    var date = new Date().toLocaleString("ro-RO", {timeZone: "Europe/Bucharest"});
     if (out.record.discount === false)
         return `${out.record.product.price}`;
     var valf = new Date(out.record.discount.valid_from); //ia datele din baza de date
