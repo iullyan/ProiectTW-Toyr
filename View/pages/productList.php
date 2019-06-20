@@ -72,7 +72,7 @@ $recordsPerPage = RECORDS_PER_PAGE;
             <button class="collapsible ">Ordonează produsele</button>
             <div class="content">
                 <div class="options">
-                    <button>Noutăți</button>
+                    <button onclick="loadNewProducts()">Noutăți</button>
                     <button>Cele mai vândute</button>
                     <button>Preț ascendent</button>
                     <button>Preț descendent</button>
@@ -87,8 +87,8 @@ $recordsPerPage = RECORDS_PER_PAGE;
             <div class="content">
                 <div class="options">
                     <?php for ($i = 1; $i < 15; $i++)
-                        echo '<label class="ageBoundsContainer">' . $i .'+' .
-                                '<input type="radio" checked="checked" name="radio">
+                        echo '<label class="ageBoundsContainer">' . $i . '+' .
+                            '<input type="radio" checked="checked" name="radio">
                                      <span class="checkmark"></span>
                                 </label>'; ?>
                 </div>
@@ -100,9 +100,9 @@ $recordsPerPage = RECORDS_PER_PAGE;
             <div class="content">
                 <div class="options">
                     <label for="priceLowerBound">Preț minim</label>
-                    <input type="text" id="priceLowerBound" name="priceLowerBound" ><br>
+                    <input type="text" id="priceLowerBound" name="priceLowerBound"><br>
                     <label for="priceUpperBound">Preț maxim</label>
-                    <input type="text" id="priceUpperBound" name="priceLowerBound" >
+                    <input type="text" id="priceUpperBound" name="priceLowerBound">
                 </div>
 
             </div>
@@ -135,67 +135,21 @@ $recordsPerPage = RECORDS_PER_PAGE;
 
 <script type="text/javascript">
 
-    var categoryid = "<?php echo $categoryId; ?>";
-    var webUrl = "<?php echo $urlBase?>";
-    var webConstUrl = "<?php echo $urlBase; ?>";
-    var productPage = "<?php echo PRODUCT_PAGE?>";
-    var imagesLocation = "<?php echo IMAGES_LOCATION ?>";
-    var productsPerPage = "<?php echo RECORDS_PER_PAGE; ?>";
-    var productListDispatcher = "<?php echo PRODUCT_LIST_DISPATCHER; ?>";
-    var offset = 0;
-    var working = false;
+    document.categoryid =   "<?php echo $categoryId; ?>";
+    document.webUrl =  "<?php echo $urlBase?>";
+    document.webConstUrl = "<?php echo $urlBase; ?>";
+    document.productPage = "<?php echo PRODUCT_PAGE?>";
+    document.imagesLocation =  "<?php echo IMAGES_LOCATION ?>";
+    document.productsPerPage = "<?php echo RECORDS_PER_PAGE; ?>";
+    document.productListDispatcher =  "<?php echo PRODUCT_LIST_DISPATCHER; ?>";
+    document.offset = 0;
+    document.working  =  false;
 
-    $(document).ready(function () {
-
-
-        $.ajax({
-
-            type: "GET",
-            contentType: "application/json",
-            data: '',
-            url: productListDispatcher + "?categoryId=" + categoryid + '&offset=' + offset + '&recordsNr=' + productsPerPage,
-            async: true,
-            success: function (data) {
-
-                $('.productsContainer').append(data.productList);
-                offset = data.offset;
-
-
-            },
-            error: function () {
-
-            }
-        });
-
-    });
-    $(window).scroll(function () {
-        if ($(this).scrollTop() + 1 >= $('body').height() - $(window).height()) {
-            if (working === false) {
-                working = true;
-                $.ajax({
-                    type: "GET",
-                    contentType: "application/json",
-                    data: '',
-                    url: productListDispatcher + "?categoryId=" + categoryid + '&offset=' + offset + '&recordsNr=' + productsPerPage,
-                    async: true,
-                    success: function (data) {
-                        $('.productsContainer').append(data.productList);
-                        offset = data.offset;
-                        setTimeout(function () {
-                            working = false;
-                        }, 4000)
-
-                    },
-                    error: function () {
-
-                    }
-                });
-            }
-        }
-    });
 
 
 </script>
+
+<script type="text/javascript" src="../jquery/productsList.js" defer></script>
 
 
 </body>
