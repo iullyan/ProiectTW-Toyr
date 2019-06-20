@@ -1,8 +1,9 @@
 <?php require_once '../../Config/config.php';
 $urlBase = WEB_CONST_URL_PART;
-if (isset($_GET['categoryId']))
+if (isset($_GET['categoryId']) && isset($_GET['categoryName'])) {
     $categoryId = $_GET['categoryId'];
-else
+    $categoryName = $_GET['categoryName'];
+} else
     die('Unspecified category id');
 $recordsPerPage = RECORDS_PER_PAGE;
 
@@ -21,6 +22,7 @@ $recordsPerPage = RECORDS_PER_PAGE;
     <link rel="stylesheet" type="text/css" href="../css/productListContainer.css">
     <link rel="stylesheet" type="text/css" href="../css/optionsGroup.css">
     <link rel="stylesheet" type="text/css" href="../css/productList.css">
+    <link rel="stylesheet" type="text/css" href="../css/filterOptions.css">
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -65,41 +67,56 @@ $recordsPerPage = RECORDS_PER_PAGE;
     </header>
 
     <div class="left">
-        <div class="filter">
-            <form action="/action_page.php" class="forms">
-                <p style=" font-weight: bold;">Disponibilate</p>
-                <input type="checkbox" name="stoc" value="Stoc">In stoc<br>
-                <input type="checkbox" name="promotion" value="Promotii">Promotii<br>
+
+        <div class="optionsPanel">
+            <button class="collapsible ">Ordonează produsele</button>
+            <div class="content">
+                <div class="options">
+                    <button>Noutăți</button>
+                    <button>Cele mai vândute</button>
+                    <button>Preț ascendent</button>
+                    <button>Preț descendent</button>
+                    <button>Cel mai mare discount</button>
+                    <button>Promoții</button>
+                    <button>În stoc</button>
+                </div>
+
+            </div>
+
+            <button class="collapsible">Vârsta</button>
+            <div class="content">
+                <div class="options">
+                    <?php for ($i = 1; $i < 15; $i++)
+                        echo '<label class="ageBoundsContainer">' . $i .'+' .
+                                '<input type="radio" checked="checked" name="radio">
+                                     <span class="checkmark"></span>
+                                </label>'; ?>
+                </div>
 
 
-                <p style=" font-weight: bold;">Varsta</p>
-                <input type="checkbox" name="age1" value="">1+<br>
-                <input type="checkbox" name="age2" value="">2+<br>
-                <input type="checkbox" name="age3" value="">3+<br>
-                <input type="checkbox" name="age4" value="">4+<br>
-                <input type="checkbox" name="age5" value="">5+<br>
-                <input type="checkbox" name="age6" value="">6+<br>
-                <input type="checkbox" name="age7" value="">7+<br>
+            </div>
 
-                <p style=" font-weight: bold;">price</p>
-                <input type="checkbox" name="price1" value="">Sub 50<br>
-                <input type="checkbox" name="price2" value="">100 - 200<br>
-                <input type="checkbox" name="price3" value="">200 - 500<br>
-                <input type="checkbox" name="price4" value="">500 - 1000<br>
-                <input type="checkbox" name="price5" value="">Peste 1000<br>
+            <button class="collapsible">Interval de preț</button>
+            <div class="content">
+                <div class="options">
+                    <label for="priceLowerBound">Preț minim</label>
+                    <input type="text" id="priceLowerBound" name="priceLowerBound" ><br>
+                    <label for="priceUpperBound">Preț maxim</label>
+                    <input type="text" id="priceUpperBound" name="priceLowerBound" >
+                </div>
 
-                <input type="submit" value="Filtrează">
-            </form>
+            </div>
+
         </div>
 
 
     </div>
 
     <div class="middle">
-        <nav class="optionsGroup">
+        <nav id="aboveOptions">
 
             <button class="usableButton">Categorii</button>
-            <button class="usableButton">Ordonează după</button>
+            <h4 id="currentCategory">Categoria Curentă : <?php echo $categoryName; ?> </h4>
 
 
         </nav>
@@ -131,28 +148,27 @@ $recordsPerPage = RECORDS_PER_PAGE;
     $(document).ready(function () {
 
 
-            $.ajax({
+        $.ajax({
 
-                type: "GET",
-                contentType: "application/json",
-                data: '',
-                url: productListDispatcher + "?categoryId=" + categoryid + '&offset=' + offset + '&recordsNr=' + productsPerPage,
-                async: true,
-                success: function (data) {
+            type: "GET",
+            contentType: "application/json",
+            data: '',
+            url: productListDispatcher + "?categoryId=" + categoryid + '&offset=' + offset + '&recordsNr=' + productsPerPage,
+            async: true,
+            success: function (data) {
 
-                    $('.productsContainer').append(data.productList);
-                    offset = data.offset;
+                $('.productsContainer').append(data.productList);
+                offset = data.offset;
 
 
+            },
+            error: function () {
 
-                },
-                error: function () {
-
-                }
-            });
+            }
+        });
 
     });
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         if ($(this).scrollTop() + 1 >= $('body').height() - $(window).height()) {
             if (working === false) {
                 working = true;
@@ -160,12 +176,12 @@ $recordsPerPage = RECORDS_PER_PAGE;
                     type: "GET",
                     contentType: "application/json",
                     data: '',
-                    url: productListDispatcher + "?categoryId=" + categoryid + '&offset=' + offset +'&recordsNr=' + productsPerPage,
+                    url: productListDispatcher + "?categoryId=" + categoryid + '&offset=' + offset + '&recordsNr=' + productsPerPage,
                     async: true,
                     success: function (data) {
                         $('.productsContainer').append(data.productList);
                         offset = data.offset;
-                        setTimeout(function() {
+                        setTimeout(function () {
                             working = false;
                         }, 4000)
 
@@ -177,11 +193,6 @@ $recordsPerPage = RECORDS_PER_PAGE;
             }
         }
     });
-
-
-
-
-
 
 
 </script>

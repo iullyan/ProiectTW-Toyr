@@ -1,10 +1,20 @@
 
-.main .optionsGroup {
+.optionsGroup {
 
     display: flex;
     align-items: center;
     justify-content: center;
 
 
+}
+
+#aboveOptions {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+#currentCategory {
+    padding-left: 40px;
 }
 

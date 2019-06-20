@@ -45,7 +45,7 @@ $(document).ready(function () {
             var singleCategory = '';
             var href = '';
             for (var i = 0; i < data.length; i++) {
-                href = buildHTML("a", data[i].name, {href: "View/pages/productList.php?categoryId=" + data[i].id});
+                href = buildHTML("a", data[i].name, {href: "View/pages/productList.php?categoryId=" + data[i].id + "&categoryName=" + data[i].name});
                 singleCategory = buildHTML("li", href, {});
                 categoriesList += singleCategory;
             }

@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="../css/collapsiblePanels.css">
-    <link rel="stylesheet" type="text/css" href="../css/mainCharacteristics.css">
+    <link rel="stylesheet" type="text/css" href="../css/optionsPanel.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
 
 
     <link rel="stylesheet" type="text/css" href="../css/adminPage.css">
@@ -109,22 +109,7 @@
 
 
 
-<script>
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
-
-    for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.maxHeight){
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
-    }
-</script>
+<script type="text/javascript" src="../js/collapsibleOptions.js"></script>
 
 </body>
 </html>

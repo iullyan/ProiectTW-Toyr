@@ -1,0 +1,39 @@
+.collapsible {
+    background-color: #777;
+    color: white;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.collapsible:after {
+
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+
+
+
+.optionsPanel{
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.options button{
+
+    background-color:  #f1f1f1; /* Green background */
+    /* Green border */
+    color: black; /* White text */
+    padding: 10px 24px; /* Some padding */
+    width: 100%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+
+}
+
