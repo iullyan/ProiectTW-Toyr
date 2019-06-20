@@ -10,7 +10,7 @@
     <div class="centerBlock">
         <h2>Toyr - Register</h2>
         <hr>
-        <form class="centralPanel" action="../../Controller/Utils/register.php" method="post">
+        <form class="centralPanel" action="../../Controller/Dispatcher/register.php" method="post">
           <p>Nume</p><br>
           <input type="text" name="lastname" placeholder=""><br>
           <p>Prenume</p><br>

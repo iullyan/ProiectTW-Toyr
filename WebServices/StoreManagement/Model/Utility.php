@@ -19,6 +19,7 @@ class Utility
             "updated_at" => $row['updated_at'],
             "age_lower_bound" => $row['age_lower_bound']
         );
+
         return $product_item;
 
     }

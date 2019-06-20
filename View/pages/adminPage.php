@@ -52,8 +52,8 @@
             <li class="account">
                 <button class="accountButton">Contul meu</button>
                 <div class="accountOptions">
-                    <a href="login.html">Login</a>
-                    <a href="register.html">Register</a>
+                    <a href="login.php">Login</a>
+                    <a href="register.php">Register</a>
                 </div>
             </li>
             <li>

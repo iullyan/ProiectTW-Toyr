@@ -57,7 +57,7 @@ $recordsPerPage = RECORDS_PER_PAGE;
                 </li>
                 <li>
                     <input type="button" class="usableButton" value="Coșul meu"
-                           onclick="window.location.href='View/pages/payment.html'"/>
+                           onclick="window.location.href='payment.php'"/>
                 </li>
 
             </ul>
@@ -129,22 +129,27 @@ $recordsPerPage = RECORDS_PER_PAGE;
     var working = false;
 
     $(document).ready(function () {
-        $.ajax({
-            type: "GET",
-            processData: false,
-            contentType: "application/json",
-            data: '',
-            url: productListDispatcher + "?categoryId=" + categoryid + '&offset=' + offset + '&recordsNr=' + productsPerPage,
-            async: true,
-            success: function (data) {
 
-                $('.productsContainer').append(data.productList);
-                offset = data.offset;
-            },
-            error: function () {
-                alert("Error when getting product list")
-            }
-        });
+
+            $.ajax({
+
+                type: "GET",
+                contentType: "application/json",
+                data: '',
+                url: productListDispatcher + "?categoryId=" + categoryid + '&offset=' + offset + '&recordsNr=' + productsPerPage,
+                async: true,
+                success: function (data) {
+
+                    $('.productsContainer').append(data.productList);
+                    offset = data.offset;
+
+
+
+                },
+                error: function () {
+
+                }
+            });
 
     });
     $(window).scroll(function() {
@@ -153,7 +158,6 @@ $recordsPerPage = RECORDS_PER_PAGE;
                 working = true;
                 $.ajax({
                     type: "GET",
-                    processData: false,
                     contentType: "application/json",
                     data: '',
                     url: productListDispatcher + "?categoryId=" + categoryid + '&offset=' + offset +'&recordsNr=' + productsPerPage,
@@ -163,11 +167,11 @@ $recordsPerPage = RECORDS_PER_PAGE;
                         offset = data.offset;
                         setTimeout(function() {
                             working = false;
-                        }, 1000)
+                        }, 4000)
 
                     },
                     error: function () {
-                        alert("Error when getting product list")
+
                     }
                 });
             }

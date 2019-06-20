@@ -1,24 +1,31 @@
 <?php
-//Web service url
-define('PORT', 9999);
-define('WEB_CONST_URL_PART', 'http://localhost:'.PORT.'/ProiectTW-Toyr/WebServices/StoreManagement/Controller/');
+//Application APP_PORT
+define('APP_PORT', 9999);
+
+//Web store management service url
+define('WEB_STORE_MANAGEMENT_PORT', 9999);
+define('WEB_CONST_URL_PART', 'http://localhost:'. WEB_STORE_MANAGEMENT_PORT .'/ProiectTW-Toyr/WebServices/StoreManagement/Controller/');
+
+//Web users management url
+define('WEB_USERS_MANAGEMENT_PORT', 9999);
+define('WEB_CONST_URL_PART_USERS', 'http://localhost:'. WEB_USERS_MANAGEMENT_PORT.'/ProiectTW-Toyr/WebServices/UsersManagement/Controller/User/');
 
 //Number of products for RSS feeds
 define('RSS_FEED_NR_OF_PRODUCTS', 100);
 define('RECORDS_PER_PAGE', 10);
 
 //Product page
-define('PRODUCT_PAGE', 'http://localhost:'.PORT.'/ProiectTW-Toyr/View/pages/product.php');
+define('PRODUCT_PAGE', 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/View/pages/product.php');
 
 //RSS links
 
-define('NEWEST_PRODUCTS', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Controller/RSSfeeds/NewestProducts.php');
-define('MOST_SOLD_PRODUCTS', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Controller/RSSfeeds/MostSoldProducts.php');
-define('SPECIAL_OFFERS', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Controller/RSSfeeds/SpecialOffers.php');
+define('NEWEST_PRODUCTS', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Controller/RSSfeeds/NewestProducts.php');
+define('MOST_SOLD_PRODUCTS', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Controller/RSSfeeds/MostSoldProducts.php');
+define('SPECIAL_OFFERS', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Controller/RSSfeeds/SpecialOffers.php');
 
 //Images
-define('FRONT_IMAGE', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Resources/specialProducts/');
-define('IMAGES_LOCATION', 'http://localhost:'.PORT.'/ProiectTW-Toyr/Resources/productImages/');
+define('FRONT_IMAGE', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Resources/specialProducts/');
+define('IMAGES_LOCATION', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Resources/productImages/');
 
 
 //Order products
@@ -26,6 +33,18 @@ define ("PRODUCT_ORDERBY", serialize (array ('discount', 'nrSold', 'priceAsc', '
 
 
 //Product list generator
-define("PRODUCT_LIST_DISPATCHER", 'http://localhost:'. PORT .'/ProiectTW-Toyr/Controller/Dispatcher/showProducts.php');
+define("PRODUCT_LIST_DISPATCHER", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/Controller/Dispatcher/showProducts.php');
+
+//Pages url
+
+define("PAGES_URL", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/View/pages/');
+
+//Index
+define("INDEX_URL", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/index.php');
+
+//Login and register URL
+
+define("LOGIN_PAGE", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/View/pages/login.php');
+define("REGISTER_PAGE", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/View/pages/register.php');
 
 

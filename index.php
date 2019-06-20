@@ -51,14 +51,14 @@
                 <li class="account">
                     <button class="usableButton">Contul meu</button>
                     <div class="accountOptions">
-                        <a class="usableButton" href="View/pages/login.html">Login</a>
-                        <a class="usableButton" href="View/pages/register.html">Register</a>
+                        <a class="usableButton" href="View/pages/login.php">Login</a>
+                        <a class="usableButton" href="View/pages/register.php">Register</a>
                         <a class="usableButton" href="View/pages/adminPage.php">admin</a>
                     </div>
                 </li>
                 <li>
                     <input type="button" class="usableButton" value="Coșul meu"
-                           onclick="window.location.href='View/pages/payment.html'"/>
+                           onclick="window.location.href='View/pages/payment.php'"/>
                 </li>
 
             </ul>

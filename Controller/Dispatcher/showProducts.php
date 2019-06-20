@@ -42,12 +42,10 @@ function createImageUrl($imageName)
 
 $orderByOptions = unserialize(PRODUCT_ORDERBY);
 
-if (isset($_GET['offset']) && isset($_GET['recordsNr']))
-{
+if (isset($_GET['offset']) && isset($_GET['recordsNr'])) {
     $offset = $_GET['offset'];
     $recordsNr = $_GET['recordsNr'];
-}
-else
+} else
     die("No offset or/and records number specified");
 
 if (isset($_GET['orderBy'])) {
@@ -62,52 +60,61 @@ if (isset($_GET['orderBy'])) {
         $categoryId = NULL;
 
 
-
 $webService = new CallWebService();
 $offsetDatabase = "offset=" . $offset;
 $recordsNrDatabase = "recordsNr=" . $recordsNr;
 $categoryId = "categoryId=" . $categoryId;
-$url = WEB_CONST_URL_PART . "Product/getProducts.php?" . $categoryId . '&' . $offsetDatabase. '&' . $recordsNrDatabase;
+$url = WEB_CONST_URL_PART . "Product/getProducts.php?" . $categoryId . '&' . $offsetDatabase . '&' . $recordsNrDatabase;
 $JsonData = $webService->doGet($url);
+$result = NULL;
+if (!isset($JsonData->Message)) {
+    $records = $JsonData->records;
+    $productList = "";
+    foreach ($records as $product) {
+        $discountData = $product->discount;
+        $promotionsList = $product->promotions;
 
+        $html = '<div class="product-card">';
+        $html .= checkDiscount($discountData);
+        $html .= checkGift($promotionsList);
+        $html .= '<div class="product-tumb">';
+        $html .= createImageUrl($product->product->image);
+        $html .= '</div>' .
+            '<div class="product-details">' .
+            '<div class="product-name">' .
+            '<h4 ><a href="';
+        $html .= PRODUCT_PAGE . '?productId=' . $product->product->id;
+        $html .= '">' . $product->product->name . '</a></h4></div>' .
+            '<div class="product-bottom-details">';
+        $html .= checkForNewPrice($discountData, $product);
+        $html .= '<br><br>';
+        $html .= '<p class="product-links">' .
+            '<a href="';
+        $html .= PRODUCT_PAGE . '?productId=' . $product->product->id;
+        $html .= '" class="usableButton"><i class="fa fa-shopping-cart"></i> Vezi detalii</a>' . ' </p>' .
+            '</div>' .
+            '</div>' .
+            '</div>';
+        $productList .= $html;
 
-$records = $JsonData->records;
-$productList = "";
+    }
 
-foreach ($records as $product) {
-    $discountData = $product->discount;
-    $promotionsList = $product->promotions;
-
-    $html = '<div class="product-card">';
-    $html .= checkDiscount($discountData);
-    $html .= checkGift($promotionsList);
-    $html .= '<div class="product-tumb">';
-    $html .= createImageUrl($product->product->image);
-    $html .= '</div>' .
-        '<div class="product-details">' .
-        '<div class="product-name">' .
-        '<h4 ><a href="';
-    $html .= PRODUCT_PAGE . '?productId=' . $product->product->id;
-    $html .= '">' . $product->product->name . '</a></h4></div>' .
-        '<div class="product-bottom-details">';
-    $html .= checkForNewPrice($discountData, $product);
-    $html .= '<br><br>';
-    $html .= '<p class="product-links">' .
-        '<a href="';
-    $html .= PRODUCT_PAGE . '?productId=' . $product->product->id;
-    $html .= '" class="usableButton"><i class="fa fa-shopping-cart"></i> Vezi detalii</a>' . ' </p>' .
-        '</div>' .
-        '</div>' .
-        '</div>';
-    $productList .= $html;
-
+    $offset = $offset + $JsonData->count->count;
+    $result['productList'] = $productList;
+    $result['offset'] = $offset;
 }
+if ($result) {
 
-$offset = $offset + $recordsNr;
-$result['productList'] = $productList;
-$result['offset'] = $offset;
+    // make it json format
+    http_response_code(200);
+    echo json_encode($result, JSON_HEX_QUOT | JSON_HEX_TAG);
+} else {
+    // set response code - 404 Not found
+    http_response_code(404);
 
-echo json_encode($result, JSON_HEX_QUOT | JSON_HEX_TAG);
+    // tell the user product does not exist
+    echo json_encode(array("Message" => "There are no products for the specified argument ."));
+}
 
 
 ?>

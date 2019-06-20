@@ -25,10 +25,13 @@ class CallWebService
 
         $payload = $JSONdata;
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+        curl_setopt($ch, CURLOPT_POST, true);
         $result = curl_exec($ch);
 
         return $result;
     }
 }
+
+

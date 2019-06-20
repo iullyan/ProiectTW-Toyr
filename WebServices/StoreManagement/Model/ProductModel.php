@@ -14,7 +14,7 @@ class ProductModel extends Model
         $count = $limit;
         if (!empty($orderBy)) {
             $query = $queryBuilder->getProductsOrdedBy($orderBy, $lastId, $limit, $categoryId);
-            $count = $counter->countAllProducts();
+
         } elseif (!empty($filterVariable)) {
             if (is_array($filterVariable)) {
                 if (count($filterVariable) == 1) {
@@ -46,13 +46,16 @@ class ProductModel extends Model
             return false;
 
         $result['records'] = array();
-        $result['count'] = $count;
+
+
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
 
             $product_item = Utility::processProductRow($row);
             array_push($result['records'], $this->gatherProductDiscountAndPromotions($row['id'], $product_item));
 
+
         }
+        $result['count'] = $count;
         return $result;
     }
 

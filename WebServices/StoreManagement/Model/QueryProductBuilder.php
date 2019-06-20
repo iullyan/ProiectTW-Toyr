@@ -18,21 +18,21 @@ class QueryProductBuilder extends Model
           p.category_id,
            p.nr_sold, p.image,
             p.units_in_stock, 
-            p.created_at, p.updated_at, p.age_lower_bound";
+            p.created_at, p.updated_at, p.age_lower_bound ";
         switch ($orderBy) {
 
             case 'discount' :
                 if (isset($categoryId)) {
-                    $sql = $sqlProductData . ' ' . "FROM products p LEFT OUTER JOIN discounts d ON p.id > ? AND p.category_id = ? AND d.product_id = p.id 
-                        ORDER BY discount_percentage DESC LIMIT ?";
+                    $sql = $sqlProductData . ' ' . "FROM products p LEFT OUTER JOIN discounts d ON p.category_id = ? AND d.product_id = p.id 
+                        ORDER BY discount_percentage DESC LIMIT ?,?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $categoryId, PDO::PARAM_INT);
                     $query->bindParam(2, $lastId, PDO::PARAM_INT);
                     $query->bindParam(3, $limit, PDO::PARAM_INT);
                 }
                 else{
-                    $sql = $sqlProductData . ' ' . "FROM products p JOIN discounts d ON p.id > ? and d.product_id = p.id 
-                        ORDER BY discount_percentage DESC LIMIT ?";
+                    $sql = $sqlProductData . ' ' . "FROM products p JOIN discounts d ON d.product_id = p.id 
+                        ORDER BY discount_percentage DESC LIMIT ?, ?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $lastId, PDO::PARAM_INT);
                     $query->bindParam(2, $limit, PDO::PARAM_INT);
@@ -40,13 +40,13 @@ class QueryProductBuilder extends Model
                 break;
             case 'nrSold' :
                 if (isset($categoryId)) {
-                    $sql = $sqlProductData . ' ' . "FROM products p WHERE p.id > ? and p.category_id = ? ORDER BY p.nr_sold DESC LIMIT ?";
+                    $sql = $sqlProductData . ' ' . " FROM products p WHERE p.category_id = ? ORDER BY p.nr_sold DESC LIMIT ?,?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $categoryId, PDO::PARAM_INT);
                     $query->bindParam(2, $lastId, PDO::PARAM_INT);
                     $query->bindParam(3, $limit, PDO::PARAM_INT);
                 }else{
-                    $sql = $sqlProductData . ' ' . "FROM products p WHERE p.id > ? ORDER BY p.nr_sold DESC LIMIT ?";
+                    $sql = $sqlProductData . ' ' . " FROM products p  ORDER BY p.nr_sold DESC LIMIT ?, ?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $lastId, PDO::PARAM_INT);
                     $query->bindParam(2, $limit, PDO::PARAM_INT);
@@ -54,7 +54,7 @@ class QueryProductBuilder extends Model
                 break;
             case 'priceAsc' :
                 if (isset($categoryId)) {
-                    $sql = $sqlProductData . ' ' . "FROM products p WHERE p.id > ? and p.category_id = ? ORDER BY price LIMIT ?";
+                    $sql = $sqlProductData . ' ' . "FROM products p WHERE  p.category_id = ? ORDER BY price LIMIT ?,?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $categoryId, PDO::PARAM_INT);
                     $query->bindParam(2, $lastId, PDO::PARAM_INT);
@@ -69,13 +69,13 @@ class QueryProductBuilder extends Model
                 break;
             case 'priceDesc' :
                 if (isset($categoryId)) {
-                    $sql = $sqlProductData . ' ' . "FROM products p WHERE p.id > ? and p.category_id = ? ORDER BY price DESC LIMIT ?";
+                    $sql = $sqlProductData . ' ' . "FROM products p WHERE  p.category_id = ? ORDER BY price DESC LIMIT ?,?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $categoryId, PDO::PARAM_INT);
                     $query->bindParam(2, $lastId, PDO::PARAM_INT);
                     $query->bindParam(3, $limit, PDO::PARAM_INT);
                 }else{
-                    $sql = $sqlProductData . ' ' . "FROM products p WHERE p.id > ? ORDER BY price DESC LIMIT ?";
+                    $sql = $sqlProductData . ' ' . "FROM products p WHERE  ORDER BY price DESC LIMIT ?,?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $lastId, PDO::PARAM_INT);
                     $query->bindParam(2, $limit, PDO::PARAM_INT);
@@ -83,14 +83,14 @@ class QueryProductBuilder extends Model
                 break;
             case 'new' :
                 if (isset($categoryId)) {
-                    $sql = $sqlProductData . ' ' . "FROM products p WHERE p.id > ? and p.category_id = ? ORDER BY created_at DESC LIMIT ?";
+                    $sql = $sqlProductData . ' ' . "FROM products p  and p.category_id = ? ORDER BY created_at DESC LIMIT ?, ?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $categoryId, PDO::PARAM_INT);
                     $query->bindParam(2, $lastId, PDO::PARAM_INT);
                     $query->bindParam(3, $limit, PDO::PARAM_INT);
                 }
                 else{
-                    $sql = $sqlProductData . ' ' . "FROM products p WHERE p.id > ? ORDER BY created_at DESC LIMIT ?";
+                    $sql = $sqlProductData . ' ' . "FROM products p ORDER BY created_at DESC LIMIT ?,?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $lastId, PDO::PARAM_INT);
                     $query->bindParam(2, $limit, PDO::PARAM_INT);
@@ -98,13 +98,13 @@ class QueryProductBuilder extends Model
                 break;
             case 'promotion' :
                 if (isset($categoryId)) {
-                    $sql = "SELECT * from products p where p.id > ? and and p.category_id = ? and p.id  in (SELECT product_bought_id FROM promotions) LIMIT ?";
+                    $sql = "SELECT * from products p where and p.category_id = ? and p.id  in (SELECT product_bought_id FROM promotions) LIMIT ?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $categoryId, PDO::PARAM_INT);
                     $query->bindParam(2, $lastId, PDO::PARAM_INT);
                     $query->bindParam(3, $limit, PDO::PARAM_INT);
                 }else{
-                    $sql = "SELECT * from products p where p.id > ? and p.id  in (SELECT product_bought_id FROM promotions) LIMIT ?";
+                    $sql = "SELECT * from products p where  p.id  in (SELECT product_bought_id FROM promotions) LIMIT ?,?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $lastId, PDO::PARAM_INT);
                     $query->bindParam(2, $limit, PDO::PARAM_INT);
@@ -134,7 +134,14 @@ class QueryProductBuilder extends Model
 
     public function getProductsByCategoryId($offset, $recordsPerPage, $categoryId)
     {
-        $sql = "SELECT * FROM products p WHERE  p.category_id = ?
+        $sql = "SELECT   p.name, p.id,
+         p.description,
+          p.price, 
+          p.category_id,
+           p.nr_sold, p.image,
+            p.units_in_stock, 
+            p.created_at, p.updated_at, p.age_lower_bound 
+             FROM products p WHERE  p.category_id = ?
                 ORDER BY p.created_at DESC, p.nr_sold DESC LIMIT ?, ?";
         $query = $this->getConnection()->prepare($sql);
 
@@ -162,13 +169,14 @@ class QueryProductBuilder extends Model
     public function getProductsByMinimumAge($ageLowerBound, $lastId, $limit, $categoryId)
     {
 
-        $sql = "SELECT * FROM products WHERE id > ? and age_lower_bound >= ? ";
+        $sql = "SELECT * FROM products WHERE age_lower_bound >= ? ";
         if (isset($categoryId)){
-            $sql .= " and category_id = ? ORDER BY created_at DESC, nr_sold LIMIT ?";
+            $sql .= " and category_id = ? ORDER BY created_at DESC, nr_sold LIMIT ?,?";
             $query = $this->getConnection()->prepare($sql);
-            $query->bindParam(1, $lastId, PDO::PARAM_INT);
-            $query->bindParam(2, $ageLowerBound, PDO::PARAM_INT);
-            $query->bindParam(3, $categoryId, PDO::PARAM_INT);
+
+            $query->bindParam(1, $ageLowerBound, PDO::PARAM_INT);
+            $query->bindParam(2, $categoryId, PDO::PARAM_INT);
+            $query->bindParam(3, $lastId, PDO::PARAM_INT);
             $query->bindParam(4, $limit, PDO::PARAM_INT);
         }
             else {
@@ -189,21 +197,23 @@ class QueryProductBuilder extends Model
 
 
         if (isset($categoryId)) {
-            $sql .= " id > ? and category_id = ? and price >= ? AND price <= ?  ORDER BY created_at DESC, nr_sold LIMIT ?";
+            $sql .= " category_id = ? and price >= ? AND price <= ?  ORDER BY created_at DESC, nr_sold LIMIT ?,?";
             $query = $this->getConnection()->prepare($sql);
-            $query->bindParam(1, $lastId, PDO::PARAM_INT);
-            $query->bindParam(2, $categoryId, PDO::PARAM_INT);
-            $query->bindParam(3, $priceLowerBound, PDO::PARAM_INT);
-            $query->bindParam(4, $priceUpperBound, PDO::PARAM_INT);
+
+            $query->bindParam(1, $categoryId, PDO::PARAM_INT);
+            $query->bindParam(2, $priceLowerBound, PDO::PARAM_INT);
+            $query->bindParam(3, $priceUpperBound, PDO::PARAM_INT);
+            $query->bindParam(4, $lastId, PDO::PARAM_INT);
             $query->bindParam(5, $limit, PDO::PARAM_INT);
         }
         else
         {
-            $sql .= " id > ? and price >= ? AND price <= ?  ORDER BY created_at DESC, nr_sold LIMIT ?";
+            $sql .= "  price >= ? AND price <= ?  ORDER BY created_at DESC, nr_sold LIMIT ?,?";
             $query = $this->getConnection()->prepare($sql);
-            $query->bindParam(1, $lastId, PDO::PARAM_INT);
-            $query->bindParam(2, $priceLowerBound, PDO::PARAM_INT);
-            $query->bindParam(3, $priceUpperBound, PDO::PARAM_INT);
+
+            $query->bindParam(1, $priceLowerBound, PDO::PARAM_INT);
+            $query->bindParam(2, $priceUpperBound, PDO::PARAM_INT);
+            $query->bindParam(3, $lastId, PDO::PARAM_INT);
             $query->bindParam(4, $limit, PDO::PARAM_INT);
         }
 
@@ -216,18 +226,20 @@ class QueryProductBuilder extends Model
 
         $sql = "SELECT * FROM products WHERE ";
         if (isset($categoryId)){
-            $sql .= " id > ? and category_id = ? and  price <= ? ORDER BY created_at DESC, nr_sold LIMIT ?";
+            $sql .= " category_id = ? and  price <= ? ORDER BY created_at DESC, nr_sold LIMIT ?,?";
             $query = $this->getConnection()->prepare($sql);
-            $query->bindParam(1, $lastId, PDO::PARAM_INT);
-            $query->bindParam(2, $categoryId, PDO::PARAM_INT);
-            $query->bindParam(3, $priceUpperBound, PDO::PARAM_INT);
+
+            $query->bindParam(1, $categoryId, PDO::PARAM_INT);
+            $query->bindParam(2, $priceUpperBound, PDO::PARAM_INT);
+            $query->bindParam(3, $lastId, PDO::PARAM_INT);
             $query->bindParam(4, $limit, PDO::PARAM_INT);
 
     }else{
-            $sql .= " id > ? and price <= ? ORDER BY created_at DESC, nr_sold LIMIT ?";
+            $sql .= " price <= ? ORDER BY created_at DESC, nr_sold LIMIT ?,?";
             $query = $this->getConnection()->prepare($sql);
-            $query->bindParam(1, $lastId, PDO::PARAM_INT);
-            $query->bindParam(2, $priceUpperBound, PDO::PARAM_INT);
+
+            $query->bindParam(1, $priceUpperBound, PDO::PARAM_INT);
+            $query->bindParam(2, $lastId, PDO::PARAM_INT);
             $query->bindParam(3, $limit, PDO::PARAM_INT);
         }
 
