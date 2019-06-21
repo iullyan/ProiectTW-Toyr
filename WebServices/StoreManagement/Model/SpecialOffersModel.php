@@ -36,7 +36,8 @@ class SpecialOffersModel extends Model
     public function addProductDiscount($productId, $discountPercentage, $validFrom, $validUntil)
     {
         $product = new ProductModel();
-        $priceWithDiscount = $product->getProductPrice($productId)*$discountPercentage/100;
+        $productBasePrice = $product->getProductPrice($productId);
+        $priceWithDiscount = $productBasePrice - $productBasePrice*$discountPercentage/100;
         $sql = "INSERT INTO discounts (product_id, discount_percentage, price_with_discount, valid_from, valid_until) 
             values (:productId, :discountPercentage, :priceWithDiscount, :validFrom, :validUntil)";
         $query = $this->getConnection()->prepare($sql);
