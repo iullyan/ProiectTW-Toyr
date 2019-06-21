@@ -11,7 +11,7 @@ class QueryProductBuilder extends Model
 
     public function getProductsOrdedBy($orderBy, $lastId, $limit, $categoryId )
     {
-        $sqlProductData = "SELECT p.id,
+        $sqlProductData = "SELECT DISTINCT p.id,
          p.name, 
          p.description,
           p.price, 
@@ -98,7 +98,7 @@ class QueryProductBuilder extends Model
                 break;
             case 'promotion' :
                 if (isset($categoryId)) {
-                    $sql = "SELECT * from products p where and p.category_id = ? and p.id  in (SELECT product_bought_id FROM promotions) LIMIT ?";
+                    $sql = $sqlProductData . " from products p JOIN  promotions p2 on p.id = p2.product_bought_id where p.category_id = ? LIMIT ?,?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $categoryId, PDO::PARAM_INT);
                     $query->bindParam(2, $lastId, PDO::PARAM_INT);
