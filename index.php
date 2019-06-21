@@ -99,9 +99,9 @@ $eventsImages = FRONT_IMAGE;
     </section>
 
 </div>
-
-
 </body>
+
+
 
 </html>
 
