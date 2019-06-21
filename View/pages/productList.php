@@ -1,8 +1,12 @@
-<?php require_once '../../Config/config.php';
-$urlBase = WEB_CONST_URL_PART;
-if (isset($_GET['categoryId']) && isset($_GET['categoryName'])) {
+<?php
+require_once '../../Config/config.php';
+
+
+if (isset($_GET['categoryId'])) {
+
     $categoryId = $_GET['categoryId'];
     $categoryName = $_GET['categoryName'];
+
 } else
     die('Unspecified category id');
 $recordsPerPage = RECORDS_PER_PAGE;
@@ -26,6 +30,27 @@ $recordsPerPage = RECORDS_PER_PAGE;
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <script type="text/javascript" src="../js/UrlBuilder.js"></script>
+
+    <script type="text/javascript" >
+
+
+        document.categoryid = "<?php echo $categoryId; ?>";
+        document.productListDispatcher = "<?php echo PRODUCT_LIST_DISPATCHER; ?>";
+        document.productPage = "<?php echo PRODUCT_PAGE?>";
+        document.imagesLocation = "<?php echo IMAGES_LOCATION ?>";
+        document.productsPerPage = "<?php echo RECORDS_PER_PAGE; ?>";
+        document.productListDispatcher = "<?php echo PRODUCT_LIST_DISPATCHER; ?>";
+        document.offset = 0;
+
+        document.working = false;
+        document.webUrl = getUrlByProductCategoryId(document.productListDispatcher, document.categoryid, document.offset, document.productsPerPage);
+
+
+    </script>
+
+    <script type="text/javascript" src="../jquery/productsList.js"></script>
 
 
     <!-- <link rel="stylesheet" type="text/css" href="product.css"> Nu merge slideShow-ul-->
@@ -133,23 +158,6 @@ $recordsPerPage = RECORDS_PER_PAGE;
 </div>
 
 
-<script type="text/javascript">
-
-    document.categoryid =   "<?php echo $categoryId; ?>";
-    document.webUrl =  "<?php echo $urlBase?>";
-    document.webConstUrl = "<?php echo $urlBase; ?>";
-    document.productPage = "<?php echo PRODUCT_PAGE?>";
-    document.imagesLocation =  "<?php echo IMAGES_LOCATION ?>";
-    document.productsPerPage = "<?php echo RECORDS_PER_PAGE; ?>";
-    document.productListDispatcher =  "<?php echo PRODUCT_LIST_DISPATCHER; ?>";
-    document.offset = 0;
-    document.working  =  false;
-
-
-
-</script>
-
-<script type="text/javascript" src="../jquery/productsList.js" defer></script>
 
 
 </body>

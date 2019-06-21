@@ -1,6 +1,6 @@
 <?php require_once 'Config/config.php';
-    $urlBase = WEB_CONST_URL_PART;
-    $specialProducts = FRONT_IMAGE;
+$productManagementService = WEB_CONST_URL_PART;
+$specialProducts = FRONT_IMAGE;
 ?>
 
 <!DOCTYPE html>
@@ -16,23 +16,35 @@
     <link rel="stylesheet" type="text/css" href="View/css/usableButton.css">
     <link rel="stylesheet" type="text/css" href="View/css/productListContainer.css">
     <link rel="stylesheet" type="text/css" href="View/css/optionsGroup.css">
-
-
-
-
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script type="text/javascript" src="View/js/UrlBuilder.js"></script>
+    <script type="text/javascript">
+        document.productMngService = "<?php echo $productManagementService; ?>";
+        document.categoriesUrl = getUrlForCategories(document.productMngService);
+        document.rssFeedNewProducts = "<?php echo NEWEST_PRODUCTS; ?>";
+        document.rssMostSoldProducts = "<?php echo MOST_SOLD_PRODUCTS; ?>";
+        document.rssSpecialOffers = "<?php echo SPECIAL_OFFERS; ?>";
+        document.imagesLocation = "<?php echo IMAGES_LOCATION; ?>";
+    </script>
 
 
-    <!-- <link rel="stylesheet" type="text/css" href="product.css"> Nu merge slideShow-ul-->
+    <script type="text/javascript" src="View/jquery/category.js"></script>
+    <script type="text/javascript" src="View/jquery/showRssFeeds.js"></script>
+
 
 </head>
 
-<body onload="loadRssFeed('new')">
+<body>
 
-<script type="text/javascript" src="View/jquery/category.js" defer></script>
-<script type="text/javascript" src="View/js/showRssFeeds.js" async></script>
+
+<script type="text/javascript">
+    window.onload = function () {
+
+        loadCategories();
+        loadRssFeed("new");
+
+    }
+</script>
 
 
 <div class="grid-container">
@@ -66,12 +78,15 @@
     </header>
 
     <div class="left">
-        <div class="categoriesContent" ></div>
+        <div class="categoriesContent">
+
+
+        </div>
 
     </div>
 
     <div class="middle">
-            <img  class="frontImage" src="<?php echo $specialProducts . '1.jpg'?>" alt="">
+        <img class="frontImage" src="<?php echo $specialProducts . '1.jpg' ?>" alt="">
 
     </div>
 
@@ -91,31 +106,7 @@
 
     </section>
 
-    <footer>
-        <div>
-            <h1>Toyr.ro</h1>
-        </div>
-        <nav class="sitemap">
-            <p style=" font-weight: bold;">Sitemap</p>
-            <ul>
-                <li>Acasă</li>
-                <li>Promoții</li>
-                <li>Informații utile</li>
-            </ul>
-        </nav>
-        <nav class="utility">
-            <p style=" font-weight: bold;">Util</p>
-            <ul>
-                <li>Cum cumpăr</li>
-                <li>Livrare și plată</li>
-                <li>Termeni și condiții</li>
-            </ul>
-        </nav>
-    </footer>
 </div>
-
-
-
 
 
 </body>

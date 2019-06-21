@@ -43,28 +43,36 @@ function createImageUrl($imageName)
 $orderByOptions = unserialize(PRODUCT_ORDERBY);
 
 if (isset($_GET['offset']) && isset($_GET['recordsNr'])) {
-    $offset = $_GET['offset'];
-    $recordsNr = $_GET['recordsNr'];
+
+    $offset = "offset=" . $_GET['offset'];
+    $offsetBackup = $_GET['offset'];
+    $recordsNr = "recordsNr=" . $_GET['recordsNr'];
+
 } else
     die("No offset or/and records number specified");
 
 if (isset($_GET['orderBy'])) {
-    if (in_array($_GET['orderBy'], $orderByOptions))
-        $orderBy = $_GET['orderBy'];
-    else
-        $orderBy = false;
-} else
-    if (isset($_GET['categoryId']))
-        $categoryId = $_GET['categoryId'];
-    else
-        $categoryId = NULL;
+    if (in_array($_GET['orderBy'], $orderByOptions)) {
+        $orderBy = "orderBy=" . $_GET['orderBy'];
+        if (isset($_GET['categoryId'])) {
+            $categoryId = "categoryId=" . $_GET['categoryId'];
+            $url = WEB_CONST_URL_PART . "Product/getProducts.php?" . $orderBy . '&' .  $categoryId . '&' . $offset . '&' . $recordsNr;
+        } else {
+            $url = WEB_CONST_URL_PART . "Product/getProducts.php?" . $orderBy . '&' . $offset . '&' . $recordsNr;
+        }
+
+
+    }
+} elseif (isset($_GET['categoryId'])) {
+
+    $categoryId = "categoryId=" . $_GET['categoryId'];
+    $url = WEB_CONST_URL_PART . "Product/getProducts.php?" . $categoryId . '&' . $offset . '&' . $recordsNr;
+}
 
 
 $webService = new CallWebService();
-$offsetDatabase = "offset=" . $offset;
-$recordsNrDatabase = "recordsNr=" . $recordsNr;
-$categoryId = "categoryId=" . $categoryId;
-$url = WEB_CONST_URL_PART . "Product/getProducts.php?" . $categoryId . '&' . $offsetDatabase . '&' . $recordsNrDatabase;
+
+
 $JsonData = $webService->doGet($url);
 $result = NULL;
 if (!isset($JsonData->Message)) {
@@ -99,7 +107,7 @@ if (!isset($JsonData->Message)) {
 
     }
 
-    $offset = $offset + $JsonData->count->count;
+    $offset = $offsetBackup + $JsonData->count;
     $result['productList'] = $productList;
     $result['offset'] = $offset;
 }

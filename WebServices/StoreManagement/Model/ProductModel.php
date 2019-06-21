@@ -2,18 +2,16 @@
 require_once 'Model.php';
 require_once 'Utility.php';
 require_once 'QueryProductBuilder.php';
-require_once 'Counter.php';
+
 
 class ProductModel extends Model
 {
 
-    public function getProducts($filterVariable, $orderBy, $lastId, $limit, $categoryId)
+    public function getProducts($filterVariable, $orderBy, $offset, $limit, $categoryId)
     {
         $queryBuilder = new QueryProductBuilder();
-        $counter = new Counter();
-        $count = $limit;
         if (!empty($orderBy)) {
-            $query = $queryBuilder->getProductsOrdedBy($orderBy, $lastId, $limit, $categoryId);
+            $query = $queryBuilder->getProductsOrdedBy($orderBy, $offset, $limit, $categoryId);
 
         } elseif (!empty($filterVariable)) {
             if (is_array($filterVariable)) {
@@ -21,23 +19,22 @@ class ProductModel extends Model
 
 
                     if (array_key_exists('eventId', $filterVariable))
-                        $query = $queryBuilder->getProductsByEventId($filterVariable['eventId'], $lastId, $limit);
+                        $query = $queryBuilder->getProductsByEventId($filterVariable['eventId'], $offset, $limit);
 
                     elseif (array_key_exists('ageLowerBound', $filterVariable))
-                        $query = $queryBuilder->getProductsByMinimumAge($filterVariable['ageLowerBound'], $lastId, $limit, $categoryId);
+                        $query = $queryBuilder->getProductsByMinimumAge($filterVariable['ageLowerBound'], $offset, $limit, $categoryId);
 
                     elseif (array_key_exists('priceLowerThan', $filterVariable))
-                        $query = $queryBuilder->getProductsWithPriceLowerThan($filterVariable['priceLowerThan'], $lastId, $limit, $categoryId);
+                        $query = $queryBuilder->getProductsWithPriceLowerThan($filterVariable['priceLowerThan'], $offset, $limit, $categoryId);
                 } elseif (count($filterVariable) == 2) {
                     if (array_key_exists('priceLowerBound', $filterVariable) && array_key_exists('priceUpperBound', $filterVariable))
-                        $query = $queryBuilder->getProductsByPriceInterval($filterVariable['priceLowerBound'], $filterVariable['priceUpperBound'], $lastId, $limit, $categoryId);
+                        $query = $queryBuilder->getProductsByPriceInterval($filterVariable['priceLowerBound'], $filterVariable['priceUpperBound'], $offset, $limit, $categoryId);
                 } else
                     return false;
             }
-        } elseif (!empty($categoryId)) {
-            $query = $queryBuilder->getProductsByCategoryId($lastId, $limit, $categoryId);
-            $count = $counter->countByCategoryId($categoryId);
-        } else
+        } elseif (!empty($categoryId))
+            $query = $queryBuilder->getProductsByCategoryId($offset, $limit, $categoryId);
+        else
             return false;
         if (!$query->execute())
             return false;
@@ -55,7 +52,7 @@ class ProductModel extends Model
 
 
         }
-        $result['count'] = $count;
+        $result['count'] = $query->rowCount();
         return $result;
     }
 

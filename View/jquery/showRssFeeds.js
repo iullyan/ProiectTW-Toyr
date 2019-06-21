@@ -1,78 +1,45 @@
-var rssFeedUrl;
-var imagesLocation;
-
-function getRssUrl(data) {
-    rssFeedUrl = data;
-
-}
-
-function getImagesLocation(data) {
-    imagesLocation = data;
-
-}
-
-function fetchRssFeedUrl(type) {
-
-    $.ajax({
-        type: "GET",
-        data: 'json',
-        dataType: "json",
-        url: '../../ProiectTW-Toyr/Controller/Utils/getRssUrl.php?type=' + type,
-        async: false,
-        success: function (data) {
-            getRssUrl(data);
-        },
-        error: function () {
-            alert("Error when getting rss url")
-        }
-    });
-
-}
-
-
-function fetchImagesLocation() {
-    $.ajax({
-        type: "GET",
-        data: 'json',
-        dataType: "json",
-        url: '../../ProiectTW-Toyr/Controller/Utils/getImagesLocation.php?',
-        async: false,
-        success: function (data) {
-            getImagesLocation(data);
-        },
-        error: function () {
-            alert("Error when getting images url")
-        }
-    });
-}
 
 //order by can be : new,promotion, sold
 function loadRssFeed(orderBy) {
 
     var optionsArray = ['new', 'promotion', 'sold'];
+    var rssFeedUrl;
     if (optionsArray.includes(orderBy)) {
         {
-            fetchRssFeedUrl(orderBy);
-            fetchImagesLocation();
-        }
-    } else
-        console.error("incorrect orderby");
+            switch (orderBy) {
 
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            processXML(this);
+                case 'new' : rssFeedUrl = document.rssFeedNewProducts; break;
+                case 'promotion' : rssFeedUrl = document.rssSpecialOffers; break;
+                case 'sold' : rssFeedUrl = document.rssMostSoldProducts; break;
+                default : rssFeedUrl = 'unknown';
+
+            }
         }
-    };
-    xhttp.open("GET", rssFeedUrl, false);
-    xhttp.send();
+    } else {
+        console.error("incorrect orderby");
+        return;
+    }
+        $.ajax({
+            type: "GET" ,
+            url: rssFeedUrl,
+            dataType: "xml",
+            async: true,
+            success: function(xml) {
+                    processXML(xml);
+                },
+            error: function () {
+                console.error("Cannot fetchs rss feed");
+
+            }
+
+        });
 }
 
 
 function processXML(xml) {
 
 
-    var xmlDoc = xml.responseXML;
+    var xmlDoc = xml;
     var items = xmlDoc.getElementsByTagName('item');
     var discounts = xmlDoc.getElementsByTagName('discount');
     var promotions = xmlDoc.getElementsByTagName('promotion');
@@ -169,7 +136,7 @@ function checkForNewPrice(newPrice, basePrice) {
 
 function createImageUrl(imageName) {
 
-    return '<img src="' +  imagesLocation + imageName + '.jpg"' + ' alt="">';
+    return '<img src="' +  document.imagesLocation + imageName + '.jpg"' + ' alt="">';
 }
 
 

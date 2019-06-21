@@ -83,7 +83,7 @@ class QueryProductBuilder extends Model
                 break;
             case 'new' :
                 if (isset($categoryId)) {
-                    $sql = $sqlProductData . ' ' . "FROM products p  and p.category_id = ? ORDER BY created_at DESC LIMIT ?, ?";
+                    $sql = $sqlProductData . ' ' . " FROM products p  WHERE p.category_id = ? ORDER BY created_at DESC LIMIT ?, ?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $categoryId, PDO::PARAM_INT);
                     $query->bindParam(2, $lastId, PDO::PARAM_INT);

@@ -7,7 +7,7 @@ $(document).ready(function () {
         type: "GET",
         contentType: "application/json",
         data: '',
-        url: document.productListDispatcher + "?categoryId=" + document.categoryid + '&offset=' + document.offset + '&recordsNr=' + document.productsPerPage,
+        url: document.webUrl,
         async: true,
         success: function (data) {
 
@@ -30,7 +30,7 @@ $(window).scroll(function () {
                 type: "GET",
                 contentType: "application/json",
                 data: '',
-                url: document.productListDispatcher + "?categoryId=" + document.categoryid + '&offset=' + document.offset + '&recordsNr=' + document.productsPerPage,
+                url: document.webUrl,
                 async: true,
                 success: function (data) {
                     $('.productsContainer').append(data.productList);
