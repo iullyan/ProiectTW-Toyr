@@ -63,7 +63,16 @@ if (isset($_GET['orderBy'])) {
 
 
     }
-} elseif (isset($_GET['categoryId'])) {
+}elseif (isset($_GET['ageLowerBound'])){
+    $ageLowerBound = "ageLowerBound=" .  $_GET['ageLowerBound'];
+    if (isset($_GET['categoryId'])) {
+        $categoryId = "categoryId=" . $_GET['categoryId'];
+        $url = WEB_CONST_URL_PART . "Product/getProducts.php?" . $ageLowerBound . '&' . $categoryId . '&' . $offset . '&' . $recordsNr;
+    }
+    else
+        $url = WEB_CONST_URL_PART . "Product/getProducts.php?" . $ageLowerBound. '&' .  $offset . '&' . $recordsNr;
+}
+elseif (isset($_GET['categoryId'])) {
 
     $categoryId = "categoryId=" . $_GET['categoryId'];
     $url = WEB_CONST_URL_PART . "Product/getProducts.php?" . $categoryId . '&' . $offset . '&' . $recordsNr;
