@@ -15,23 +15,21 @@ class ProductModel extends Model
 
         } elseif (!empty($filterVariable)) {
             if (is_array($filterVariable)) {
-                if (count($filterVariable) == 1) {
+                if (array_key_exists('eventId', $filterVariable))
+                    $query = $queryBuilder->getProductsByEventId($filterVariable['eventId'], $offset, $limit);
+                elseif (array_key_exists('ageLowerBound', $filterVariable))
+                    $query = $queryBuilder->getProductsByMinimumAge($filterVariable['ageLowerBound'], $offset, $limit, $categoryId);
+                elseif (array_key_exists('priceLowerThan', $filterVariable))
+                    $query = $queryBuilder->getProductsWithPriceLowerThan($filterVariable['priceLowerThan'], $offset, $limit, $categoryId);
+                elseif (array_key_exists('priceLowerBound', $filterVariable) && array_key_exists('priceUpperBound', $filterVariable))
+                    $query = $queryBuilder->getProductsByPriceInterval($filterVariable['priceLowerBound'], $filterVariable['priceUpperBound'], $offset, $limit, $categoryId);
+                elseif (array_key_exists('priceLowerBound', $filterVariable))
+                    $query = $queryBuilder->getProductsByPriceInterval($filterVariable['priceLowerBound'], NULL, $offset, $limit, $categoryId);
+                elseif (array_key_exists('priceUpperBound', $filterVariable))
+                    $query = $queryBuilder->getProductsByPriceInterval(NULL, $filterVariable['priceUpperBound'], $offset, $limit, $categoryId);
 
-
-                    if (array_key_exists('eventId', $filterVariable))
-                        $query = $queryBuilder->getProductsByEventId($filterVariable['eventId'], $offset, $limit);
-
-                    elseif (array_key_exists('ageLowerBound', $filterVariable))
-                        $query = $queryBuilder->getProductsByMinimumAge($filterVariable['ageLowerBound'], $offset, $limit, $categoryId);
-
-                    elseif (array_key_exists('priceLowerThan', $filterVariable))
-                        $query = $queryBuilder->getProductsWithPriceLowerThan($filterVariable['priceLowerThan'], $offset, $limit, $categoryId);
-                } elseif (count($filterVariable) == 2) {
-                    if (array_key_exists('priceLowerBound', $filterVariable) && array_key_exists('priceUpperBound', $filterVariable))
-                        $query = $queryBuilder->getProductsByPriceInterval($filterVariable['priceLowerBound'], $filterVariable['priceUpperBound'], $offset, $limit, $categoryId);
-                } else
-                    return false;
-            }
+            } else
+                return false;
         } elseif (!empty($categoryId))
             $query = $queryBuilder->getProductsByCategoryId($offset, $limit, $categoryId);
         else

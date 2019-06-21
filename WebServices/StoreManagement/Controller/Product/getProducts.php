@@ -39,9 +39,13 @@ if (isset($_GET['offset']) && isset($_GET['recordsNr']))
 
         $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr,$categoryId);
 
-    } elseif (isset($_GET['priceLowerThan']))
+    } elseif (isset($_GET['priceLowerBound'])){
+       $filterVariable = array('priceLowerBound' => htmlentities($_GET['priceLowerBound']));
+       $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr, $categoryId);
+   }
+   elseif (isset($_GET['priceUpperBound']))
     {
-        $filterVariable = array('priceLowerThan' => htmlentities($_GET['priceLowerThan']));
+        $filterVariable = array('priceUpperBound' => htmlentities($_GET['priceUpperBound']));
         $productData = $product->getProducts($filterVariable, NULL, $offset, $recordsNr, $categoryId);
 
     } elseif (isset($_GET['orderBy'])) {

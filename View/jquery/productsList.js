@@ -1,5 +1,5 @@
 
-$(document).ready(function () {
+function loadProducts() {
 
 
     $.ajax({
@@ -11,7 +11,7 @@ $(document).ready(function () {
         async: true,
         success: function (data) {
 
-            $('.productsContainer').append(data.productList);
+            $('.productsContainer').html(data.productList);
             document.offset = data.offset;
 
 
@@ -21,10 +21,10 @@ $(document).ready(function () {
         }
     });
 
-});
+}
 $(window).scroll(function () {
     if ($(this).scrollTop() + 1 >= $('body').height() - $(window).height()) {
-        if (document.working === false) {
+        if (document.working === false && ! document.offset <= document.productsPerPage ) {
             document.working = true;
             $.ajax({
                 type: "GET",

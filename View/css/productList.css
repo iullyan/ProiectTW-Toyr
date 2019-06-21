@@ -5,7 +5,7 @@
 .grid-container {
   width: 100%;
   display: grid;
-  grid-template-rows: 0.05fr 100px 0.05fr 0.1fr auto ;
+
   grid-template-columns: 10% 15% 15% 10% 40% 10%;
   grid-template-areas:
           'header header header header header header'
@@ -26,10 +26,10 @@
 /* Style the left column */
 .left {
 
-  grid-row: 1/ span 1;
+
   grid-area: left;
   grid-column: 2/ span 1;
-  background-color: white;
+
 }
 
 /* Style the middle column */

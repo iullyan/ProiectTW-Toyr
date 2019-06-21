@@ -33,9 +33,7 @@ $recordsPerPage = RECORDS_PER_PAGE;
 
     <script type="text/javascript" src="../js/UrlBuilder.js"></script>
 
-    <script type="text/javascript" >
-
-
+    <script type="text/javascript">
         document.categoryid = "<?php echo $categoryId; ?>";
         document.productListDispatcher = "<?php echo PRODUCT_LIST_DISPATCHER; ?>";
         document.productPage = "<?php echo PRODUCT_PAGE?>";
@@ -43,23 +41,29 @@ $recordsPerPage = RECORDS_PER_PAGE;
         document.productsPerPage = "<?php echo RECORDS_PER_PAGE; ?>";
         document.productListDispatcher = "<?php echo PRODUCT_LIST_DISPATCHER; ?>";
         document.offset = 0;
-
         document.working = false;
         document.webUrl = getUrlByProductCategoryId(document.productListDispatcher, document.categoryid, document.offset, document.productsPerPage);
+    </script>
+    <script type="text/javascript">
+        function loadProductsByFilter(orderBy) {
+            document.offset = 0;
+            document.working = false;
+            document.webUrl = getUrlByProductsOrder(document.productListDispatcher, orderBy, document.offset, document.productsPerPage, document.categoryid );
+            loadProducts();
 
-
+        }
     </script>
 
+    <script type="text/javascript">
+        window.onload = function () {
+            loadProducts();
+
+        }
+    </script>
     <script type="text/javascript" src="../jquery/productsList.js"></script>
-
-
-    <!-- <link rel="stylesheet" type="text/css" href="product.css"> Nu merge slideShow-ul-->
-
 </head>
 
 <body>
-
-
 <div class="grid-container">
     <header>
 
@@ -97,15 +101,14 @@ $recordsPerPage = RECORDS_PER_PAGE;
             <button class="collapsible ">Ordonează produsele</button>
             <div class="content">
                 <div class="options">
-                    <button onclick="loadNewProducts()">Noutăți</button>
-                    <button>Cele mai vândute</button>
-                    <button>Preț ascendent</button>
-                    <button>Preț descendent</button>
-                    <button>Cel mai mare discount</button>
-                    <button>Promoții</button>
-                    <button>În stoc</button>
+                    <button onclick="loadProductsByFilter('new')">Noutăți</button>
+                    <button onclick="loadProductsByFilter('nrSold')">Cele mai vândute</button>
+                    <button onclick="loadProductsByFilter('priceAsc')">Preț ascendent</button>
+                    <button onclick="loadProductsByFilter('priceDesc')">Preț descendent</button>
+                    <button onclick="loadProductsByFilter('discount')">Cel mai mare discount</button>
+                    <button onclick="loadProductsByFilter('promotion')">Promoții</button>
+                    <button onclick="loadProductsByFilter('new')">În stoc</button>
                 </div>
-
             </div>
 
             <button class="collapsible">Vârsta</button>
@@ -117,8 +120,6 @@ $recordsPerPage = RECORDS_PER_PAGE;
                                      <span class="checkmark"></span>
                                 </label>'; ?>
                 </div>
-
-
             </div>
 
             <button class="collapsible">Interval de preț</button>
@@ -129,36 +130,23 @@ $recordsPerPage = RECORDS_PER_PAGE;
                     <label for="priceUpperBound">Preț maxim</label>
                     <input type="text" id="priceUpperBound" name="priceLowerBound">
                 </div>
-
             </div>
-
         </div>
-
-
     </div>
 
     <div class="middle">
         <nav id="aboveOptions">
-
             <button class="usableButton">Categorii</button>
             <h4 id="currentCategory">Categoria Curentă : <?php echo $categoryName; ?> </h4>
-
-
         </nav>
 
     </div>
 
     <section class="main">
-
-
         <div class="productsContainer"></div>
-
     </section>
 
 </div>
-
-
-
 
 </body>
 

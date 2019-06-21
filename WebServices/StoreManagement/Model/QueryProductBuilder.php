@@ -23,7 +23,7 @@ class QueryProductBuilder extends Model
 
             case 'discount' :
                 if (isset($categoryId)) {
-                    $sql = $sqlProductData . ' ' . "FROM products p LEFT OUTER JOIN discounts d ON p.category_id = ? AND d.product_id = p.id 
+                    $sql = $sqlProductData . ' ' . "FROM products p LEFT OUTER JOIN discounts d  on d.product_id = p.id  where p.category_id = ?
                         ORDER BY discount_percentage DESC LIMIT ?,?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $categoryId, PDO::PARAM_INT);
@@ -197,14 +197,31 @@ class QueryProductBuilder extends Model
 
 
         if (isset($categoryId)) {
-            $sql .= " category_id = ? and price >= ? AND price <= ?  ORDER BY created_at DESC, nr_sold LIMIT ?,?";
-            $query = $this->getConnection()->prepare($sql);
-
-            $query->bindParam(1, $categoryId, PDO::PARAM_INT);
-            $query->bindParam(2, $priceLowerBound, PDO::PARAM_INT);
-            $query->bindParam(3, $priceUpperBound, PDO::PARAM_INT);
-            $query->bindParam(4, $lastId, PDO::PARAM_INT);
-            $query->bindParam(5, $limit, PDO::PARAM_INT);
+            if (isset($priceUpperBound) && isset($priceLowerBound)) {
+                $sql .= " category_id = ? and price >= ? AND price <= ?  ORDER BY created_at DESC, nr_sold LIMIT ?,?";
+                $query = $this->getConnection()->prepare($sql);
+                $query->bindParam(1, $categoryId, PDO::PARAM_INT);
+                $query->bindParam(2, $priceLowerBound, PDO::PARAM_INT);
+                $query->bindParam(3, $priceUpperBound, PDO::PARAM_INT);
+                $query->bindParam(4, $lastId, PDO::PARAM_INT);
+                $query->bindParam(5, $limit, PDO::PARAM_INT);
+            }
+            elseif(isset($priceUpperBound)){
+                    $sql .= " category_id = ? and price <= ?  ORDER BY created_at DESC, nr_sold LIMIT ?,?";
+                    $query = $this->getConnection()->prepare($sql);
+                    $query->bindParam(1, $categoryId, PDO::PARAM_INT);
+                    $query->bindParam(2, $priceUpperBound, PDO::PARAM_INT);
+                    $query->bindParam(3, $lastId, PDO::PARAM_INT);
+                    $query->bindParam(4, $limit, PDO::PARAM_INT);
+                }
+                elseif (isset($priceLowerBound)){
+                    $sql .= " category_id = ? and price >= ?  ORDER BY created_at DESC, nr_sold LIMIT ?,?";
+                    $query = $this->getConnection()->prepare($sql);
+                    $query->bindParam(1, $categoryId, PDO::PARAM_INT);
+                    $query->bindParam(2, $priceLowerBound, PDO::PARAM_INT);
+                    $query->bindParam(3, $lastId, PDO::PARAM_INT);
+                    $query->bindParam(4, $limit, PDO::PARAM_INT);
+                }
         }
         else
         {
@@ -245,5 +262,7 @@ class QueryProductBuilder extends Model
 
         return $query;
     }
+
+
 
 }

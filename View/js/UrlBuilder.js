@@ -4,7 +4,7 @@
     function getUrlByProductsOrder(productListDispatcher, orderBy, offset, recordsNr, categoryId=null){
 
         url = productListDispatcher + '?orderBy=' + orderBy + '&offset=' +offset + '&recordsNr=' + recordsNr;
-        if(! empty(categoryId))
+        if(categoryId)
             url += '&categoryId=' + categoryId;
 
         return url;
@@ -15,7 +15,7 @@
 
         url = productListDispatcher + '?priceLowerBound=' + priceLowerbound + '&priceUpperBound=' + priceUpperBound +
             '&offset=' +offset + '&recordsNr=' + recordsNr;
-        if(! isset(categoryId))
+        if(categoryId)
             url += '&categoryId=' + categoryId;
 
         return url;
@@ -26,7 +26,7 @@
 
         url = productListDispatcher + '?ageLowerBound=' + ageLowerBound +
             '&offset=' +offset + '&recordsNr=' + recordsNr;
-        if(! isset(categoryId))
+        if(categoryId)
             url += '&categoryId=' + categoryId;
 
         return url;

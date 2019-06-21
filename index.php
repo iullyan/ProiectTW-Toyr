@@ -78,11 +78,7 @@ $specialProducts = FRONT_IMAGE;
     </header>
 
     <div class="left">
-        <div class="categoriesContent">
-
-
-        </div>
-
+        <div class="categoriesContent"></div>
     </div>
 
     <div class="middle">
@@ -92,18 +88,12 @@ $specialProducts = FRONT_IMAGE;
 
     <section class="main">
         <nav class="optionsGroup">
-
             <button class="usableButton" onclick="loadRssFeed('new')">Produse noi</button>
             <button class="usableButton" onclick="loadRssFeed('promotion')">Promoții</button>
             <button class="usableButton" onclick="loadRssFeed('sold')">Top vânzări</button>
-
         </nav>
 
-        <div class="productsContainer">
-
-
-        </div>
-
+        <div class="productsContainer"></div>
     </section>
 
 </div>
