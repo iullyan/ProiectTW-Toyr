@@ -26,10 +26,18 @@
                     <div class="row">
                         <div class="col-50">
                             <h3>Adresa de Facturare</h3> <!--Aici ai prima parte a facturarii-->
-                            <label for="numeFormular">Numele complet</label>
-                            <input type="text" id="numeFormular" name="numeFormular" placeholder="Popescu P. Ion">
-                            <label for="email">Email</label>
-                            <input type="text" id="email" name="email" placeholder="Popescu@exemplu.ro">
+                            <div class="row">
+                                <div class="col-50">
+                                    <label for="numeFormular">Nume</label>
+                                    <input type="text" id="numeFormular" name="numeFormular" placeholder="Popescu">
+                                </div>
+                                <div class="col-50">
+                                    <label for="prenumeFormular">Prenume</label>
+                                    <input type="text" id="prenumeFormular" name="prenumeFormular" placeholder="Ion">
+                                </div>
+                            </div>
+                            <label for="telefon">Telefon</label>
+                            <input type="text" id="telefon" name="telefon" pattern="07[0-9]{8}" placeholder="0713446XXX">
                             <label for="adresa">Adresa Completă</label>
                             <input type="text" id="adresa" name="adresa" placeholder="Strada">
                             <label for="oras"> Oras</label>
@@ -52,17 +60,17 @@
                             <label for="numeCard" style="margin-top: 10px">Numele Titularului Cardului</label>
                             <input type="text" id="numeCard" name="numeCard" placeholder="Popescu P. Ion">
                             <label for="numarCard">Numărul Cardului de Credit</label>
-                            <input type="text" id="numarCard" name="numarCard" placeholder="1111-2222-3333-4444">
+                            <input type="text" id="numarCard" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" name="numarCard" placeholder="1111-2222-3333-4444">
                             <label for="lunaExpirare">Luna Expirării</label>
                             <input type="text" id="lunaExpirare" name="lunaExpirare" placeholder="Februarie">
                             <div class="row">
                                 <div class="col-50">
                                     <label for="anExpirare">Anul Expirării</label>
-                                    <input type="text" id="anExpirare" name="anExpirare" placeholder="2020">
+                                    <input type="text" pattern="[0-9]{4}" id="anExpirare" name="anExpirare" placeholder="2020">
                                 </div>
                                 <div class="col-50">
                                     <label for="codSec">Codul CVV/CVC</label>
-                                    <input type="text" id="codSec" name="codSec" placeholder="000">
+                                    <input type="text" id="codSec" pattern="[0-9]{3,4}" name="codSec" placeholder="000">
                                 </div>
                             </div>
                         </div>

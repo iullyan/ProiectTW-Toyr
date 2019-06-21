@@ -29,7 +29,7 @@ async function promotions(out, webServiceUrl) {   //Verifică dacă nu există c
             var response = await fetch(url2);
             var json = await response.json();
 
-            aux +=`<a href=product.php?productId=${result[i].gifted_product_id} >${json.record.product.name}</a>`+ '</p><br>'; // concatenam si numele
+            aux +=`<a href=product.php?productId=${result[i].gifted_product_id} >${json.record.product.name}</a>`+ '</p>'; // concatenam si numele
         }
     }
 
