@@ -60,3 +60,7 @@
 
     }
 
+    function getUrlForSpecialEventProducts(productListDispatcher, eventId, offset, recordsNr) {
+        return productListDispatcher + '?eventId=' + eventId + '&offset=' + offset + '&recordsNr=' + recordsNr;
+    }
+

@@ -72,6 +72,10 @@ if (isset($_GET['orderBy'])) {
     else
         $url = WEB_CONST_URL_PART . "Product/getProducts.php?" . $ageLowerBound. '&' .  $offset . '&' . $recordsNr;
 }
+elseif (isset($_GET['eventId'])){
+    $eventId = "eventId=" . $_GET['eventId'];
+    $url  = WEB_CONST_URL_PART . "Product/getProducts.php?" . $eventId . '&' . $offset . '&' . $recordsNr;
+}
 elseif (isset($_GET['categoryId'])) {
 
     $categoryId = "categoryId=" . $_GET['categoryId'];

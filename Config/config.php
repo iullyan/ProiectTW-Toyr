@@ -24,7 +24,7 @@ define('MOST_SOLD_PRODUCTS', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Contr
 define('SPECIAL_OFFERS', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Controller/RSSfeeds/SpecialOffers.php');
 
 //Images
-define('FRONT_IMAGE', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Resources/specialProducts/');
+define('FRONT_IMAGE', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Resources/eventsImages/');
 define('IMAGES_LOCATION', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Resources/productImages/');
 
 
@@ -47,4 +47,5 @@ define("INDEX_URL", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/index.php');
 define("LOGIN_PAGE", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/View/pages/login.php');
 define("REGISTER_PAGE", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/View/pages/register.php');
 
-
+//Event page
+define("EVENT_PAGE", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/View/pages/event.php');

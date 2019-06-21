@@ -1,6 +1,7 @@
 <?php require_once 'Config/config.php';
 $productManagementService = WEB_CONST_URL_PART;
-$specialProducts = FRONT_IMAGE;
+$eventPage = EVENT_PAGE;
+$eventsImages = FRONT_IMAGE;
 ?>
 
 <!DOCTYPE html>
@@ -25,11 +26,15 @@ $specialProducts = FRONT_IMAGE;
         document.rssMostSoldProducts = "<?php echo MOST_SOLD_PRODUCTS; ?>";
         document.rssSpecialOffers = "<?php echo SPECIAL_OFFERS; ?>";
         document.imagesLocation = "<?php echo IMAGES_LOCATION; ?>";
+        document.eventPage = "<?php echo EVENT_PAGE; ?>";
+        document.eventWebServiceUrl = "<?php echo WEB_CONST_URL_PART . 'Event/getCurrentEvent.php'; ?>";
+        document.eventsImages = "<?php echo FRONT_IMAGE ?>";
     </script>
-
 
     <script type="text/javascript" src="View/jquery/category.js"></script>
     <script type="text/javascript" src="View/jquery/showRssFeeds.js"></script>
+    <script type="text/javascript" src="View/jquery/checkForEvent.js"></script>
+
 
 
 </head>
@@ -81,10 +86,7 @@ $specialProducts = FRONT_IMAGE;
         <div class="categoriesContent"></div>
     </div>
 
-    <div class="middle">
-        <img class="frontImage" src="<?php echo $specialProducts . '1.jpg' ?>" alt="">
-
-    </div>
+    <div class="middle"></div>
 
     <section class="main">
         <nav class="optionsGroup">

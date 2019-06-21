@@ -1,0 +1,149 @@
+* {
+    box-sizing: border-box;
+}
+/* The grid container */
+.grid-container {
+    width: 100%;
+    display: grid;
+
+    grid-template-columns: 10% 80% 10%;
+    grid-template-areas:
+            'header header header header header header'
+            'middle middle middle middle middle middle'
+            'main main main main main main main '
+            'footer footer footer footer footer footer';
+
+}
+
+.left, .middle, .main{
+    padding: 10px;
+    margin: 5px 5px 5px 5px;
+
+}
+
+
+
+/* Style the left column */
+.left {
+
+
+    grid-area: left;
+    grid-column: 2/ span 1;
+
+}
+
+/* Style the middle column */
+.middle {
+
+    margin-top: 20px;
+    grid-row: 2/ span 1;
+    grid-area: middle;
+    grid-column: 3/ span 3;
+    background: white;
+
+
+}
+
+
+/* Style the right column */
+.main {
+    grid-area: main;
+    grid-column: 2/ span 1;
+    background: white
+
+
+}
+
+
+header{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    grid-row: 1/ span 1;
+    grid-column: 1/ span 6;
+    background: #35424a;
+    color: #ffffff;
+    padding: 0;
+    justify-content: center;
+    grid-area: header;
+}
+
+/* Style the footer */
+footer {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    grid-area: footer;
+    background-color: #f1f1f1;
+    padding: 10px;
+    grid-row: 7/ span 1;
+    grid-column: 1/ span 6;
+}
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 1200px) {
+    .grid-container  {
+        width: 100%;
+        grid-template-rows: 0.05fr 0.1fr 0.1fr 0.5fr auto 0.1fr;
+        grid-template-columns: 10% 10% 20% 10% 40% 10%;
+        grid-template-areas:
+                'header header header header header header'
+                'middle middle middle middle middle middle'
+                'left left left left left left'
+                'main main main main main main'
+                'footer footer footer footer footer footer';
+    }
+    header{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        grid-row: 1/ span 1;
+        grid-column: 1/ span 4;
+        background: #35424a;
+        color: #ffffff;
+        padding: 0;
+        justify-content: space-evenly;
+        grid-area: header;
+    }
+    .middle {
+        margin-top: 20px;
+        grid-row: 2/ span 2;
+        grid-area: middle;
+        grid-column: 2/ span 4;
+        background: white;
+    }
+    .left {
+        margin-top: 20px;
+        grid-row: 3/ span 1;
+        grid-area: left;
+        grid-column: 2/ span 2;
+    }
+
+    .main {
+        grid-area: main;
+        grid-column: 2/ span 4;
+        grid-row: 4/ span 1;
+        column-gap: 10px;
+
+
+    }
+
+
+
+
+
+
+    #searchContainer input[type="text"]{
+        max-width: 250px;
+    }
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+    background-color:#E7E7E7;
+}
+
+

@@ -229,6 +229,7 @@ INSERT INTO `promotions` (`id`, `product_bought_id`, `gifted_product_id`, `produ
 
 CREATE TABLE `special_event` (
   `id` int(11) NOT NULL,
+  `image`
   `name` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
   `starting_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ending_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
