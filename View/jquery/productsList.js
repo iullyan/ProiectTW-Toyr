@@ -25,7 +25,7 @@ function loadProducts() {
 }
 $(window).scroll(function () {
     if ($(this).scrollTop() + 1 >= $('body').height() - $(window).height()) {
-        if (document.working === false && ! document.offset <= document.productsPerPage ) {
+        if (document.working === false && document.offset >= document.productsPerPage ) {
             document.working = true;
             $.ajax({
                 type: "GET",

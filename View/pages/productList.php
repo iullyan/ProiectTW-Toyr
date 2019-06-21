@@ -74,6 +74,7 @@ $recordsPerPage = RECORDS_PER_PAGE;
     <script type="text/javascript">
         window.onload = function () {
             loadProducts();
+            clearItForm.reset();
 
         }
     </script>
@@ -117,6 +118,7 @@ $recordsPerPage = RECORDS_PER_PAGE;
         <div class="optionsPanel">
             <button class="collapsible ">Ordonează produsele</button>
             <div class="content">
+
                 <div class="options">
                     <button onclick="loadProductsByOrder('new')">Noutăți</button>
                     <button onclick="loadProductsByOrder('nrSold')">Cele mai vândute</button>
@@ -130,6 +132,7 @@ $recordsPerPage = RECORDS_PER_PAGE;
 
             <button class="collapsible">Vârsta</button>
             <div class="content">
+                <form name="clearItForm">
                 <div class="options">
                     <?php for ($i = 1; $i < 15; $i++)
                         echo '<label class="ageBoundsContainer">' . $i . '+' .
@@ -137,6 +140,7 @@ $recordsPerPage = RECORDS_PER_PAGE;
                                     
                                 </label>'; ?>
                 </div>
+                </form>
             </div>
 
             <button class="collapsible">Interval de preț</button>
