@@ -1,8 +1,4 @@
-<?php require_once 'Config/config.php';
-$productManagementService = WEB_CONST_URL_PART;
-$eventPage = EVENT_PAGE;
-$eventsImages = FRONT_IMAGE;
-?>
+<?php require_once 'Config/config.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -20,8 +16,11 @@ $eventsImages = FRONT_IMAGE;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script type="text/javascript" src="View/js/UrlBuilder.js"></script>
     <script type="text/javascript">
-        document.productMngService = "<?php echo $productManagementService; ?>";
+        document.productMngService = "<?php echo WEB_CONST_URL_PART; ?>";
         document.categoriesUrl = getUrlForCategories(document.productMngService);
+        document.productListPage= "<?php echo PRODUCT_LIST_PAGE; ?>";
+
+
         document.rssFeedNewProducts = "<?php echo NEWEST_PRODUCTS; ?>";
         document.rssMostSoldProducts = "<?php echo MOST_SOLD_PRODUCTS; ?>";
         document.rssSpecialOffers = "<?php echo SPECIAL_OFFERS; ?>";

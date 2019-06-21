@@ -20,13 +20,16 @@ $recordsPerPage = RECORDS_PER_PAGE;
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Toyr - Bine ați venit !</title>
-    <link rel="stylesheet" type="text/css" href="../css/category.css">
     <link rel="stylesheet" type="text/css" href="../css/productUI.css">
     <link rel="stylesheet" type="text/css" href="../css/usableButton.css">
     <link rel="stylesheet" type="text/css" href="../css/productListContainer.css">
     <link rel="stylesheet" type="text/css" href="../css/optionsGroup.css">
     <link rel="stylesheet" type="text/css" href="../css/productList.css">
     <link rel="stylesheet" type="text/css" href="../css/filterOptions.css">
+    <link rel="stylesheet" type="text/css" href="../css/dropDown.css">
+
+
+    <script type="text/javascript" src="../jquery/category.js"></script>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -34,6 +37,9 @@ $recordsPerPage = RECORDS_PER_PAGE;
     <script type="text/javascript" src="../js/UrlBuilder.js"></script>
 
     <script type="text/javascript">
+        document.productMngService = "<?php echo WEB_CONST_URL_PART; ?>";
+        document.categoriesUrl = getUrlForCategories(document.productMngService);
+        document.productListPage= "<?php echo PRODUCT_LIST_PAGE; ?>";
         document.categoryid = "<?php echo $categoryId; ?>";
         document.productListDispatcher = "<?php echo PRODUCT_LIST_DISPATCHER; ?>";
         document.productPage = "<?php echo PRODUCT_PAGE?>";
@@ -54,10 +60,9 @@ $recordsPerPage = RECORDS_PER_PAGE;
             document.webUrl = getUrlByProductsOrder(document.productListDispatcher,
                 orderBy, document.offset,
                 document.productsPerPage,
-                document.categoryid );
+                document.categoryid);
             loadProducts();
         }
-
 
         function loadByAge(age) {
 
@@ -75,6 +80,7 @@ $recordsPerPage = RECORDS_PER_PAGE;
         window.onload = function () {
             loadProducts();
             clearItForm.reset();
+            loadCategories();
 
         }
     </script>
@@ -114,11 +120,9 @@ $recordsPerPage = RECORDS_PER_PAGE;
     </header>
 
     <div class="left">
-
         <div class="optionsPanel">
             <button class="collapsible ">Ordonează produsele</button>
             <div class="content">
-
                 <div class="options">
                     <button onclick="loadProductsByOrder('new')">Noutăți</button>
                     <button onclick="loadProductsByOrder('nrSold')">Cele mai vândute</button>
@@ -127,19 +131,18 @@ $recordsPerPage = RECORDS_PER_PAGE;
                     <button onclick="loadProductsByOrder('discount')">Cel mai mare discount</button>
                     <button onclick="loadProductsByOrder('promotion')">Promoții</button>
                     <button onclick="loadProductsByOrder('new')">În stoc</button>
+
                 </div>
             </div>
 
             <button class="collapsible">Vârsta</button>
             <div class="content">
                 <form name="clearItForm">
-                <div class="options">
-                    <?php for ($i = 1; $i < 15; $i++)
-                        echo '<label class="ageBoundsContainer">' . $i . '+' .
-                            '<input type="radio"  name="age"  value="' . $i . '"' . ' onclick="loadByAge(this.value)">
-                                    
-                                </label>'; ?>
-                </div>
+                    <div class="options">
+                        <?php for ($i = 1; $i < 15; $i++)
+                            echo '<label class="ageBoundsContainer">' . $i . '+' .
+                                '<input type="radio"  name="age"  value="' . $i . '"' . ' onclick="loadByAge(this.value)"></label>'; ?>
+                    </div>
                 </form>
             </div>
 
@@ -157,7 +160,10 @@ $recordsPerPage = RECORDS_PER_PAGE;
 
     <div class="middle">
         <nav id="aboveOptions">
-            <button class="usableButton">Categorii</button>
+            <div class="dropdown">
+                <button class="usableButton">Categorii</button>
+                <div class="dropdown-content categoriesContent"></div>
+            </div>
             <h4 id="currentCategory">Categoria Curentă : <?php echo $categoryName; ?> </h4>
         </nav>
 

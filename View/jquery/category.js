@@ -1,6 +1,3 @@
-
-
-
 function loadCategories() {
 
     $.ajax({
@@ -17,16 +14,13 @@ function loadCategories() {
             var href = '';
             for (var i = 0; i < data.length; i++) {
 
-                href =  "View/pages/productList.php?categoryId=" + data[i].id + "&categoryName=" + data[i].name;
+                href =  document.productListPage + "?categoryId=" + data[i].id + "&categoryName=" + data[i].name;
 
                 singleCategory = '<li><a href="' + href + '">' +data[i].name + '</a>' + '</li>';
                 categoriesList += singleCategory;
             }
             categoriesList += '</ul>';
             $(".categoriesContent").html(categoriesList);
-
-
-
         },
         error: function () {
             console.log("Unable to fetch categories");

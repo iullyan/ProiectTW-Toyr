@@ -49,3 +49,9 @@ define("REGISTER_PAGE", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/View/pag
 
 //Event page
 define("EVENT_PAGE", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/View/pages/event.php');
+
+//ProductList page URL
+
+define("PRODUCT_LIST_PAGE", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/View/pages/productList.php');
+
+
