@@ -11,8 +11,11 @@ function addProductForm(dispatcherUrl) {
 
     var description = '<label for="productDescription">Descriere</label>' +
         '<textarea  id="productDescription" rows="4" cols="50" name="description" ></textarea>';
+
+    var image = '<label for="productImage">Selectați o imagine</label>' +
+        '<input  id="productImage" type="file"  name="productImage" alt="" >';
     var submit = '<button class="usableButton">Adaugă</button>';
-    form += productName + description + price + stoc + submit + "</form>";
+    form += productName + description + price + stoc + image + submit + "</form>";
     document.getElementsByClassName("main")[0].innerHTML = form;
 }
 

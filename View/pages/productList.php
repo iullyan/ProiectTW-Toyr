@@ -176,5 +176,4 @@ $recordsPerPage = RECORDS_PER_PAGE;
 </div>
 
 </body>
-
 </html>
