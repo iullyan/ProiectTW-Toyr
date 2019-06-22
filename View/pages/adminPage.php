@@ -3,38 +3,23 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="../css/optionsPanel.css">
-    <link rel="stylesheet" type="text/css" href="../css/index.css">
-
-
+    <link rel="stylesheet" type="text/css" href="../css/category.css">
+    <link rel="stylesheet" type="text/css" href="../css/usableButton.css">
     <link rel="stylesheet" type="text/css" href="../css/adminPage.css">
+    <link rel="stylesheet" type="text/css" href="../css/optionsPanel.css">
+
 
     <title>Toyr - Admin</title>
 
 </head>
 
 
-
-<header>
+<body class="grid-container">
+<header >
     <nav id="functionality">
         <ul>
             <li class="account">
-                <button class="accountButton">Categorii</button>
-                <div class="accountOptions" style="width: 235px; max-height: 315px; overflow:auto;">
-                    <a href="" style="font-size: 13px" class="spacingDropdown">Jocuri și puzzle-uri</a>
-                    <a href="" style="font-size: 13px" class="spacingDropdown">Educaționale</a>
-                    <a href="" style="font-size: 13px" class="spacingDropdown">Figurine</a>
-                    <a href="" style="font-size: 13px" class="spacingDropdown">Vehicule</a>
-                    <a href="" style="font-size: 13px" class="spacingDropdown">Modele telghidate</a>
-                    <a href="" style="font-size: 13px" class="spacingDropdown">Păpuși</a>
-                    <a href="productList.php" style="font-size: 13px" class="spacingDropdown">Plușuri</a>
-                    <a href="" style="font-size: 13px" class="spacingDropdown">Creativitate</a>
-                    <a href="" style="font-size: 13px" class="spacingDropdown">Jucării din lemn</a>
-                    <a href="" style="font-size: 13px" class="spacingDropdown">Exterior</a>
-                    <a href="" style="font-size: 13px" class="spacingDropdown">Lego</a>
-                    <a href="" style="font-size: 13px" class="spacingDropdown">Arme de jucărie</a>
-                    <a href="" style="font-size: 13px" class="spacingDropdown">Hobby-uri și roleplay</a>
-                </div>
+                <button class="usableButton">Categorii</button>
             </li>
         </ul>
     </nav>
@@ -50,14 +35,14 @@
     <nav id="functionality">
         <ul>
             <li class="account">
-                <button class="accountButton">Contul meu</button>
+                <button class="accountButton usableButton">Contul meu</button>
                 <div class="accountOptions">
                     <a href="login.php">Login</a>
                     <a href="register.php">Register</a>
                 </div>
             </li>
             <li>
-                <input type="button" class="orderButton" value="Coșul meu"
+                <input type="button" class="orderButton usableButton" value="Coșul meu"
                        onclick="window.location.href='payment.html'"/>
 
             </li>
@@ -66,13 +51,12 @@
     </nav>
 </header>
 
-<section class="main" style=" background-color:  blueviolet; ">
-
+<section class="left">
     <div class="optionsPanel">
         <button class="collapsible">Administrează produse</button>
         <div class="content">
             <div class="options">
-                <button>Adaugă produs </button>
+                <button>Adaugă produs</button>
                 <button>Actualizează produs</button>
                 <button>Șterge Produs</button>
             </div>
@@ -102,14 +86,11 @@
         </div>
 
     </div>
-    <div class="formContainer">
-        ddddd
-    </div>
 </section>
+    <section class="main"></section>
 
 
-
-<script type="text/javascript" src="../js/collapsibleOptions.js"></script>
+    <script type="text/javascript" src="../js/collapsibleOptions.js"></script>
 
 </body>
 </html>
