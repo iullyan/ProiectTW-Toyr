@@ -16,7 +16,7 @@ if(
     isset($_POST['price']) &&
     isset($_POST['description']) &&
     isset($_POST['categoryId']) &&
-    isset($_POST['image']) &&
+    isset($_FILES['image']) &&
     isset($_POST['unitsInStock'])
 )
 {
@@ -24,18 +24,21 @@ if(
     $price = htmlentities($_POST['price']);
     $description = htmlentities($_POST['description']);
     $categoryId = htmlentities($_POST['categoryId']);
-    $imageName = htmlentities(isset($_FILES['image']['name']));
+    $imageName = htmlentities($_FILES['image']['name']);
     $unitsInStock = htmlentities($_POST['unitsInStock']);
-    if ($message = $imageUploader->upload($_FILES['image'], IMAGES_LOCATION)) {
+    $minimumAge = htmlentities($_POST['minimumAge']);
+
+    if ($message = $imageUploader->upload($_FILES['image'], PRODUCT_IMAGES_UPLOAD) === true) {
         //Build the Json object
 
-        $object = null;
+        $object =  new stdClass();
         $object->name = $name;
         $object->price = $price;
         $object->description = $description;
         $object->categoryId = $categoryId;
         $object->image = $imageName;
         $object->unitsInStock = $unitsInStock;
+        $object->minimumAge = $minimumAge;
 
         $JSONData = json_encode($object);
 

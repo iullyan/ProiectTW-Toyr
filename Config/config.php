@@ -25,15 +25,14 @@ define('SPECIAL_OFFERS', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Controlle
 
 //Images
 define('FRONT_IMAGE', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Resources/eventsImages/');
-define('IMAGES_LOCATION', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Resources/productImages/');
-
+define('PRODUCT_IMAGES_UPLOAD', $_SERVER['DOCUMENT_ROOT'] . '/ProiectTW-Toyr/Resources/productImages/');
+define('IMAGES_LOCATION', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Resources//productImages/');
 
 //Order products
 define ("PRODUCT_ORDERBY", serialize (array ('discount', 'nrSold', 'priceAsc', 'priceDesc', 'new', 'promotion')));
 
 
-//Product list generator
-define("PRODUCT_LIST_DISPATCHER", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/Controller/Dispatcher/showProducts.php');
+
 
 //Pages url
 
@@ -55,3 +54,6 @@ define("EVENT_PAGE", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/View/pages/
 define("PRODUCT_LIST_PAGE", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/View/pages/productList.php');
 
 
+//Dispatchers
+define('ADD_PRODUCT_DISPATCHER', 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/Controller/Dispatcher/addProduct.php');
+define("PRODUCT_LIST_DISPATCHER", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/Controller/Dispatcher/showProducts.php');

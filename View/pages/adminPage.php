@@ -1,3 +1,4 @@
+<?php require_once '../../Config/config.php'?>
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -8,8 +9,12 @@
     <link rel="stylesheet" type="text/css" href="../css/adminPage.css">
     <link rel="stylesheet" type="text/css" href="../css/optionsPanel.css">
     <link rel="stylesheet" type="text/css" href="../css/inputsAndTextAreas.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script type="text/javascript" src="../js/formGenerator.js"></script>
+    <script type="text/javascript" src="../jquery/sendForm.js"></script>
+
+
+
     <title>Toyr - Admin</title>
 
 </head>
@@ -57,7 +62,7 @@
         <button class="collapsible">Administrează produse</button>
         <div class="content">
             <div class="options">
-                <button onclick="addProductForm()">Adaugă produs</button>
+                <button onclick="addProductForm('<?php echo ADD_PRODUCT_DISPATCHER; ?>')">Adaugă produs</button>
                 <button onclick="deleteProduct()">Șterge Produs</button>
             </div>
 

@@ -1,21 +1,28 @@
 function addProductForm(dispatcherUrl) {
-    var form = '<form method="post" action="' + dispatcherUrl + '">';
+    var form = '<form id="addProduct"  enctype="multipart/form-data" method="post" action="' + dispatcherUrl + '">';
     var productName = '<label for="productName">Nume</label>' +
-        '<input id="productName" type="text" name="productName" >';
+        '<input id="productName" type="text" name="name" >';
 
     var price = '<label for="price">Preț</label>' +
         '<input id="price" type="text" name="price" >';
 
     var stoc = '<label for="stock">Stoc</label>' +
-        '<input id="stock" type="text" name="productStock" >';
+        '<input id="stock" type="text" name="unitsInStock" >';
 
     var description = '<label for="productDescription">Descriere</label>' +
         '<textarea  id="productDescription" rows="4" cols="50" name="description" ></textarea>';
 
+    var category = '<label for="category">Id-ul categoriei</label>' +
+        '<input id="category" type="text" name="categoryId" >';
+
     var image = '<label for="productImage">Selectați o imagine</label>' +
-        '<input  id="productImage" type="file"  name="productImage" alt="" >';
+        '<input  id="productImage" type="file"  name="image" alt="" >';
+
+    var age = '<label for="age">Vârsta minimă</label>' +
+        '<input  id="age" type="text"  name="minimumAge" alt="" >';
+
     var submit = '<button class="usableButton">Adaugă</button>';
-    form += productName + description + price + stoc + image + submit + "</form>";
+    form += productName + description + price + stoc + category + age + image + submit + "</form>";
     document.getElementsByClassName("main")[0].innerHTML = form;
 }
 

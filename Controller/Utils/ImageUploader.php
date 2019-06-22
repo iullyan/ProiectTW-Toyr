@@ -19,7 +19,7 @@ class ImageUploader
 
         $fileName = $image['name'];
         $file_size =$image['size'];
-        $file_ext=strtolower(end(explode('.', $fileName)));
+        $file_ext = pathinfo($fileName, PATHINFO_EXTENSION);
 
         $expensions= array("jpeg","jpg","png");
 

@@ -15,9 +15,10 @@ if (
     !empty($description = $productInformation->description) &&
     !empty($categoryId = $productInformation->categoryId) &&
     !empty($image = $productInformation->image) &&
-    !empty($unitsInStock = $productInformation->unitsInStock)
+    !empty($unitsInStock = $productInformation->unitsInStock) &&
+    !empty($minimumAge = $productInformation->minimumAge)
 ) {
-    if ($product->addProduct($name, $categoryId, $description, $image, $price, $unitsInStock)) {
+    if ($product->addProduct($name, $categoryId, $description, $image, $price, $unitsInStock, $minimumAge)) {
         // set response code - 201 created
         http_response_code(201);
 

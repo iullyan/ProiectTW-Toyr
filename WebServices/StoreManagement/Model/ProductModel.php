@@ -107,18 +107,19 @@ class ProductModel extends Model
     }
 
 
-    public function addProduct($name, $categoryId, $description, $image, $price, $unitsInStock)
+    public function addProduct($name, $categoryId, $description, $image, $price, $unitsInStock, $minimumAge)
     {
 
-        $sql = "INSERT INTO products (category_id, name, description, image, price, units_in_stock) 
-            values(:categoryId, :productName , :productDescription, :image, :price, :unitsInStock)";
+        $sql = "INSERT INTO products (category_id, name, description, image, price, units_in_stock, age_lower_bound) 
+            values(:categoryId, :productName , :productDescription, :image, :price, :unitsInStock, :minimumAge)";
         $parameters = array(
             ':categoryId' => $categoryId,
             ':productName' => $name,
             ':productDescription' => $description,
             ':image' => $image,
             ':price' => $price,
-            ':unitsInStock' => $unitsInStock);
+            ':unitsInStock' => $unitsInStock,
+            ':minimumAge' => $minimumAge);
         $query = $this->getConnection()->prepare($sql);
         return ($query->execute($parameters) ? true : false);
 
