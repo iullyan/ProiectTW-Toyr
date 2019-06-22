@@ -10,7 +10,7 @@
     <div class="centerBlock">
         <h2>Toyr - Login</h2>
         <hr>
-        <form class="centralPanel" action="../../Controller/Dispatcher/login.php" method="post">
+        <form class="centralPanel" onSubmit = "return loginCheck(this)" action="../../Controller/Dispatcher/login.php" method="post">
           <p>Username</p><br>
           <input type="text" name="username" placeholder=""><br>
           <p>Parola</p><br>
@@ -18,5 +18,6 @@
           <input type="submit" value="Login">
         </form>
     </div>
+    <script type="text/javascript" src="../js/loginCheck.js"></script>
   </body>
 </html>

@@ -10,7 +10,7 @@
     <div class="centerBlock">
         <h2>Toyr - Register</h2>
         <hr>
-        <form class="centralPanel" action="../../Controller/Dispatcher/register.php" method="post">
+        <form class="centralPanel" onSubmit = "return registerCheck(this)" action="../../Controller/Dispatcher/register.php" method="post">
           <p>Nume</p><br>
           <input type="text" name="lastname" placeholder=""><br>
           <p>Prenume</p><br>
@@ -20,11 +20,12 @@
           <p>Parola</p><br>
           <input type="password" name="password" placeholder=""><br>
           <p>Repetați parola</p><br>
-          <input type="password" name="repeat-password" placeholder=""><br>
+          <input type="password" name="repeat" placeholder=""><br>
           <p>Adresa de e-mail</p><br>
           <input type="text" name="email" placeholder=""><br>
           <input type="submit" value="Register">
         </form>
     </div>
+    <script type="text/javascript" src="../js/registerCheck.js"></script>
   </body>
 </html>

@@ -39,7 +39,7 @@ class UserModel extends Model {
         $query = $this->getConnection()->prepare($sql);
         $parameters = array(':username' => $username);
         $query->execute($parameters);
-        return ($query->rowcount() ? $query->fetchAll(PDO::FETCH_ASSOC) : false);
+        return ($query->rowcount() ? true : false);
     }
 
     public function alterUser($username, $user_type) {
