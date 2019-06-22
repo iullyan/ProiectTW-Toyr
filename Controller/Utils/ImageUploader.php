@@ -4,7 +4,7 @@
 class ImageUploader
 {
 
-    public function uploader($image, $uploadDirectoryPath) {
+    public function upload($image, $uploadDirectoryPath) {
 
         if($errMsg = $this->validateImage($image)){
             move_uploaded_file($image['tmp_name'],"$uploadDirectoryPath". $image['name']);
