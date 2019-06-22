@@ -28,7 +28,7 @@ function checkGift($giftFlag)
 function checkForNewPrice($discount, $product)
 {
     if ($discount)
-        return '<div class="product-price"><small>' . $discount->price_with_discount . 'Lei</small><br>' . $product->product->price . ' Lei</div>';
+        return '<div class="product-price"><small>' .$product->product->price  . 'Lei</small><br>' . $discount->price_with_discount  . ' Lei</div>';
     else
         return '<div class="product-price">' . $product->product->price . ' Lei</div>';
 }

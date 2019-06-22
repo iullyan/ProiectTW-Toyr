@@ -129,7 +129,7 @@ function checkGift(giftFlag) {
 
 function checkForNewPrice(newPrice, basePrice) {
     if (newPrice)
-        return '<div class="product-price"><small>' + newPrice + 'Lei</small><br>' + basePrice + ' Lei</div>';
+        return '<div class="product-price"><small>' + basePrice +  'Lei</small><br>' + newPrice  + ' Lei</div>';
     else
         return '<div class="product-price">' + basePrice + ' Lei</div>';
 }
