@@ -15,7 +15,6 @@ class CallWebService
         $response = curl_exec($request);
         curl_close($request);
         $data = json_decode($response);
-
         return $data;
     }
 

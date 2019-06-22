@@ -11,7 +11,7 @@ $specialOfferInformation = json_decode(file_get_contents("php://input"));
 
 if (
     !empty($boughtProductId = $specialOfferInformation->boughtProductId) &&
-    !empty($giftedProductID = $specialOfferInformation->giftedProductId) &&
+    !empty($giftedProductId = $specialOfferInformation->giftedProductId) &&
     !empty($productUnitsBought = $specialOfferInformation->productUnitsBought) &&
     !empty($giftedProductQuantity = $specialOfferInformation->giftedProductQuantity) &&
     !empty($validFrom = $specialOfferInformation->validFrom) &&
@@ -19,7 +19,7 @@ if (
 ) {
     if ($specialOffer->addPromotion(
         $boughtProductId,
-        $giftedProductID,
+        $giftedProductId,
         $productUnitsBought,
         $giftedProductQuantity,
         $validFrom, $validUntil )) {

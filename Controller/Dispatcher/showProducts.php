@@ -100,10 +100,9 @@ if (!isset($JsonData->Message)) {
         $html .= checkGift($promotionsList);
         $html .= '<div class="product-tumb">';
         $html .= createImageUrl($product->product->image);
-        $html .= '</div>' .
-            '<div class="product-details">' .
-            '<div class="product-name">' .
-            '<h4 ><a href="';
+        $html .= '</div>' . '<div class="product-details">' .
+                        '<div class="product-name">' .
+                            '<h4 ><a href="';
         $html .= PRODUCT_PAGE . '?productId=' . $product->product->id;
         $html .= '">' . $product->product->name . '</a></h4></div>' .
             '<div class="product-bottom-details">';
