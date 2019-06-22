@@ -46,11 +46,11 @@ if(
         $url = WEB_CONST_URL_PART . 'Product/addProduct.php';
         $response = $webService->doPost($url, $JSONData);
 
-        echo json_encode(array("Message" => "ok"));
+        echo json_encode(array("Message" => $response));
     }
     else json_encode(array("Message" => $message));
 }else
-    echo json_encode(array("Message" => "Unspecified parameters"));
+    echo json_encode(array("Message" => $name));
 
 
 

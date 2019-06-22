@@ -48,15 +48,42 @@ $recordsPerPage = RECORDS_PER_PAGE;
         document.productListDispatcher = "<?php echo PRODUCT_LIST_DISPATCHER; ?>";
         document.offset = 0;
         document.working = false;
-        document.webUrl = getUrlByProductCategoryId(document.productListDispatcher,
-            document.categoryid,
-            document.offset,
-            document.productsPerPage);
+        document.webUrl = "";
+        document.flag = 0;
+        document.orderBy = "";
+        document.ageLowerBound="";
+
+        function calculateGeneralUrl(){
+            document.flag = 0;
+            document.webUrl = getUrlByProductCategoryId(document.productListDispatcher,
+                document.categoryid,
+                document.offset,
+                document.productsPerPage);
+        }
+
+        function calculateOrderByUrl() {
+            document.flag = 1;
+            document.webUrl = getUrlByProductsOrder(document.productListDispatcher,
+                document.orderBy, document.offset,
+                document.productsPerPage,
+                document.categoryid);
+        }
+
+        function calculateByAgeBoundUrl() {
+            document.flag = 2;
+            document.webUrl = getUrlByAgeLowerBound(document.productListDispatcher, document.ageLowerBound,
+                document.offset,
+                document.productsPerPage,
+                document.categoryid);
+        }
+
     </script>
     <script type="text/javascript">
         function loadProductsByOrder(orderBy) {
+            document.flag = 1;
             document.offset = 0;
             document.working = false;
+            document.orderBy = orderBy;
             document.webUrl = getUrlByProductsOrder(document.productListDispatcher,
                 orderBy, document.offset,
                 document.productsPerPage,
@@ -67,8 +94,13 @@ $recordsPerPage = RECORDS_PER_PAGE;
         function loadByAge(age) {
 
             document.offset = 0;
+            document.flag = 2;
             document.working = false;
-            document.webUrl = getUrlByAgeLowerBound(document.productListDispatcher, age, document.offset, document.productsPerPage, document.categoryid);
+            document.ageLowerBound = age;
+            document.webUrl = getUrlByAgeLowerBound(document.productListDispatcher, age,
+                document.offset,
+                document.productsPerPage,
+                document.categoryid);
             loadProducts();
 
         }
@@ -78,8 +110,10 @@ $recordsPerPage = RECORDS_PER_PAGE;
 
     <script type="text/javascript">
         window.onload = function () {
+            calculateGeneralUrl();
             loadProducts();
             clearItForm.reset();
+
             loadCategories();
 
         }

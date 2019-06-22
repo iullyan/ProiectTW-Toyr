@@ -10,8 +10,9 @@
     <link rel="stylesheet" type="text/css" href="../css/optionsPanel.css">
     <link rel="stylesheet" type="text/css" href="../css/inputsAndTextAreas.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/formGenerator.js"></script>
-    <script type="text/javascript" src="../jquery/sendForm.js"></script>
+
+    <script type="text/javascript" src="../js/formGenerator.js" async></script>
+    <script type="text/javascript" src="../jquery/sendForm.js" async></script>
 
 
 

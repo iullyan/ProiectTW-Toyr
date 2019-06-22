@@ -12,7 +12,7 @@ define('WEB_CONST_URL_PART_USERS', 'http://localhost:'. WEB_USERS_MANAGEMENT_POR
 
 //Number of products for RSS feeds
 define('RSS_FEED_NR_OF_PRODUCTS', 100);
-define('RECORDS_PER_PAGE', 10);
+define('RECORDS_PER_PAGE', 6);
 
 //Product page
 define('PRODUCT_PAGE', 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/View/pages/product.php');

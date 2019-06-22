@@ -169,7 +169,7 @@ class QueryProductBuilder extends Model
     public function getProductsByMinimumAge($ageLowerBound, $offset, $recordsPerPage, $categoryId)
     {
 
-        $sql = "SELECT * FROM products WHERE ? >= age_lower_bound";
+        $sql = "SELECT * FROM products WHERE age_lower_bound >= ?";
         if (isset($categoryId)){
             $sql .= " and category_id = ? ORDER BY created_at DESC, nr_sold LIMIT ?,?";
             $query = $this->getConnection()->prepare($sql);

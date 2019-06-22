@@ -21,9 +21,9 @@ function addProductForm(dispatcherUrl) {
     var age = '<label for="age">Vârsta minimă</label>' +
         '<input  id="age" type="text"  name="minimumAge" alt="" >';
 
-    var submit = '<button class="usableButton">Adaugă</button>';
-    form += productName + description + price + stoc + category + age + image + submit + "</form>";
-    document.getElementsByClassName("main")[0].innerHTML = form;
+    var submit = '<button name="submit" class="usableButton" id="submitBtn" >Adauga</button>' ;
+    form += productName + description + price + stoc + category + age + image +  submit  +"</form>"   ;
+    $(".main").html(form);
 }
 
 
