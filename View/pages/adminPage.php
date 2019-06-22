@@ -7,8 +7,9 @@
     <link rel="stylesheet" type="text/css" href="../css/usableButton.css">
     <link rel="stylesheet" type="text/css" href="../css/adminPage.css">
     <link rel="stylesheet" type="text/css" href="../css/optionsPanel.css">
+    <link rel="stylesheet" type="text/css" href="../css/inputsAndTextAreas.css">
 
-
+    <script type="text/javascript" src="../js/formGenerator.js"></script>
     <title>Toyr - Admin</title>
 
 </head>
@@ -56,9 +57,8 @@
         <button class="collapsible">Administrează produse</button>
         <div class="content">
             <div class="options">
-                <button>Adaugă produs</button>
-                <button>Actualizează produs</button>
-                <button>Șterge Produs</button>
+                <button onclick="addProductForm()">Adaugă produs</button>
+                <button onclick="deleteProduct()">Șterge Produs</button>
             </div>
 
         </div>
@@ -66,10 +66,10 @@
         <button class="collapsible">Administrează oferte speciale</button>
         <div class="content">
             <div class="options">
-                <button>Adaugă discount</button>
-                <button>ȘtergeDiscount</button>
-                <button>Adaugă promoție</button>
-                <button>Șterge promoție</button>
+                <button onclick="addDiscount()">Adaugă discount</button>
+                <button onclick="deleteDiscount()">ȘtergeDiscount</button>
+                <button onclick="addPromotion()">Adaugă promoție</button>
+                <button onclick="deletePromotion()">Șterge promoție</button>
             </div>
 
 
@@ -78,9 +78,9 @@
         <button class="collapsible">Administrează evenimente</button>
         <div class="content">
             <div class="options">
-                <button>Creează eveniment</button>
-                <button>Adaugă produse la eveniment</button>
-                <button>Șterge eveniment</button>
+                <button onclick="addEvent()">Creează eveniment</button>
+                <button onclick="addProductToEvent()">Adaugă produse la eveniment</button>
+                <button onclick="deleteEvent()">Șterge eveniment</button>
             </div>
 
         </div>
