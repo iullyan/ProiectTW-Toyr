@@ -1,4 +1,4 @@
-<?php session_start() ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="ro">
 
@@ -75,7 +75,54 @@
 </header>
 
 
-<div id="demo"></div>
+<div class="middle" style="background-color:white; margin-top: 2%; margin-left: 15%; margin-right: 15%;border-radius: 20px ;">
+    <table style="border: 0px; margin: auto; width: 60%;">
+        <?php
+            //if the cart has items, get the arrays with the items
+            if (isset($_COOKIE['cartIds']) && isset($_COOKIE['cartNames']) && isset($_COOKIE['productPrice'])) {
+                $productIds = unserialize($_COOKIE['cartIds']);
+                $productNames = unserialize($_COOKIE['cartNames']);
+                $productPrices = unserialize($_COOKIE['productPrice']);
+
+                $subtotal = (float)0;
+
+                for ($i = 0; $i <= array_key_last($productIds); $i++) {
+                    if (isset($productIds[$i])) {
+                        echo '<tr>';
+                        echo '<td>';
+                        echo $productNames[$i];
+                        echo '</td>';
+                        echo '<td>';
+                        echo $productPrices[$i];
+                        echo '</td>';
+                        echo '<td>';
+                        echo '<a href="../../Controller/Dispatcher/removeFromCart.php?itemId=' . $i . '">șterge</a>';
+                        echo '</td>';
+                        echo '</tr>';
+                        $subtotal += (float)$productPrices[$i];
+                    }
+                }
+
+                echo '<tr>';
+                echo '<td>';
+                echo '<hr>';
+                echo '</td>';
+                echo '<td>';
+                echo '<hr>';
+                echo '</td>';
+                echo '</tr>';
+                echo '<tr>';
+                echo '<td>';
+                echo 'SUBTOTAL';
+                echo '</td>';
+                echo '<td>';
+                echo $subtotal;
+                echo '</td>';
+                echo '</tr>';
+            }
+        ?>
+    </table>
+</div>
 
 </body>
 </html>
