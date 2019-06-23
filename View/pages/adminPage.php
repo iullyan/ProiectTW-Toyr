@@ -22,40 +22,40 @@
 
 
 <body class="grid-container">
-<header >
-    <nav id="functionality">
-        <ul>
-            <li class="account">
-                <button class="usableButton">Categorii</button>
-            </li>
-        </ul>
-    </nav>
+<header>
     <div id="logo">
-        <h1><a href="../../index.php" style="text-decoration: none; color: inherit;">Toyr.ro</a></h1>
+        <a href="../../index.php"><h1> Toyr.ro </h1></a>
     </div>
-    <div id="searchContainer">
-        <form action="Cautare.php">
-            <input type="text" placeholder="Caută jucării..." name="searchBar" value="">
-            <button type="submit" id="searchButton"> Caută</button>
-        </form>
+    <div id="banner">
+        <img src="../../Resources/websiteImages/banner.png" style="width:400px; height:100px" alt="">
     </div>
     <nav id="functionality">
         <ul>
             <li class="account">
-                <button class="accountButton usableButton">Contul meu</button>
+                <button class="usableButton">Contul meu</button>
                 <div class="accountOptions">
-                    <a href="login.php">Login</a>
-                    <a href="register.php">Register</a>
+                    <div id="hello"></div>
+                    <div id="unregistered">
+                        <a class="usableButton" href="View/pages/login.php">Login</a>
+                        <a class="usableButton" href="View/pages/register.php">Register</a>
+                    </div>
+                    <div id="admin">
+                        <a class="usableButton" href="View/pages/adminPage.php">admin</a>
+                    </div>
+                    <div id="customer">
+                        <a class="usableButton" href="View/pages/adminPage.php">my account</a>
+                        <a class="usableButton" href="View/pages/adminPage.php">logout</a>
+                    </div>
                 </div>
             </li>
             <li>
-                <input type="button" class="orderButton usableButton" value="Coșul meu"
-                       onclick="window.location.href='payment.html'"/>
-
+                <input type="button" class="usableButton" value="Coșul meu"
+                       onclick="window.location.href='View/pages/payment.php'"/>
             </li>
 
         </ul>
     </nav>
+</header>
 </header>
 
 <section class="left">

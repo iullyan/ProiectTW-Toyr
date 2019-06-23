@@ -56,18 +56,7 @@
 }
 
 
-header{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  grid-row: 1/ span 1;
-  grid-column: 1/ span 6;
-  background: #35424a;
-  color: #ffffff;
-  padding: 0;
-  justify-content: center;
-  grid-area: header;
-}
+
 
 /* Style the footer */
 footer {
@@ -164,16 +153,4 @@ body{
   border-radius: 5px;
   padding: 10px;
   display: block;
-}
-header{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  grid-row: 1/ span 1;
-  grid-column: 1/ span 4;
-  background: #35424a;
-  color: #ffffff;
-  padding: 0;
-  justify-content: space-evenly;
-  grid-area: header;
 }
