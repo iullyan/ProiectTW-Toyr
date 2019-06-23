@@ -118,6 +118,11 @@
                 echo '<td>';
                 echo $subtotal;
                 echo '</td>';
+                if($subtotal > 0){
+                    echo '<td>';
+                    echo '<a href="./payment.php">Plaseaza comanda</a>';
+                    echo '</td>';
+                }
                 echo '</tr>';
             }
         ?>
