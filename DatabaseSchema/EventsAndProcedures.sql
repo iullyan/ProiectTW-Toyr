@@ -10,8 +10,8 @@ CREATE EVENT IF NOT EXISTS `deleteSpecialOffers`
 DELIMITER //
 CREATE PROCEDURE  DeleteSpecialOffers()
 BEGIN
-    delete from promotions where valid_from < CURRENT_TIMESTAMP AND  valid_until < CURRENT_TIMESTAMP;
-    delete from special_event where starting_date < CURRENT_TIMESTAMP AND ending_date < CURRENT_TIMESTAMP;
-    delete from discounts   where valid_from < CURRENT_TIMESTAMP AND  valid_until < CURRENT_TIMESTAMP;
+    delete from promotions where  valid_from < CURRENT_TIMESTAMP AND CURRENT_TIMESTAMP > valid_until;
+    delete from special_event where starting_date < CURRENT_TIMESTAMP AND CURRENT_TIMESTAMP > ending_date;
+    delete from discounts   where valid_from < CURRENT_TIMESTAMP AND CURRENT_TIMESTAMP > valid_until;
 END //
 DELIMITER ;
