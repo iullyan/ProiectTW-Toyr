@@ -21,8 +21,6 @@ session_start()
         document.productMngService = "<?php echo WEB_CONST_URL_PART; ?>";
         document.categoriesUrl = getUrlForCategories(document.productMngService);
         document.productListPage= "<?php echo PRODUCT_LIST_PAGE; ?>";
-
-
         document.rssFeedNewProducts = "<?php echo NEWEST_PRODUCTS; ?>";
         document.rssMostSoldProducts = "<?php echo MOST_SOLD_PRODUCTS; ?>";
         document.rssSpecialOffers = "<?php echo SPECIAL_OFFERS; ?>";
@@ -68,7 +66,7 @@ session_start()
             admin.style.display = "none";
             hello.innerHTML = "<center> Salut, " + firstname + "</center>";
         }
-        else if(userType == "admin") {
+        else if(userType === "admin") {
             unregistered.style.display = "none";
             hello.innerHTML = "<center> Salut, " + firstname + "</center>";
         }

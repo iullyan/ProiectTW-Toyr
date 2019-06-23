@@ -12,10 +12,11 @@ $eventInformation = json_decode(file_get_contents("php://input"));
 if (
     !empty($name = $eventInformation->name) &&
     !empty($startingDate = $eventInformation->startingDate) &&
-    !empty($endingDate = $eventInformation->endingDate)
+    !empty($endingDate = $eventInformation->endingDate) &&
+    !empty($image = $eventInformation->image)
 )
 {
-    if ($event->addSpecialEvent($name, $startingDate, $endingDate ))
+    if ($event->addSpecialEvent($name, $startingDate, $endingDate, $image ))
     {
         // set response code - 201 created
         http_response_code(201);

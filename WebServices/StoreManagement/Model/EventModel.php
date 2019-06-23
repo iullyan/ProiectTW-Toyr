@@ -4,15 +4,16 @@ require_once 'Model.php';
 
 class EventModel extends Model
 {
-    public function addSpecialEvent($name, $startingDate, $endintDate)
+    public function addSpecialEvent($name, $startingDate, $endintDate, $image)
     {
-        $sql = "INSERT INTO special_event (name, starting_date, ending_date) 
-                    values (:eventName, :starting_date, :ending_date )";
+        $sql = "INSERT INTO special_event (name, starting_date, ending_date, image) 
+                    values (:eventName, :starting_date, :ending_date, :image )";
 
         $query = $this->getConnection()-> prepare($sql);
         $parameters = array(':eventName' => $name,
             ':starting_date' => $startingDate,
-            ':ending_date' => $endintDate);
+            ':ending_date' => $endintDate,
+            ':image' => $image);
         if(! $query->execute($parameters))
             return false;
         return $this->getConnection()->lastInsertId();

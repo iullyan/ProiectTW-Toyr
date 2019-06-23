@@ -24,8 +24,8 @@ if (
         $object->name = $name;
         $object->startingDate = $startingDate;
         $object->endingDate = $endingDate;
+        $object->image = $imageName;
         $JSONData = json_encode($object);
-
         $webService = new CallWebService();
         $url = WEB_CONST_URL_PART . 'Event/createEvent.php';
         $response = $webService->doPost($url, $JSONData);
