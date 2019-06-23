@@ -33,6 +33,8 @@ async function promotions(out, webServiceUrl) {   //Verifică dacă nu există c
     return aux;
 }
 
+
+
 function construction(out, webServiceUrl) {   //literalmente constructia paginii
     promotions(out, webServiceUrl).then(function(result){ document.getElementById("promotions").innerHTML= result;});
     return `<div class="middle" style="background-color:white; margin-top: 2%; margin-left: 15%; margin-right: 15%;border-radius: 20px ;">
