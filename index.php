@@ -10,6 +10,8 @@ session_start()
     <meta name="viewport" content="width=device-width">
     <title>Toyr - Bine ați venit !</title>
     <link rel="stylesheet" type="text/css" href="View/css/index.css">
+    <link rel="stylesheet" type="text/css" href="View/css/headerElements.css">
+
     <link rel="stylesheet" type="text/css" href="View/css/category.css">
     <link rel="stylesheet" type="text/css" href="View/css/productUI.css">
     <link rel="stylesheet" type="text/css" href="View/css/usableButton.css">
@@ -81,13 +83,10 @@ session_start()
 <div class="grid-container">
     <header>
         <div id="logo">
-            <h1> Toyr.ro </h1>
+            <a href="index.php"><h1> Toyr.ro </h1></a>
         </div>
-        <div id="searchContainer">
-            <form action="Cautare.php">
-                <input type="text" placeholder="Caută jucării..." name="productSearch">
-                <button type="submit" id="searchButton"> Caută</button>
-            </form>
+        <div id="banner">
+            <img src="Resources/websiteImages/banner.png" style="width:400px; height:100px" alt="">
         </div>
         <nav id="functionality">
             <ul>

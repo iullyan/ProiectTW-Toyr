@@ -1,89 +1,62 @@
 ﻿<!DOCTYPE html>
 <html lang="ro">
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" type="text/css" href="../css/index.css">
-        <link rel="stylesheet" type="text/css" href="../css/usableButton.css">
-        <title>Toyr - Produs</title>
-        <style>
-        #container {
-        overflow: hidden;
-        width: 100%;
-        }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="../css/headerElements.css">
+    <link rel="stylesheet" type="text/css" href="../css/productPage.css">
 
-        #inner {
-        overflow: hidden;
-        }
-
-        .buton { /*Stilul butonului de la finalul paginii*/
-            background-color: rgb(201, 0, 0);
-            color: white;
-            padding: 12px;
-            margin: 1px 0;
-            border: none;
-            width: 20%;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 17px;
-            float:right;
-        }
-        .buton:hover {
-            background-color: rgb(156, 0, 0);
-        }
-
-        .image {
-        width: 100%; /* Image container is now full-width */
-            }
-
-        .image img {
-            margin: 40px auto; /* "auto" will center block elements */
-            display: block; /* Set images to be "block" so they obey our auto margin */
-            }
-        </style>
-
-    </head>
+    <link rel="stylesheet" type="text/css" href="../css/usableButton.css">
+    <title>Toyr - Produs</title>
 
 
-    <?php
-        require_once '../../Config/config.php'; $productId = $_GET['productId'];
-        $urlBase = WEB_CONST_URL_PART . 'Product/';
-    ?>
-    <body onload="load('<?php echo $productId;?>', '<?php echo $urlBase; ?>')" >
-            <header>
-                <nav id="functionality">
+</head>
 
-                  </nav>
-                    <div id="logo">
-                      <h1><a href="../../index.php" style="text-decoration: none; color: inherit;">Toyr.ro</a></h1>
+
+<?php
+require_once '../../Config/config.php';
+$productId = $_GET['productId'];
+$urlBase = WEB_CONST_URL_PART . 'Product/';
+?>
+<body onload="load('<?php echo $productId; ?>', '<?php echo $urlBase; ?>')">
+<header>
+    <div id="logo">
+        <a href="../../index.php"><h1> Toyr.ro </h1></a>
+    </div>
+    <div id="banner">
+        <img src="../../Resources/websiteImages/banner.png" style="width:400px; height:100px" alt="">
+    </div>
+    <nav id="functionality">
+        <ul>
+            <li class="account">
+                <button class="usableButton">Contul meu</button>
+                <div class="accountOptions">
+                    <div id="hello"></div>
+                    <div id="unregistered">
+                        <a class="usableButton" href="View/pages/login.php">Login</a>
+                        <a class="usableButton" href="View/pages/register.php">Register</a>
                     </div>
-                    <div id="searchContainer">
-                      <form action="Cautare.php">
-                        <input type="text" placeholder="Caută jucării..." name="searchBar" value="">
-                        <button type="submit" id="searchButton"> Caută </button>
-                      </form>
+                    <div id="admin">
+                        <a class="usableButton" href="View/pages/adminPage.php">admin</a>
                     </div>
-                    <nav id="functionality">
-                        <ul>
-                          <li class="account">
-                            <button class="usableButton">Contul meu</button>
-                            <div class="accountOptions">
-                              <a href="login.php" class="usableButton">Login</a>
-                              <a href="register.php" class="usableButton">Register</a>
-                            </div>
-                          </li>
-                          <li>
-                            <input type="button" class="usableButton" value="Coșul meu" onclick="window.location.href='payment.html'" />
+                    <div id="customer">
+                        <a class="usableButton" href="View/pages/adminPage.php">my account</a>
+                        <a class="usableButton" href="View/pages/adminPage.php">logout</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <input type="button" class="usableButton" value="Coșul meu"
+                       onclick="window.location.href='View/pages/payment.php'"/>
+            </li>
 
-                          </li>
-
-                        </ul>
-                    </nav>
-                </header>
+        </ul>
+    </nav>
+</header>
 
 
-                    <div id="demo" ></div>
-            <script type="text/javascript" src="../js/product.js"> </script>
-    </body>
+<div id="demo"></div>
+<script type="text/javascript" src="../js/product.js"></script>
+</body>
 </html>

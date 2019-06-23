@@ -27,6 +27,7 @@ $recordsPerPage = RECORDS_PER_PAGE;
     <link rel="stylesheet" type="text/css" href="../css/productList.css">
     <link rel="stylesheet" type="text/css" href="../css/filterOptions.css">
     <link rel="stylesheet" type="text/css" href="../css/dropDown.css">
+    <link rel="stylesheet" type="text/css" href="../css/headerElements.css">
 
 
     <script type="text/javascript" src="../jquery/category.js"></script>
@@ -124,29 +125,34 @@ $recordsPerPage = RECORDS_PER_PAGE;
 <body>
 <div class="grid-container">
     <header>
-
         <div id="logo">
             <a href="../../index.php"><h1> Toyr.ro </h1></a>
         </div>
-        <div id="searchContainer">
-            <form action="Cautare.php">
-                <input type="text" placeholder="Caută jucării..." name="productSearch">
-                <button type="submit" id="searchButton"> Caută</button>
-            </form>
+        <div id="banner">
+            <img src="../../Resources/websiteImages/banner.png" style="width:400px; height:100px" alt="">
         </div>
         <nav id="functionality">
             <ul>
                 <li class="account">
                     <button class="usableButton">Contul meu</button>
                     <div class="accountOptions">
-                        <a class="usableButton" href="View/pages/login.html">Login</a>
-                        <a class="usableButton" href="View/pages/register.html">Register</a>
-                        <a class="usableButton" href="View/pages/adminPage.php">admin</a>
+                        <div id="hello"></div>
+                        <div id="unregistered">
+                            <a class="usableButton" href="View/pages/login.php">Login</a>
+                            <a class="usableButton" href="View/pages/register.php">Register</a>
+                        </div>
+                        <div id="admin">
+                            <a class="usableButton" href="View/pages/adminPage.php">admin</a>
+                        </div>
+                        <div id="customer">
+                            <a class="usableButton" href="View/pages/adminPage.php">my account</a>
+                            <a class="usableButton" href="View/pages/adminPage.php">logout</a>
+                        </div>
                     </div>
                 </li>
                 <li>
                     <input type="button" class="usableButton" value="Coșul meu"
-                           onclick="window.location.href='payment.php'"/>
+                           onclick="window.location.href='View/pages/payment.php'"/>
                 </li>
 
             </ul>
