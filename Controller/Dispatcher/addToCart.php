@@ -5,10 +5,10 @@ $productNames = array();
 $productPrices = array();
 
 //get the name and id of the item added to cart
-if (isset($_POST['productId']) && isset($_POST['productName']) && isset($_POST['productPrice'])) {
-    $productId = $_POST['productId'];
-    $productName = $_POST['productName'];
-    $productPrice = $_POST['productPrice'];
+if (isset($_GET['productId']) && isset($_GET['productName']) && isset($_GET['productPrice'])) {
+    $productId = $_GET['productId'];
+    $productName = $_GET['productName'];
+    $productPrice = $_GET['productPrice'];
 }
 else
     die("Unspecified parameters");
@@ -26,6 +26,9 @@ array_push($productNames, $productName);
 array_push($productPrices, $productPrice);
 
 //add arrays back to cookies - WIP
+setcookie("cartIds", serialize($productIds), time()+30*24*60*60);
+setcookie("cartNames", serialize($productNames), time()+30*24*60*60);
+setcookie("productPrice", serialize($productPrices), time()+30*24*60*60);
 
 //small test for data
 print_r($productIds);

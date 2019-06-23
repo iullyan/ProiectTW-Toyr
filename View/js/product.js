@@ -38,7 +38,9 @@ function construction(out, webServiceUrl) {   //literalmente constructia paginii
     promotions(out, webServiceUrl).then(function (result) {
         document.getElementById("promotions").innerHTML = result;
     });
-    return `<div class="middle" style="background-color:white; margin-top: 2%; margin-left: 15%; margin-right: 15%;border-radius: 20px ;">
+    var link = `../../Controller/Dispatcher/addToCart.php?productId=` + out.record.product.id + `&productName=` + out.record.product.name + `&productPrice=` + out.record.product.price;
+    var text =  `<form action="` + link + `" method="post">
+                <div class="middle" style="background-color:white; margin-top: 2%; margin-left: 15%; margin-right: 15%;border-radius: 20px ;">
                 <div class="middle">
                     <div class="menu">
                         <span id="productTitle" >
@@ -70,8 +72,10 @@ function construction(out, webServiceUrl) {   //literalmente constructia paginii
                     
                 </div>
                 </div>
-            </div>`;
+            </div>
+            </form>`;
 
+    return text;
 }
 
 function load(productId, webServiceUrl) {
