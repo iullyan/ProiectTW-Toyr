@@ -103,7 +103,8 @@ class QueryProductBuilder extends Model
                 break;
             case 'promotion' :
                 if (isset($categoryId)) {
-                    $sql = $sqlProductData . " from products p JOIN  promotions p2 on p.id = p2.product_bought_id where p.category_id = ? LIMIT ?,?";
+                    $sql = $sqlProductData . " from products p LEFT JOIN  promotions p2 on p.id = p2.product_bought_id where p.category_id = ? 
+                    ORDER BY p2.product_units_bought DESC LIMIT ?,?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $categoryId, PDO::PARAM_INT);
                     $query->bindParam(2, $offset, PDO::PARAM_INT);

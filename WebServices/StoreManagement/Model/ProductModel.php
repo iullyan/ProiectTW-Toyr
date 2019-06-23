@@ -89,7 +89,7 @@ class ProductModel extends Model
 
     public function getProductDiscount($productId)
     {
-        $sql = "SELECT * FROM discounts WHERE product_id = :productId AND current_timestamp between valid_from and valid_until";
+        $sql = "SELECT * FROM discounts WHERE product_id = :productId ";
         $query = $this->getConnection()->prepare($sql);
         $parameters = array(':productId' => $productId);
         $query->execute($parameters);
@@ -99,7 +99,7 @@ class ProductModel extends Model
 
     function getProductPromotions($productId)
     {
-        $sql = "SELECT * FROM promotions WHERE product_bought_id = :productId AND current_timestamp between valid_from and valid_until";
+        $sql = "SELECT * FROM promotions WHERE product_bought_id = :productId ";
         $query = $this->getConnection()->prepare($sql);
         $parameters = array(':productId' => $productId);
         $query->execute($parameters);
