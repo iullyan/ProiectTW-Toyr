@@ -20,7 +20,7 @@ if (
         http_response_code(201);
 
         // tell the user
-        echo json_encode(array("message" => "Product was added to event."));
+        echo json_encode(array("Message" => "Product was added to event."));
     } // if unable to create the product, tell the user
     else {
 
@@ -28,7 +28,7 @@ if (
         http_response_code(503);
 
         // tell the user
-        echo json_encode(array("message" => "Unable to add product to event."));
+        echo json_encode(array("Message" => "Unable to add product to event."));
     }
 } // tell the user data is incomplete
 else {
@@ -37,5 +37,5 @@ else {
     http_response_code(400);
 
     // tell the user
-    echo json_encode(array("message" => "Unable to add product event. Input data is incomplete."));
+    echo json_encode(array("Message" => "Unable to add product event. Input data is incomplete."));
 }

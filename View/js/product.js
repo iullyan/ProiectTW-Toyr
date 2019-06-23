@@ -1,10 +1,6 @@
 function discounts(out) {   //Calculeaza prețul în funcție de discount(dacă există)
-    var date = new Date().toLocaleString("ro-RO", {timeZone: "Europe/Bucharest"});
-    if (out.record.discount === false)
-        return `${out.record.product.price}`;
-    var valf = new Date(out.record.discount.valid_from); //ia datele din baza de date
-    var valu = new Date(out.record.discount.valid_until);
-    if (valf < date && date < valu)
+
+if(out.record.discount)
         return `<strike style="font-size: 50%">${out.record.product.price} Lei</strike>${out.record.discount.price_with_discount}`;
     else
         return `${out.record.product.price}`;
@@ -29,7 +25,7 @@ async function promotions(out, webServiceUrl) {   //Verifică dacă nu există c
             var response = await fetch(url2);
             var json = await response.json();
 
-            aux +=`<a href=product.php?productId=${result[i].gifted_product_id} >${json.record.product.name}</a>`+ '</p>'; // concatenam si numele
+            aux +=`<a style="text-decoration: none; " href=product.php?productId=${result[i].gifted_product_id} ><h4>${json.record.product.name}</a>`+ '</p>'; // concatenam si numele
         }
     }
 
@@ -50,7 +46,7 @@ function construction(out, webServiceUrl) {   //literalmente constructia paginii
                                 <div id="inner">
                                         
                                         <input type="submit" value="Adăugați în coș" class="buton" style="float:right;margin-right: 2%">
-                                        <img src="../../Resources/productImages/${out.record.product.image}.jpg" width="300" height="300" alt="" style="margin-left: 2%;margin-right: 2%;border-radius: 20px ;overflow: hidden;float: left;">
+                                        <img src="../../Resources/productImages/${out.record.product.image}" width="300" height="300" alt="" style="margin-left: 2%;margin-right: 2%;border-radius: 20px ;overflow: hidden;float: left;">
 
                                 </div>
                             </div>

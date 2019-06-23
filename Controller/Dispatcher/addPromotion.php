@@ -2,21 +2,16 @@
 
 require_once '../Utils/CallWebService.php';
 require_once '../../Config/config.php';
-header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: access");
-header("Access-Control-Allow-Methods: POST");
-header("Access-Control-Allow-Credentials: true");
 
+$operationMessage = "";
 if(
-    isset($_POST['boughtProductId']) &&
-    isset($_POST['giftedProductId']) &&
-    isset($_POST['productUnitsBought']) &&
-    isset($_POST['giftedProductQuantity']) &&
-    isset($_POST['validFrom']) &&
-    isset($_POST['validUntil'])
-)
-{
+    !empty($_POST['boughtProductId']) &&
+    !empty($_POST['giftedProductId']) &&
+    !empty($_POST['productUnitsBought']) &&
+    !empty($_POST['giftedProductQuantity']) &&
+    !empty($_POST['validFrom']) &&
+    !empty($_POST['validUntil'])
+) {
     $boughtProductId = htmlentities($_POST['boughtProductId']);
     $giftedProductId = htmlentities($_POST['giftedProductId']);
     $productUnitsBought = htmlentities($_POST['productUnitsBought']);
@@ -25,8 +20,8 @@ if(
     $validUntil = htmlentities($_POST['validUntil']);
 
     //Build the Json object
-    $object = null;
-    $object->boughtProductId  = $boughtProductId;
+    $object = new stdClass();
+    $object->boughtProductId = $boughtProductId;
     $object->giftedProductId = $giftedProductId;
     $object->productUnitsBought = $productUnitsBought;
     $object->giftedProductQuantity = $giftedProductQuantity;
@@ -39,7 +34,9 @@ if(
     $url = WEB_CONST_URL_PART . 'Promotion/addPromotion.php';
     $response = $webService->doPost($url, $JSONData);
 
-    echo $response;
-}else
-    echo json_encode(array("Message" => "Unspecified parameters"));
+    $operationMessage = $response->Message;
+} else
+    $operationMessage = "Unable to create promotion. Input data is incomplete";
+
+echo '<p style="text-align:center;font-size: 25px;" class="centered">Mesajul operației: ' . $operationMessage . ' </p>';
 

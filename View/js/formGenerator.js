@@ -73,15 +73,15 @@ function deleteDiscount(dispatcherUrl) {
 
 function  addPromotion(dispatcherUrl) {
 
-    var form = '<form method="post" action="' + dispatcherUrl + '">';
+    var form = '<form method="post"  action="' + dispatcherUrl + '">';
     var product = '<label for="product">Id-ul produsului pentru promoție</label>' +
-        '<input id="product" type="text" name="productId" >';
+        '<input id="product" type="text" name="boughtProductId" >';
 
     var productUnitsBought = '<label for="productUnitsBought">Numărul de produse cumpărate</label>' +
         '<input id="productUnitsBought" type="text" name="productUnitsBought" >';
 
-    var gift = '<label for="product">Id-ul sau numele produsului ofertit cadou</label>' +
-        '<input id="product" type="text" name="productId" >';
+    var gift = '<label for="product">Id-ul produsului ofertit cadou</label>' +
+        '<input id="product" type="text" name="giftedProductId" >';
 
     var giftQuantity = '<label for="giftedProductQuantity">Numărul de produse oferite cadou</label>' +
         '<input id="giftedProductQuantity" type="text" name="giftedProductQuantity" >';
@@ -112,7 +112,7 @@ function deletePromotion(dispatcherUrl) {
 
 function addEvent(dispatcherUrl) {
 
-    var form = '<form method="post" action="' + dispatcherUrl + '">';
+    var form = '<form enctype="multipart/form-data"  method="post" action="' + dispatcherUrl + '">';
 
     var event = '<label for="event">Numele evenimentului</label>' +
         '<input id="event" type="text" name="name" >';
@@ -121,10 +121,13 @@ function addEvent(dispatcherUrl) {
         '<input id="validFrom" type="datetime-local" name="startingDate">';
 
     var validUntil = '<label for="validUntil">Data de terminare</label>' +
-        '<input id="validUntil" type="datetime-local" name="EndingDate">';
+        '<input id="validUntil" type="datetime-local" name="endingDate">';
+
+    var image = '<label for="productImage">Selectați o imagine</label>' +
+        '<input  id="productImage" type="file"  name="image" alt="" >';
 
     var submit = '<button class="usableButton">Creeză eveniment </button>';
-    form += event + validFrom + validUntil  + submit + "</form>";
+    form += event + validFrom + validUntil  + image + submit + "</form>";
     document.getElementsByClassName("main")[0].innerHTML = form;
 
 }
@@ -132,7 +135,7 @@ function addEvent(dispatcherUrl) {
 function addProductToEvent(dispatcherUrl) {
 
     var form = '<form method="post" action="' + dispatcherUrl + '">';
-    var product = '<label for="product">Id-ul produsului pentru care se dorește eliminată promoția</label>' +
+    var product = '<label for="product">Id-ul produsului</label>' +
         '<input id="product" type="text" name="productId" >';
 
     var event = '<label for="event">Id-ul evenimentului </label>' +

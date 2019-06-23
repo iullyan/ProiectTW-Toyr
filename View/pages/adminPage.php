@@ -72,9 +72,9 @@
         <button class="collapsible">Administrează oferte speciale</button>
         <div class="content">
             <div class="options">
-                <button onclick="addDiscount()">Adaugă discount</button>
+                <button onclick="addDiscount('<?php echo ADD_DISCOUNT_DISPATCHER; ?>')">Adaugă discount</button>
                 <button onclick="deleteDiscount()">ȘtergeDiscount</button>
-                <button onclick="addPromotion()">Adaugă promoție</button>
+                <button onclick="addPromotion('<?php echo ADD_PROMOTION_DISPATCHER; ?>')">Adaugă promoție</button>
                 <button onclick="deletePromotion()">Șterge promoție</button>
             </div>
 
@@ -84,8 +84,8 @@
         <button class="collapsible">Administrează evenimente</button>
         <div class="content">
             <div class="options">
-                <button onclick="addEvent()">Creează eveniment</button>
-                <button onclick="addProductToEvent()">Adaugă produse la eveniment</button>
+                <button onclick="addEvent('<?php echo ADD_EVENT_DISPATCHER; ?>')">Creează eveniment</button>
+                <button onclick="addProductToEvent('<?php echo ADD_PRODUCT_TO_EVENT_DISPATCHER; ?>')">Adaugă produse la eveniment</button>
                 <button onclick="deleteEvent()">Șterge eveniment</button>
             </div>
 

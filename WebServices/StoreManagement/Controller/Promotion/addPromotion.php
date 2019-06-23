@@ -27,7 +27,7 @@ if (
         http_response_code(201);
 
         // tell the user
-        echo json_encode(array("message" => "Promotion was created."));
+        echo json_encode(array("Message" => "Promotion was created."));
     } // if unable to create the product, tell the user
     else {
 
@@ -35,7 +35,7 @@ if (
         http_response_code(503);
 
         // tell the user
-        echo json_encode(array("message" => "Unable to create promotion."));
+        echo json_encode(array("Message" => "Unable to create promotion."));
     }
 } // tell the user data is incomplete
 else {
@@ -44,5 +44,5 @@ else {
     http_response_code(400);
 
     // tell the user
-    echo json_encode(array("message" => "Unable to create promotion. Input data is incomplete."));
+    echo json_encode(array("Message" => "Unable to create promotion. Input data is incomplete."));
 }

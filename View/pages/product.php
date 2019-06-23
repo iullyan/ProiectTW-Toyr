@@ -53,26 +53,7 @@
     <body onload="load('<?php echo $productId;?>', '<?php echo $urlBase; ?>')" >
             <header>
                 <nav id="functionality">
-                      <ul>
-                        <li class="account">
-                          <button class="usableButton">Categorii</button>
-                          <div class="accountOptions" style="width: 175px; max-height: 315px; overflow:auto;">
-                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Jocuri și puzzle-uri</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Educaționale</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Figurine</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Vehicule</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Modele telghidate</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Păpuși</a>
-                            <a href="productList.php" style="font-size: 13px" class="spacingDropdown; usableButton">Plușuri</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Creativitate</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Jucării din lemn</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Exterior</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Lego</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Arme de jucărie</a>
-                            <a href="" style="font-size: 13px" class="spacingDropdown; usableButton">Hobby-uri și roleplay</a>
-                          </div>
-                        </li>
-                      </ul>
+
                   </nav>
                     <div id="logo">
                       <h1><a href="../../index.php" style="text-decoration: none; color: inherit;">Toyr.ro</a></h1>

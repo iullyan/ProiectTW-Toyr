@@ -56,4 +56,12 @@ define("PRODUCT_LIST_PAGE", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/View
 
 //Dispatchers
 define('ADD_PRODUCT_DISPATCHER', 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/Controller/Dispatcher/addProduct.php');
+define('ADD_DISCOUNT_DISPATCHER', 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/Controller/Dispatcher/addDiscount.php');
+define('ADD_PRODUCT_TO_EVENT_DISPATCHER', 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/Controller/Dispatcher/addProductToEvent.php');
+define('ADD_PROMOTION_DISPATCHER', 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/Controller/Dispatcher/addPromotion.php');
+define('ADD_EVENT_DISPATCHER', 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/Controller/Dispatcher/addEvent.php');
+
+
+
+
 define("PRODUCT_LIST_DISPATCHER", 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/Controller/Dispatcher/showProducts.php');

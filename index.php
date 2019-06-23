@@ -3,7 +3,7 @@ session_start()
 ?>
 
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -50,6 +50,8 @@ session_start()
         var userType = "<?php echo $_SESSION['user_type'] ?>";
         var firstname = "<?php echo $_SESSION['firstname'] ?>";
     }
+    </script>
+<script type="text/javascript">
 
     window.onload = function () {
 

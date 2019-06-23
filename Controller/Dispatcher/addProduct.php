@@ -1,23 +1,20 @@
+
 <?php
 
 require_once '../Utils/CallWebService.php';
 require_once '../../Config/config.php';
 require_once '../Utils/ImageUploader.php';
-header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: access");
-header("Access-Control-Allow-Methods: POST");
-header("Access-Control-Allow-Credentials: true");
 
 
+$operationMessage = "";
 $imageUploader = new ImageUploader();
 if(
-    isset($_POST['name']) &&
-    isset($_POST['price']) &&
-    isset($_POST['description']) &&
-    isset($_POST['categoryId']) &&
-    isset($_FILES['image']) &&
-    isset($_POST['unitsInStock'])
+    !empty($_POST['name']) &&
+    !empty($_POST['price']) &&
+    !empty($_POST['description']) &&
+    !empty($_POST['categoryId']) &&
+    !empty($_FILES['image']) &&
+    !empty($_POST['unitsInStock'])
 )
 {
     $name = htmlentities($_POST['name']);
@@ -46,11 +43,13 @@ if(
         $url = WEB_CONST_URL_PART . 'Product/addProduct.php';
         $response = $webService->doPost($url, $JSONData);
 
-        echo json_encode(array("Message" => $response));
-    }
-    else json_encode(array("Message" => $message));
-}else
-    echo json_encode(array("Message" => $name));
+        $operationMessage = $response->Message;
+    }else
+        $errMessage = "There is a problem with your uploaded file";
+}
+else
+    $operationMessage = "Unable to create product. Input data is incomplete";
+     echo '<p style="text-align:center;font-size: 25px;" class="centered">Mesajul operației: ' . $operationMessage . ' </p>';
 
 
 

@@ -21,7 +21,7 @@ if (
         http_response_code(201);
 
         // tell the user
-        echo json_encode(array("message" => "Discount was created."));
+        echo json_encode(array("Message" => "Discount was created."));
     } // if unable to create the product, tell the user
     else {
 
@@ -29,7 +29,7 @@ if (
         http_response_code(503);
 
         // tell the user
-        echo json_encode(array("message" => "Unable to create discount."));
+        echo json_encode(array("Message" => "Unable to create discount."));
     }
 } // tell the user data is incomplete
 else {
@@ -38,7 +38,7 @@ else {
     http_response_code(400);
 
     // tell the user
-    echo json_encode(array("message" => "Unable to create discount. Input data is incomplete."));
+    echo json_encode(array("Message" => "Unable to create discount. Input data is incomplete."));
 
 
 }
