@@ -1,4 +1,6 @@
-<?php require_once 'Config/config.php'; ?>
+<?php require_once 'Config/config.php';
+session_start()
+?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -42,11 +44,36 @@
 
 
 <script type="text/javascript">
+    var logged =  "<?php echo isset($_SESSION['id']) ?>";
+    if(logged) {
+        var username = "<?php echo $_SESSION['username'] ?>";
+        var userType = "<?php echo $_SESSION['user_type'] ?>";
+        var firstname = "<?php echo $_SESSION['firstname'] ?>";
+    }
+
     window.onload = function () {
 
         loadCategories();
         loadRssFeed("new");
 
+        var unregistered = document.getElementById("unregistered");
+        var admin = document.getElementById("admin");
+        var customer = document.getElementById("customer");
+        var hello = document.getElementById("hello");
+
+        if(logged) {
+            unregistered.style.display = "none";
+            admin.style.display = "none";
+            hello.innerHTML = "<center> Salut, " + firstname + "</center>";
+        }
+        else if(userType == "admin") {
+            unregistered.style.display = "none";
+            hello.innerHTML = "<center> Salut, " + firstname + "</center>";
+        }
+            else {
+                admin.style.display = "none";
+                customer.style.display = "none";
+           }
     }
 </script>
 
@@ -67,9 +94,18 @@
                 <li class="account">
                     <button class="usableButton">Contul meu</button>
                     <div class="accountOptions">
-                        <a class="usableButton" href="View/pages/login.php">Login</a>
-                        <a class="usableButton" href="View/pages/register.php">Register</a>
-                        <a class="usableButton" href="View/pages/adminPage.php">admin</a>
+                        <div id="hello"></div>
+                        <div id="unregistered">
+                            <a class="usableButton" href="View/pages/login.php">Login</a>
+                            <a class="usableButton" href="View/pages/register.php">Register</a>
+                        </div>
+                        <div id="admin">
+                            <a class="usableButton" href="View/pages/adminPage.php">admin</a>
+                        </div>
+                        <div id="customer">
+                            <a class="usableButton" href="View/pages/adminPage.php">my account</a>
+                            <a class="usableButton" href="View/pages/adminPage.php">logout</a>
+                        </div>
                     </div>
                 </li>
                 <li>

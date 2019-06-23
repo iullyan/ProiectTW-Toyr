@@ -27,7 +27,7 @@ if($passHash == $userData->password) {
     //create the session and add data to it
     session_start();
     $_SESSION['id'] = $userData->id;
-    $_SESSION['username'] = $userData->id;
+    $_SESSION['username'] = $userData->username;
     $_SESSION['firstname'] = $userData->firstname;
     $_SESSION['user_type'] = $userData->user_type;
     header('Location:' . INDEX_URL);
