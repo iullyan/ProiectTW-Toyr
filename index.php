@@ -48,9 +48,8 @@ session_start();
     var id = "<?php if(isset($_SESSION['id'])) echo $_SESSION['id']; else echo -1;?>";
 
     if(id > -1) {
-        var username = "<?php if(isset($_SESSION['username'])) echo $_SESSION['username']; else echo "NOT_SET"; ?>";
-        var userType = "<?php if(isset($_SESSION['user_type'])) echo $_SESSION['user_type']; else echo "NOT_SET";  ?>";
-        var firstname = "<?php if(isset($_SESSION['firstname'])) echo $_SESSION['firstname']; else echo "NOT_SET";  ?>";
+        var userType = "<?php if(isset($_SESSION['user_type'])) echo $_SESSION['user_type']; else echo 'NOT_SET';  ?>";
+        var firstname = "<?php if(isset($_SESSION['firstname'])) echo $_SESSION['firstname']; else echo 'NOT_SET';  ?>";
     }
 
     window.onload = function () {
@@ -58,20 +57,20 @@ session_start();
         loadCategories();
         loadRssFeed("new");
 
-                var unregistered = document.getElementById("unregistered");
-                var admin = document.getElementById("admin");
-                var customer = document.getElementById("customer");
-                var hello = document.getElementById("hello");
+        var unregistered = document.getElementById("unregistered");
+        var admin = document.getElementById("admin");
+        var customer = document.getElementById("customer");
+        var hello = document.getElementById("hello");
 
-                if(id > -1) {
-                    if(userType != "admin") admin.style.display = "none";;
-                    unregistered.style.display = "none";
-                    hello.innerHTML = "<center> Salut, " + firstname + "</center>";
-                }
-                    else {
-                        admin.style.display = "none";
-                        customer.style.display = "none";
-                   }
+        if(id > -1) {
+            if(userType != "admin") admin.style.display = "none";;
+            unregistered.style.display = "none";
+            hello.innerHTML = "<center> Salut, " + firstname + "</center>";
+        }
+        else {
+            admin.style.display = "none";
+            customer.style.display = "none";
+        }
     }
 </script>
 

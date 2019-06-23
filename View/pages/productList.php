@@ -10,7 +10,7 @@ if (isset($_GET['categoryId'])) {
 } else
     die('Unspecified category id');
 $recordsPerPage = RECORDS_PER_PAGE;
-
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -110,6 +110,14 @@ $recordsPerPage = RECORDS_PER_PAGE;
     </script>
 
     <script type="text/javascript">
+
+        var id = "<?php if(isset($_SESSION['id'])) echo $_SESSION['id']; else echo -1;?>";
+
+        if(id > -1) {
+            var userType = "<?php if(isset($_SESSION['user_type'])) echo $_SESSION['user_type']; else echo 'NOT_SET';  ?>";
+            var firstname = "<?php if(isset($_SESSION['firstname'])) echo $_SESSION['firstname']; else echo 'NOT_SET';  ?>";
+        }
+
         window.onload = function () {
             calculateGeneralUrl();
             loadProducts();
@@ -117,8 +125,25 @@ $recordsPerPage = RECORDS_PER_PAGE;
 
             loadCategories();
 
+            var unregistered = document.getElementById("unregistered");
+            var admin = document.getElementById("admin");
+            var customer = document.getElementById("customer");
+            var hello = document.getElementById("hello");
+
+            if(id > -1) {
+                if(userType != "admin") admin.style.display = "none";;
+                unregistered.style.display = "none";
+                hello.innerHTML = "<center> Salut, " + firstname + "</center>";
+            }
+            else {
+                admin.style.display = "none";
+                customer.style.display = "none";
+            }
+
         }
     </script>
+
+
     <script type="text/javascript" src="../jquery/productsList.js"></script>
 </head>
 
@@ -138,21 +163,21 @@ $recordsPerPage = RECORDS_PER_PAGE;
                     <div class="accountOptions">
                         <div id="hello"></div>
                         <div id="unregistered">
-                            <a class="usableButton" href="View/pages/login.php">Login</a>
-                            <a class="usableButton" href="View/pages/register.php">Register</a>
+                            <a  href="./login.php">Login</a>
+                            <a href="./register.php">Register</a>
                         </div>
                         <div id="admin">
-                            <a class="usableButton" href="View/pages/adminPage.php">admin</a>
+                            <a  href="./adminPage.php">admin</a>
                         </div>
                         <div id="customer">
-                            <a class="usableButton" href="View/pages/adminPage.php">my account</a>
-                            <a class="usableButton" href="View/pages/adminPage.php">logout</a>
+                            <a  href="./adminPage.php">my account</a>
+                            <a  href="../../Controller/Dispatcher/logout.php">logout</a>
                         </div>
                     </div>
                 </li>
                 <li>
                     <input type="button" class="usableButton" value="Coșul meu"
-                           onclick="window.location.href='View/pages/payment.php'"/>
+                           onclick="window.location.href='./cart.php'"/>
                 </li>
 
             </ul>
