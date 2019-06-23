@@ -205,8 +205,8 @@ session_start();
                 <form name="clearItForm">
                     <div class="options">
                         <?php for ($i = 1; $i < 15; $i++)
-                            echo '<label class="ageBoundsContainer">' . $i . '+' .
-                                '<input type="radio"  name="age"  value="' . $i . '"' . ' onclick="loadByAge(this.value)"></label>'; ?>
+                            echo '<label class="ageBoundsContainer">' . '<' . $i .
+                                '<input type="radio"  name="age"  value="' . $i . '"' . ' onclick="loadByAge(this.value)"></label><br>'; ?>
                     </div>
                 </form>
             </div>
