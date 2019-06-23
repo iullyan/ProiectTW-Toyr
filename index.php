@@ -44,6 +44,7 @@ session_start();
 <script type="text/javascript">
 
     var id = "<?php if(isset($_SESSION['id'])) echo $_SESSION['id']; else echo -1;?>";
+
     if(id > -1) {
         var username = "<?php if(isset($_SESSION['username'])) echo $_SESSION['username']; else echo "NOT_SET"; ?>";
         var userType = "<?php if(isset($_SESSION['user_type'])) echo $_SESSION['user_type']; else echo "NOT_SET";  ?>";
@@ -99,7 +100,7 @@ session_start();
                         </div>
                         <div id="customer">
                             <a class="usableButton" href="View/pages/adminPage.php">my account</a>
-                            <a class="usableButton" href="View/pages/adminPage.php">logout</a>
+                            <a class="usableButton" href="Controller/Dispatcher/logout.php">logout</a>
                         </div>
                     </div>
                 </li>
