@@ -1,6 +1,6 @@
 function discounts(out) {   //Calculeaza prețul în funcție de discount(dacă există)
 
-if(out.record.discount)
+    if (out.record.discount)
         return `<strike style="font-size: 60%">${out.record.product.price} Lei</strike> (-${out.record.discount.discount_percentage}%)<br>${out.record.discount.price_with_discount} `;
     else
         return `${out.record.product.price}`;
@@ -25,7 +25,7 @@ async function promotions(out, webServiceUrl) {   //Verifică dacă nu există c
             var response = await fetch(url2);
             var json = await response.json();
 
-            aux +=`<a style="text-decoration: none; " href=product.php?productId=${result[i].gifted_product_id} >${json.record.product.name}</a>`; // concatenam si numele
+            aux += `<a style="text-decoration: none; " href=product.php?productId=${result[i].gifted_product_id} >${json.record.product.name}</a>`; // concatenam si numele
         }
     }
     aux += "</div>";
@@ -34,9 +34,10 @@ async function promotions(out, webServiceUrl) {   //Verifică dacă nu există c
 }
 
 
-
 function construction(out, webServiceUrl) {   //literalmente constructia paginii
-    promotions(out, webServiceUrl).then(function(result){ document.getElementById("promotions").innerHTML= result;});
+    promotions(out, webServiceUrl).then(function (result) {
+        document.getElementById("promotions").innerHTML = result;
+    });
     return `<div class="middle" style="background-color:white; margin-top: 2%; margin-left: 15%; margin-right: 15%;border-radius: 20px ;">
                 <div class="middle">
                     <div class="menu">
@@ -49,9 +50,11 @@ function construction(out, webServiceUrl) {   //literalmente constructia paginii
                             <div id="container">
                                 <div id="inner">
                                         
-                                        <input style="margin-right: 20%" type="submit" value="Adăugați în coș" class="buton" style="float:right;margin-right: 2%">
-                                        <img style=" float:left; margin-left: 20%" src="../../Resources/productImages/${out.record.product.image}" width="300" height="300" alt="" style="margin-left: 2%;margin-right: 2%;border-radius: 20px ;overflow: hidden;float: left;">
-
+                                        <input style="margin-right: 20%; float:right;" type="submit" value="Adăugați în coș" class="buton" >
+                                        
+                                        <img style=" float:left; margin-left: 20%" src="../../Resources/productImages/${out.record.product.image}" 
+                                        width="300" height="300" alt="Nu exisă imagine pentru aces produs" style="margin-left: 2%;margin-right: 2%;border-radius: 20px ;overflow: hidden;float: left;">
+                                        <h3 style="margin-right: 20%;padding-top:10px; float:right;" >Produse in stoc: ${out.record.product.units_in_stock}</h3>
                                 </div>
                             </div>
                         </div>

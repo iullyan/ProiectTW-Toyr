@@ -136,7 +136,7 @@ function checkForNewPrice(newPrice, basePrice) {
 
 function createImageUrl(imageName) {
 
-    return '<img src="' +  document.imagesLocation + imageName + '"' + ' alt="">';
+    return '<img src="' +  document.imagesLocation + imageName + '"' + ' alt="' + document.imagesLocation + 'default.jpg">';
 }
 
 

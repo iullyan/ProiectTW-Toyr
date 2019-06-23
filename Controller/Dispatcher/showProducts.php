@@ -36,7 +36,7 @@ function checkForNewPrice($discount, $product)
 function createImageUrl($imageName)
 {
 
-    return '<img src="' . IMAGES_LOCATION . $imageName . '"' . ' alt="' . IMAGES_LOCATION. $imageName .  ' ">';
+    return '<img src="' . IMAGES_LOCATION . $imageName . '"' . ' alt="fara imagine">';
 
 }
 
