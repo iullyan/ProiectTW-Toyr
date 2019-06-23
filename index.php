@@ -1,5 +1,5 @@
 <?php require_once 'Config/config.php';
-session_start()
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -44,38 +44,34 @@ session_start()
 
 
 <script type="text/javascript">
-    var logged =  "<?php echo isset($_SESSION['id']) ?>";
-    if(logged) {
-        var username = "<?php echo $_SESSION['username'] ?>";
-        var userType = "<?php echo $_SESSION['user_type'] ?>";
-        var firstname = "<?php echo $_SESSION['firstname'] ?>";
+
+    var id = "<?php if(isset($_SESSION['id'])) echo $_SESSION['id']; else echo -1;?>";
+
+    if(id > -1) {
+        var username = "<?php if(isset($_SESSION['username'])) echo $_SESSION['username']; else echo "NOT_SET"; ?>";
+        var userType = "<?php if(isset($_SESSION['user_type'])) echo $_SESSION['user_type']; else echo "NOT_SET";  ?>";
+        var firstname = "<?php if(isset($_SESSION['firstname'])) echo $_SESSION['firstname']; else echo "NOT_SET";  ?>";
     }
-    </script>
-<script type="text/javascript">
 
     window.onload = function () {
 
         loadCategories();
         loadRssFeed("new");
 
-        var unregistered = document.getElementById("unregistered");
-        var admin = document.getElementById("admin");
-        var customer = document.getElementById("customer");
-        var hello = document.getElementById("hello");
+                var unregistered = document.getElementById("unregistered");
+                var admin = document.getElementById("admin");
+                var customer = document.getElementById("customer");
+                var hello = document.getElementById("hello");
 
-        if(logged) {
-            unregistered.style.display = "none";
-            admin.style.display = "none";
-            hello.innerHTML = "<center> Salut, " + firstname + "</center>";
-        }
-        else if(userType === "admin") {
-            unregistered.style.display = "none";
-            hello.innerHTML = "<center> Salut, " + firstname + "</center>";
-        }
-            else {
-                admin.style.display = "none";
-                customer.style.display = "none";
-           }
+                if(id > -1) {
+                    if(userType != "admin") admin.style.display = "none";;
+                    unregistered.style.display = "none";
+                    hello.innerHTML = "<center> Salut, " + firstname + "</center>";
+                }
+                    else {
+                        admin.style.display = "none";
+                        customer.style.display = "none";
+                   }
     }
 </script>
 
@@ -103,7 +99,7 @@ session_start()
                         </div>
                         <div id="customer">
                             <a class="usableButton" href="View/pages/adminPage.php">my account</a>
-                            <a class="usableButton" href="View/pages/adminPage.php">logout</a>
+                            <a class="usableButton" href="Controller/Dispatcher/logout.php">logout</a>
                         </div>
                     </div>
                 </li>
