@@ -160,8 +160,18 @@ class QueryProductBuilder extends Model
 
     public function getProductsByEventId($eventId, $offset, $recordsPerPage)
     {
-        $sql = "SELECT * FROM products p JOIN products_events pe on p.id = pe.product_id AND pe.event_id = ? 
-                ORDER BY p.created_at DESC, p.nr_sold DESC LIMIT ?,?";
+
+        $sqlProductData = "SELECT DISTINCT p.id,
+         p.name, 
+         p.description,
+          p.price, 
+          p.category_id,
+           p.nr_sold, p.image,
+            p.units_in_stock, 
+            p.created_at, p.updated_at, p.age_lower_bound ";
+
+        $sql =   $sqlProductData . ' FROM products p JOIN products_events pe on p.id = pe.product_id AND pe.event_id = ? 
+                ORDER BY p.created_at DESC, p.nr_sold DESC LIMIT ?,?';
 
         $query = $this->getConnection()->prepare($sql);
         $query->bindParam(1, $eventId, PDO::PARAM_INT);

@@ -40,7 +40,15 @@ if (isset($_GET['id']) &&
         document.offset = 0;
         document.recordsNr = "<?php echo RECORDS_PER_PAGE ?>";
         document.working = false;
+        document.webUrl = "";
+        document.flag = 0;
+
         document.webUrl = getUrlForSpecialEventProducts(document.productListDispatcher, document.eventId, document.offset, document.recordsNr);
+        function calculateGeneralUrl(){
+            document.flag = 0;
+            document.webUrl = getUrlForSpecialEventProducts(document.productListDispatcher, document.eventId, document.offset, document.recordsNr);
+        }
+
     </script>
 
 </head>

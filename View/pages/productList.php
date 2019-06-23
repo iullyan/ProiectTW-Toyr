@@ -210,16 +210,6 @@ session_start();
                     </div>
                 </form>
             </div>
-
-            <button class="collapsible">Interval de preț</button>
-            <div class="content">
-                <div class="options">
-                    <label for="priceLowerBound">Preț minim</label>
-                    <input type="text" id="priceLowerBound" name="priceLowerBound" onkeyup="loadByPrice()"><br>
-                    <label for="priceUpperBound">Preț maxim</label>
-                    <input type="text" id="priceUpperBound" name="priceLowerBound" onkeyup="loadByPrice()">
-                </div>
-            </div>
         </div>
     </div>
 
