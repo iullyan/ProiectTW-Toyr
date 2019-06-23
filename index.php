@@ -105,7 +105,7 @@ session_start();
                 </li>
                 <li>
                     <input type="button" class="usableButton" value="Coșul meu"
-                           onclick="window.location.href='View/pages/payment.php'"/>
+                           onclick="window.location.href='View/pages/cart.php'"/>
                 </li>
 
             </ul>
