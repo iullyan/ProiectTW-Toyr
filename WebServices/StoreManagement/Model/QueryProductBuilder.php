@@ -55,7 +55,7 @@ class QueryProductBuilder extends Model
             case 'priceAsc' :
                 if (isset($categoryId)) {
                     $sql = $sqlProductData . ' ' . " from products p left join discounts d on p.id = d.product_id where p.category_id = ? 
-                    order by if (d.discount_percentage is null , p.price , d.price_with_discount) asc LIMIT ?, ?";
+                    order by if(d.discount_percentage is null , p.price , d.price_with_discount)  asc LIMIT ?, ?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $categoryId, PDO::PARAM_INT);
                     $query->bindParam(2, $offset, PDO::PARAM_INT);
