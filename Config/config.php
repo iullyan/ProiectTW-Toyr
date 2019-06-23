@@ -60,6 +60,8 @@ define('ADD_DISCOUNT_DISPATCHER', 'http://localhost:'. APP_PORT .'/ProiectTW-Toy
 define('ADD_PRODUCT_TO_EVENT_DISPATCHER', 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/Controller/Dispatcher/addProductToEvent.php');
 define('ADD_PROMOTION_DISPATCHER', 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/Controller/Dispatcher/addPromotion.php');
 define('ADD_EVENT_DISPATCHER', 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/Controller/Dispatcher/addEvent.php');
+define('ADD_CATEGORY_DISPATCHER', 'http://localhost:'. APP_PORT .'/ProiectTW-Toyr/Controller/Dispatcher/addCategory.php');
+
 
 
 

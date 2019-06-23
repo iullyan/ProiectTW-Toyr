@@ -156,3 +156,15 @@ function deleteEvent(dispatcherUrl) {
     form +=  event   + submit + "</form>";
     document.getElementsByClassName("main")[0].innerHTML = form;
 }
+
+
+function addCategory(dispatcherUrl){
+
+    var form = '<form method="post" action="' + dispatcherUrl + '">';
+    var event = '<label for="category">Numele categoriei </label>' +
+        '<input id="category" type="text" name="name" >';
+
+    var submit = '<button class="usableButton">Adauga Categorie</button>';
+    form +=  event   + submit + "</form>";
+    document.getElementsByClassName("main")[0].innerHTML = form;
+}

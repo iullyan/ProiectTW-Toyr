@@ -69,6 +69,14 @@
 
         </div>
 
+        <button class="collapsible">Administrează categorii</button>
+        <div class="content">
+            <div class="options">
+                <button onclick="addCategory('<?php echo ADD_CATEGORY_DISPATCHER; ?>')">Adaugă categorie</button>
+            </div>
+
+        </div>
+
         <button class="collapsible">Administrează oferte speciale</button>
         <div class="content">
             <div class="options">

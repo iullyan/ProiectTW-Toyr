@@ -17,7 +17,7 @@ if (!empty($name = $categoryInformation->name))
         http_response_code(201);
 
         // tell the user
-        echo json_encode(array("message" => "Category was created."));
+        echo json_encode(array("Message" => "Category was created."));
     } // if unable to create the product, tell the user
     else {
 
@@ -25,7 +25,7 @@ if (!empty($name = $categoryInformation->name))
         http_response_code(503);
 
         // tell the user
-        echo json_encode(array("message" => "Unable to create category."));
+        echo json_encode(array("Message" => "Unable to create category."));
     }
 } // tell the user data is incomplete
 else {
@@ -34,5 +34,5 @@ else {
     http_response_code(400);
 
     // tell the user
-    echo json_encode(array("message" => "Unable to create category. Input data is incomplete."));
+    echo json_encode(array("Message" => "Unable to create category. Input data is incomplete."));
 }
