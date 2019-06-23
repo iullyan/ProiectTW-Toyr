@@ -195,7 +195,6 @@ session_start();
                     <button onclick="loadProductsByOrder('priceDesc')">Preț descendent</button>
                     <button onclick="loadProductsByOrder('discount')">Cel mai mare discount</button>
                     <button onclick="loadProductsByOrder('promotion')">Promoții</button>
-                    <button onclick="loadProductsByOrder('new')">În stoc</button>
 
                 </div>
             </div>
@@ -219,7 +218,7 @@ session_start();
                 <button class="usableButton">Categorii</button>
                 <div class="dropdown-content categoriesContent"></div>
             </div>
-            <h4 id="currentCategory">Categoria Curentă : <?php echo $categoryName; ?> </h4>
+            <h4 id="currentCategory">Categoria Curentă : <?php echo $categoryName . ' #' . $categoryId ?> </h4>
         </nav>
 
     </div>
