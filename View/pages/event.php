@@ -4,18 +4,17 @@ $validUntil = null;
 $validFrom = null;
 $name = null;
 $eventId = null;
-    if(isset($_GET['id']) &&
+if (isset($_GET['id']) &&
     isset($_GET['name']) &&
     isset($_GET['validFrom']) &&
     isset($_GET['validUntil'])) {
 
-        $validFrom = $_GET['validFrom'];
-        $validUntil = $_GET['validUntil'];
-        $name = $_GET['name'];
-        $eventId = $_GET['id'];
-    }
-    else
-        die("No event specified");
+    $validFrom = $_GET['validFrom'];
+    $validUntil = $_GET['validUntil'];
+    $name = $_GET['name'];
+    $eventId = $_GET['id'];
+} else
+    die("No event specified");
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -26,6 +25,8 @@ $eventId = null;
     <title>Toyr - Bine ați venit !</title>
     <link rel="stylesheet" type="text/css" href="../css/event.css">
     <link rel="stylesheet" type="text/css" href="../css/productUI.css">
+    <link rel="stylesheet" type="text/css" href="../css/headerElements.css">
+
     <link rel="stylesheet" type="text/css" href="../css/usableButton.css">
     <link rel="stylesheet" type="text/css" href="../css/productListContainer.css">
 
@@ -47,13 +48,11 @@ $eventId = null;
 <body onload="loadProducts()">
 
 <header>
-    <h2 style="padding-right: 100px;"><a href="../../index.php"> Toyr </a> </h2>
-    <h2 style="padding-right: 100px;" ><?php echo $name;?></h2>
-    <h4><?php echo $validFrom . "  -  " . $validUntil?></h4>
+    <h2 style="padding-right: 100px;"><a href="../../index.php"> Toyr </a></h2>
+    <h2 style="padding-right: 100px;"><?php echo $name; ?></h2>
+    <h4><?php echo $validFrom . "  -  " . $validUntil ?></h4>
 </header>
 <div class="grid-container">
-    <header>
-    </header>
 
 
     <section class="main">

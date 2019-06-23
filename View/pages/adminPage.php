@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="../css/category.css">
+
+    <link rel="stylesheet" type="text/css" href="../css/headerElements.css">
     <link rel="stylesheet" type="text/css" href="../css/usableButton.css">
     <link rel="stylesheet" type="text/css" href="../css/adminPage.css">
     <link rel="stylesheet" type="text/css" href="../css/optionsPanel.css">
@@ -36,15 +37,15 @@
                 <div class="accountOptions">
                     <div id="hello"></div>
                     <div id="unregistered">
-                        <a class="usableButton" href="View/pages/login.php">Login</a>
-                        <a class="usableButton" href="View/pages/register.php">Register</a>
+                        <a  href="View/pages/login.php">Login</a>
+                        <a  href="View/pages/register.php">Register</a>
                     </div>
                     <div id="admin">
-                        <a class="usableButton" href="View/pages/adminPage.php">admin</a>
+                        <a  href="View/pages/adminPage.php">admin</a>
                     </div>
                     <div id="customer">
-                        <a class="usableButton" href="View/pages/adminPage.php">my account</a>
-                        <a class="usableButton" href="View/pages/adminPage.php">logout</a>
+                        <a  href="View/pages/adminPage.php">my account</a>
+                        <a  href="View/pages/adminPage.php">logout</a>
                     </div>
                 </div>
             </li>

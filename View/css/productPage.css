@@ -1,4 +1,6 @@
-
+* {
+    box-sizing: border-box;
+}
 #container {
     overflow: hidden;
     width: 100%;

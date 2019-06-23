@@ -41,18 +41,6 @@
 }
 
 
-header{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    grid-row: 1/ span 1;
-    grid-column: 1/ span 4;
-    background: #35424a;
-    color: #ffffff;
-    padding: 0;
-    justify-content: center;
-    grid-area: header;
-}
 
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
