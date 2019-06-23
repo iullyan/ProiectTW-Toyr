@@ -61,7 +61,8 @@ class QueryProductBuilder extends Model
                     $query->bindParam(2, $offset, PDO::PARAM_INT);
                     $query->bindParam(3, $recordsPerPage, PDO::PARAM_INT);
                 }else{
-                    $sql = $sqlProductData . ' ' . "FROM products p WHERE p.id > ? ORDER BY price LIMIT ?";
+                    $sql = $sqlProductData . ' ' . " from products p left join discounts d on p.id = d.product_id' . ' ' .
+                    order by if (d.discount_percentage is null , p.price , d.price_with_discount) asc LIMIT ?, ?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $offset, PDO::PARAM_INT);
                     $query->bindParam(2, $recordsPerPage, PDO::PARAM_INT);
@@ -78,7 +79,8 @@ class QueryProductBuilder extends Model
                     $query->bindParam(2, $offset, PDO::PARAM_INT);
                     $query->bindParam(3, $recordsPerPage, PDO::PARAM_INT);
                 }else{
-                    $sql = $sqlProductData . ' ' . "FROM products p WHERE  ORDER BY price DESC LIMIT ?,?";
+                    $sql = $sqlProductData . ' ' . " from products p left join discounts d on p.id = d.product_id . ' ' .
+                    order by if (d.discount_percentage is null , p.price , d.price_with_discount) desc LIMIT ?, ?";
                     $query = $this->getConnection()->prepare($sql);
                     $query->bindParam(1, $offset, PDO::PARAM_INT);
                     $query->bindParam(2, $recordsPerPage, PDO::PARAM_INT);
