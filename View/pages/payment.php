@@ -86,12 +86,31 @@
         <div class="col-25"> <!--Fereastra cu produsele-->
                 <div class="container">
                   <h4>Coș de Cumpărături <span class="price" style="color:black"> <b>4</b></span></h4>
-                  <p><a href="#">Produsul 1</a> <span class="price">30RON</span></p>
-                  <p><a href="#">Produsul 2</a> <span class="price">40RON</span></p>
-                  <p><a href="#">Produsul 3</a> <span class="price">20RON</span></p>
-                  <p><a href="#">Produsul 4</a> <span class="price">10RON</span></p>
-                  <hr>
-                  <p>Total <span class="price" style="color:black"><b>100RON</b></span></p>
+                  <?php 
+                    if (isset($_COOKIE['cartIds']) && isset($_COOKIE['cartNames']) && isset($_COOKIE['productPrice'])) {
+                        $productIds = unserialize($_COOKIE['cartIds']);
+                        $productNames = unserialize($_COOKIE['cartNames']);
+                        $productPrices = unserialize($_COOKIE['productPrice']);
+    
+                        $subtotal = (float)0;
+    
+                        for ($i = 0; $i <= array_key_last($productIds); $i++) {
+                            if (isset($productIds[$i])) {
+                                echo '<p><a href="#">';
+                                echo $productNames[$i];
+                                echo '<span class="price">';
+                                echo $productPrices[$i];
+                                echo '</span></p>';
+                                $subtotal += (float)$productPrices[$i];
+                                }
+                        }
+                        echo '<hr>';
+
+                echo '<p><a href="#">Total</a> <span class="price" style="color:black"><b>';
+                echo $subtotal;
+                echo '</b></span></p>';
+            }
+?>
                 </div>
               </div>
     </div>
@@ -99,3 +118,4 @@
 
     </body>
 </html>
+
