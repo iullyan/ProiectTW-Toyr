@@ -97,7 +97,7 @@ session_start();
                             <a  href="View/pages/adminPage.php">admin</a>
                         </div>
                         <div id="customer">
-                            <a  href="View/pages/adminPage.php">my account</a>
+                            <a  href="View/pages/userPage.php">my account</a>
                             <a  href="Controller/Dispatcher/logout.php">logout</a>
                         </div>
                     </div>

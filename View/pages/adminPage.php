@@ -69,7 +69,7 @@ session_start();?>
                         <a href="./register.php">Register</a>
                     </div>
                     <div id="customer">
-                        <a  href="./adminPage.php">my account</a>
+                        <a  href="./userPage.php">my account</a>
                         <a  href="../../Controller/Dispatcher/logout.php">logout</a>
                     </div>
                 </div>
