@@ -57,7 +57,7 @@ if (isset($_GET['id']) &&
 
 <header>
     <h2 style="padding-right: 100px;"><a href="../../index.php"> Toyr </a></h2>
-    <h2 style="padding-right: 100px;"><?php echo $name; ?></h2>
+    <h2 style="padding-right: 100px;"><?php echo '#' . $eventId . $name; ?></h2>
     <h4><?php echo $validFrom . "  -  " . $validUntil ?></h4>
 </header>
 <div class="grid-container">

@@ -25,8 +25,9 @@ define('SPECIAL_OFFERS', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Controlle
 
 //Images
 define('FRONT_IMAGE', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Resources/eventsImages/');
+define('FRONT_IMAGE_UPLOAD', $_SERVER['DOCUMENT_ROOT'] .'/ProiectTW-Toyr/Resources/eventsImages/');
 define('PRODUCT_IMAGES_UPLOAD', $_SERVER['DOCUMENT_ROOT'] . '/ProiectTW-Toyr/Resources/productImages/');
-define('IMAGES_LOCATION', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Resources//productImages/');
+define('IMAGES_LOCATION', 'http://localhost:'.APP_PORT.'/ProiectTW-Toyr/Resources/productImages/');
 
 //Order products
 define ("PRODUCT_ORDERBY", serialize (array ('discount', 'nrSold', 'priceAsc', 'priceDesc', 'new', 'promotion')));

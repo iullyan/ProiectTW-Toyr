@@ -18,7 +18,7 @@ if (
     $endingDate = htmlentities($_POST['endingDate']);
     $imageName = htmlentities($_FILES['image']['name']);
 
-    if ($message = $imageUploader->upload($_FILES['image'], FRONT_IMAGE) === true) {
+    if ($message = $imageUploader->upload($_FILES['image'], FRONT_IMAGE_UPLOAD) === true) {
         //Build the Json object
         $object = new stdClass();
         $object->name = $name;
