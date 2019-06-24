@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Toyr - Ghid de utilizare</title>
+
+</head>
+<body>
+<header>
+    <h1>Toyr - ghid de utilizare</h1>
+    <div role="contentinfo">
+        <dl>
+            <dt>Authors:</dt>
+            <dd>
+                Cernat Iulian - Constantin
+            </dd>
+
+        </dl>
+    </div>
+</header>
+
+<section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+    <h2>Abstract</h2>
+    <p>
+        Toyr este o aplicatie web ce reprezintă un magazin online de jucări și permite
+        utilizatorilor , in funție de status (client sau admin), anumite operații.
+        Acest document a fost creat pentru a explica aceste operații.
+    </p>
+</section>
+
+<section id="introduction" role="doc-introduction">
+    <!-- review? -->
+    <h2>Introduction</h2>
+
+    <p>
+        Toyr propune o interfață prin care clienții pot realiza:
+    </p>
+        <ul>
+            <li>Înregistrare și autentificare</li>
+            <li>Vizionare lista de produse cu diferite modalități de sortare (categorii, vârsta, preț, noutăți etc.)</li>
+            <li>Vizionarea evenimentului curent</li>
+            <li>Extragerea un produs pentru detalii</li>
+            <li>Adaugarea de produse în coș </li>
+            <li>Afișarea coșului de cumpărături</li>
+            <li>Ștergerea produse din coș</li>
+            <li>Plasarea de produse într-o comandă fără suport pentru trimiterea comenzii</li>
+        </ul>
+    <p>
+        Utilizatorii de tip admin, pe lângă facilitățile de mai sus, pot să facă managementul magazinului, folosind următoarele operații:
+    </p>
+        <ul>
+            <li>Adăugarea de produse </li>
+            <li>Adăugarea de categorii</li>
+            <li>Crearea evenimentelor</li>
+            <li>Adăugarea produselor la un anumit eveniment</li>
+            <li>Adăugarea unui discount  pentru un anumit produs</li>
+            <li>Adăugarea unei promoții  pentru un anumit produs</li>
+            <li>Operații de ștergere(produse,eveniment, oferte)</li>
+        </ul>
+</section>
+
+<section>
+    <h2>Funcționalitățile utilizatorilor generici(clienți sau admini)</h2>
+    <ol>
+        <li>
+            <h4>Înregistrare</h4>
+            <p>
+                Pentru a se înregistra, utilizatorii apasă pe butonul "Contul meu" din meniu și selectează "REGISTER".
+                Aceștia vor completa un formular ce va conține : Nume, Prenume, Username, Parola, Parola rescrisă și adresa de email.<br>
+                Dacă operația a reușit, atunci utilizatorul va fi redirecționat către pagina principală.<br>
+                (Obs) By default un utilizator se înregistrează ca și client, nu are drepturi de admin.
+                Există un singur admin în baza de date.
+            </p>
+        </li>
+        <li>
+            <h4>Autentificare</h4>
+            <p>
+                Pentru a se înregistra, utilizatorii apasă pe butonul "Contul meu" din meniu și selectează "LOGIN".
+                Vor completa apoi un formular cu username și parola.
+                Dacă operația a reușit, atunci utilizatorul va fi redirecționat către pagina principală, altfel rămâne pe pagina de login<br>
+                După ce autentificarea a avut succes, dand hover peste "Contul meu" vor aparea mai multe opțiuni în funcție de status.
+                Opțiunile comune utilizatorilor sunt: "MY ACCOUNT" care trimite la pagina cu detalii despre cont și "LOGOUT" care da sign-out la utilizator.<br>
+                Pentru admin există o opțiune particulară , "ADMIN", care trimite către o pagină de unde pot fi selectate diverse formulare pentru managementul
+                magazinului.
+            </p>
+        </li>
+
+        <li>
+            <h4>Vizionarea produselor</h4>
+            <p>
+                Produsele afișate conțin un nume, pret, un posibil preț cu discount,
+                o imagine și niște tag-uri ("cadou" dacă are o promoție, "-%discount" dacă are discount)
+                Atunci când utlizatorul accesează site-ul acesta poate viziona un număr maxim (specificat de fluxul RSS) de produse în funție
+                de opțiunile: "Produse noi", "Promoții", "Cele mai vândute"<br>
+                Selectând o categorie din lista afișată, utilizatorul este trimis către o pagină care conține produsele din categoria respectivă
+                pe care le poate sorta după opțiunile din panel-ul din stânga ce conține:
+                ordonarea după (noutăți, cele mai vandute, preț ascendent, preț descendent, cel mai mare discount, promoții) și limita superioare de varsta(1-14).<br>
+                (Obs) Cele doua categorii de opțiuni nu pot fi combinate între ele).
+
+            </p>
+        </li>
+
+        <li>
+            <h4>Extragerea un produs pentru detalii</h4>
+            <p>
+               Utilizatorul apasă click pe butonul "Vezi detalii" al container-ului care conține prezentarea produsului și este redirecționat către pagina
+                acestuia care conține toate detaliile produsului:
+                nume, id, preț, posibil preț cu discount, procentajul discountului, descriere, promoții, vârsta recomandată, stoc
+
+            </p>
+        </li>
+
+        <li>
+            <h4>Adaugarea de produse în coș</h4>
+            <p>
+                Din pagina produsului utilizatorul îl poate adăuga în coș apăsând butonul "Adăugați în coș".
+                Același produs poate fi adăugat de mai multe ori (va aparea numele produsului de mai multe ori în coș).
+            </p>
+        </li>
+
+        <li>
+            <h4>Afișarea coșului decumpărături</h4>
+            <p>
+                Din meniu de deasupra paginii utilizatorul poate selecta "Coșul Meu" care îl va redirecționa către o pagină care conține numele
+                produselor, prețul lor și subtotalul lor.
+            </p>
+        </li>
+
+        <li>
+            <h4>Ștergerea produse din coș</h4>
+            <p>
+                Din pagina coșului de cumpărături se apasă butonul "șterge" din dreapta produsului care se dorește a fi șters din coș.
+            </p>
+        </li>
+
+        <li>
+            <h4>Plasarea de produse într-o comandă fără suport pentru trimiterea comenzii</h4>
+            <p>
+                Din pagina coșului de cumpărături utilizatorul poate plasa comanda, fiind redirecționat către pagina care conține lista de produse din coș și
+                detaliile despre factură.
+            </p>
+        </li>
+
+
+        <li>
+            <h4>Vizionarea evenimentului curent</h4>
+            <p>
+                Din pagina principală utilizatorul dă click pe imaginea evenimentului și este redirecționat către o pagină care conține datele despre acel eveniment
+                (nume, intervalul de timp în care este valid) și produsele care fac parte din acel eveniment).
+            </p>
+        </li>
+
+    </ol>
+
+    <h2>Funcționalitățile specifice adminului</h2>
+    <ol>
+        <li>
+            <h4>Adăugarea de produse </h4>
+            <p>
+                Adminul poate adăuga produse selectând opțiunea "Adaugă produs" din "Administrează produse". <br>
+                Va fi generat un formular care conține datele produsului ce se dorește inserat : nume, descriere, preț, stoc, id-ul categoriei, vârsta minimă și o imagine.<br>
+                Mesajul operației este afișat pe o nouă pagină.
+            </p>
+        </li>
+
+        <li>
+            <h4>Adăugarea de categorii </h4>
+            <p>
+                Adminul poate adăuga produse selectând opțiunea "Adaugă categorie" din "Administrează categorii." <br>
+                Va fi generat un formular care va conține numele categoriei ce se dorește a fi adăugată.<br>
+                Mesajul operației este afișat pe o nouă pagină.
+
+            </p>
+        </li>
+
+        <li>
+            <h4>Crearea evenimentelor </h4>
+            <p>
+                Adminul poate crea un eveniment selectând opțiunea "Creeză eveniment" din "Administrează evenimente". <br>
+                Va fi generat un formular care conține numele evenimentului, timestamp-ul de început, timestamp-ul de terminare și o imagine.<br>
+                (Obs1) Atunci când timestamp-urile (început, final) expiră sau sau nu sunt valide, evenimetele care au aceste timestamp-uri vor fi șterse automat.<br>
+                (Obs2) Se pot planifica mai multe evenimente. Va fi ales pentru afișare primul eveniment care este valid.
+            </p>
+        </li>
+
+        <li>
+            <h4>Adăugarea produselor la un anumit eveniment </h4>
+            <p>
+                Adminul poate adăuga un produs la un eveniment selectând opțiunea "Adaugă produs la eveniment" din "Administrează evenimente". <br>
+                Va fi generat un formular care conține id-ul evenimentului și id-ul produsului care se dorește adăugat.
+            </p>
+        </li>
+
+        <li>
+            <h4>Adăugarea unui discount pentru un anumit produs</h4>
+            <p>
+                Adminul poate adăuga un discount pentru un produs selectând opțiunea "Adaugă discount" din "Administrează oferte speciale". <br>
+                Va fi generat un formular care conține id-ul produsului, procentajul discount-ului, timestamp-ul de început și timestamp-ul de terminare.<br>
+                (Obs1) Atunci când timestamp-urile (început, final) expiră sau sau nu sunt valide, discount-urile care au aceste timestamp-uri vor fi șterse automat.<br>
+                (Obs2) Se pot planifica mai multe discount-uri pentru același produs. Va fi ales pentru afișare primul discount care este valid.
+            </p>
+        </li>
+
+        <li>
+            <h4>Adăugarea unei promoții pentru un anumit produs</h4>
+            <p>
+                O promoție înseamnă primirea unui numar de produse cadou la cumpărarea unei anumite cantități a unui produs.
+                Adminul poate adăuga o promoție pentru un produs selectând opțiunea "Adaugă promoție" din "Administrează oferte speciale". <br>
+                Va fi generat un formular care conține id-ul produsului pentru promoție, numărul de produse cumpărate pentru declanșarea promoției,
+                id-ul produsului oferit cadou, numărul de produse oferite cadou, timestamp-ul de început și timestamp-ul de terminare.<br>
+                (Obs1) Atunci când timestamp-urile (început, final) expiră sau sau nu sunt valide, promoțiile care au aceste timestamp-uri vor fi șterse automat.<br>
+                (Obs2) Se pot planifica mai multe promoții pentru același produs. Va fi ales pentru afișare prima promoție care este validă.
+            </p>
+        </li>
+    </ol>
+</section>
+
+
+</body>
+</html>
