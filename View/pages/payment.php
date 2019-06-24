@@ -85,7 +85,6 @@
         </div>
         <div class="col-25"> <!--Fereastra cu produsele-->
                 <div class="container">
-                  <h4>Coș de Cumpărături <span class="price" style="color:black"> <b>4</b></span></h4>
                   <?php 
                     if (isset($_COOKIE['cartIds']) && isset($_COOKIE['cartNames']) && isset($_COOKIE['productPrice'])) {
                         $productIds = unserialize($_COOKIE['cartIds']);
@@ -93,7 +92,10 @@
                         $productPrices = unserialize($_COOKIE['productPrice']);
     
                         $subtotal = (float)0;
-    
+                        echo '<h4>Coș de Cumpărături <span class="price" style="color:black"> <b>';
+                        echo sizeof($productIds);
+                        echo '</b></span></h4>';
+
                         for ($i = 0; $i <= array_key_last($productIds); $i++) {
                             if (isset($productIds[$i])) {
                                 echo '<p><a href="#">';
